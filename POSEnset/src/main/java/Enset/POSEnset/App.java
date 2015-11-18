@@ -16,7 +16,8 @@ public class App
 {
     public static void main( String[] args )
     {
-
+        ResourceBundle bundle = ResourceBundle.getBundle("langue",new Locale("fr"));  
+        System.out.println(bundle.getString("greeting"));
          
     }
 }

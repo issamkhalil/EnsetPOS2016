@@ -20,10 +20,11 @@ public interface IGestionVentesMetier {
 	 * @param com.entities.Vente
 	 * fonction supprimer une Vente 
 	 */
-	public void deleteVente(Vente v);
+	public void deleteVente(long id);
 	
 	/*
 	 * @param long le ID et Vente 
+	 * @use getVentebyId
 	 * fonction modifier une Vente 
 	 */
 	public void modifierVente(long id,Vente v);
@@ -54,9 +55,9 @@ public interface IGestionVentesMetier {
 	public List<Vente> getVenteparClientID(long clientId);
 	
 	/*
-	 * @param long le totale à payer 
+	 * @param long le totale ï¿½ payer 
 	 * @return List<Produit>
-	 * fonction chercher une Vente par le totale à payer 
+	 * fonction chercher une Vente par le totale ï¿½ payer 
 	 */
 	public List<Vente> getVenteparTotale(double totale);
 	
@@ -114,10 +115,17 @@ public interface IGestionVentesMetier {
 		/*
 		 * @param long le ID
 		 * @param LigneVente
+		 * @use getLigneVenteByID
 		 * fonction modifier une LigneVente 
 		 */
 		public void modifierLigneVente(long id,LigneVente lv);
-	
+		
+		/*
+		 * @param long id
+		 * @return LigneVente
+		 * 
+		 */
+		public LigneVente getLigneVenteByID(long d);
 	
 	
 	
@@ -152,7 +160,7 @@ public interface IGestionVentesMetier {
 	
 	/*
 	 * @param long id
-	 * fonction change l'etat d'une tranche payè ou non payè
+	 * fonction change l'etat d'une tranche payï¿½ ou non payï¿½
 	 * true -> false  and false -> true
 	 */
 	public void toggelEtatTranche(long id);

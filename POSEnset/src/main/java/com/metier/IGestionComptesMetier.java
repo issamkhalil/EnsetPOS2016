@@ -20,6 +20,7 @@ public interface IGestionComptesMetier {
 	/*
 	 * @param long le ID 
 	 * @param  com.entities.CompteUtilisateur 
+	 * @use getCompteUtilisateurbyId
 	 * fonction modifier un CompteUtilisateur 
 	 */
 	public void modifierCompteUtilisateur(long id,CompteUtilisateur c);

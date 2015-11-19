@@ -1,5 +1,7 @@
 package com.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /*
  * @author <a href="mailto:issam.khalil11@gmail.com"> KHALIL Issam GLSID2 <a/>
@@ -35,6 +38,16 @@ public abstract class Client {
 	@JoinColumn(name="id")
 	private Adresse adresse;
 	
+	@OneToMany(mappedBy="client")
+	private List<Vente> ventes;
+	
+	
+	public List<Vente> getVentes() {
+		return ventes;
+	}
+	public void setVentes(List<Vente> ventes) {
+		this.ventes = ventes;
+	}
 	public String getNote() {
 		return note;
 	}

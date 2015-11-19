@@ -30,6 +30,7 @@ public interface IGestionClientMetier {
 	/*
 	 * @param long le ID et Client 
 	 * fonction modifier un client 
+	 * @use chercheClientparID
 	 */
 	public void modifierClient(long id,Client c);
 	/*
@@ -51,7 +52,7 @@ public interface IGestionClientMetier {
 	 * @return Client
 	 * fonction cherche  un clients  par le ID
 	 */
-	public List<Client> chercheClientparID(long id);
+	public Client chercheClientparID(long id);
 	 
 	// ****************************************  Adresse **********************************
 	/*
@@ -70,6 +71,7 @@ public interface IGestionClientMetier {
 	 * @param long le ID
 	 * @param Adresse 
 	 * fonction modifier une Adresse 
+	 * @use getAdressebyId
 	 */
 	public void modifierAdresse(long id,Adresse a);
 	

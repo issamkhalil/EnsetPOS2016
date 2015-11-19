@@ -21,6 +21,7 @@ public interface IGestionProduitsMetier {
 	/*
 	 * @param long le ID 
 	 * @param Produit 
+	 * @use getProduitbyId
 	 * fonction modifier un Produit 
 	 */
 	public void modifierProduit(long id,Produit p);
@@ -82,6 +83,7 @@ public interface IGestionProduitsMetier {
 		/*
 		 * @param long le ID
 		 * @param Categorie 
+		 * @use getCategoriebyId
 		 * fonction modifier une Categorie 
 		 */
 		public void modifierCategorie(long id,Categorie c);

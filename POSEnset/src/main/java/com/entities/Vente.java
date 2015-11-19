@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.swing.Icon;
 
@@ -37,8 +39,17 @@ public class Vente implements Comparable<Vente>{
 	@OneToMany(mappedBy="vente")
 	private List<Tranche> tranches ;
 	
+	@ManyToOne
+	@JoinTable(name="id")
+	private Client client;
 	
 	
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
 	public long getId() {
 		return id;
 	}

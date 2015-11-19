@@ -1,5 +1,9 @@
 package Enset.POSEnset;
 
+import com.dao.GestionClientDAOImpl;
+import com.dao.GestionProduitsDAOImpl;
+import com.dao.IGestionProduitsDAO;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -10,6 +14,7 @@ import junit.framework.TestSuite;
 public class AppTest 
     extends TestCase
 {
+	private IGestionProduitsDAO dao;
     /**
      * Create the test case
      *
@@ -19,6 +24,8 @@ public class AppTest
     {
     	
         super( testName );
+        dao = new GestionProduitsDAOImpl();
+        
     }
 
     /**

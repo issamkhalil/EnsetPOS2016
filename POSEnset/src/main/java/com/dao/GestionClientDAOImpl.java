@@ -11,7 +11,6 @@ import com.entities.ClientParticulier;
 import com.entities.Produit;
 
 public class GestionClientDAOImpl extends GenericDAOImpl implements IGestionClientDAO {
-
 	@Override
 	public Client AddClient(Client c) {
 		em.persist(c);

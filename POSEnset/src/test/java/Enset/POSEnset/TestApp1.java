@@ -27,7 +27,7 @@ public class TestApp1 {
 					new String[] { "applicationContext.xml" });
 			assertTrue(true);
 		} catch (Exception e) {
-			System.err.println("le erreur est :" + e);
+			System.err.println(e);
 			assertTrue(e.getMessage(), false);
 		}
 	}

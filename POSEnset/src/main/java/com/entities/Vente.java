@@ -40,7 +40,7 @@ public class Vente implements Comparable<Vente>{
 	private List<Tranche> tranches ;
 	
 	@ManyToOne
-	@JoinTable(name="id")
+	@JoinTable(name="id_client")
 	private Client client;
 	
 	

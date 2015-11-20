@@ -45,7 +45,7 @@ public class Produit {
 	private String image; // the name of image
 	
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="id_categorie")
 	private Categorie categorie;
 	@OneToMany(mappedBy="produit")
 	private List<LigneVente> lignesVente;

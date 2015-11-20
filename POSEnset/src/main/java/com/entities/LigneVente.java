@@ -23,10 +23,10 @@ public class LigneVente {
 	private long quantite;
 	
 	@ManyToOne()
-	@JoinColumn(name="id")
+	@JoinColumn(name="id_produit")
 	private Produit produit;
 	@ManyToOne()
-	@JoinColumn(name="id")
+	@JoinColumn(name="id_vente")
 	private Vente vente;
 	public long getQuantite() {
 		return quantite;

@@ -17,7 +17,11 @@ public class LangueModel {
     private static ResourceBundle bundle=null;
     public LangueModel(String lang){
         if(bundle==null){
-            Locale.setDefault(new Locale("fr"));
+          bundle = ResourceBundle.getBundle(Constants.LANGUE_FILE,new Locale(lang));
+        }
+    }
+    public LangueModel(){
+        if(bundle==null){
           bundle = ResourceBundle.getBundle(Constants.LANGUE_FILE);
         }
     }

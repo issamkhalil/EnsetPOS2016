@@ -26,6 +26,7 @@ public class Adresse {
 	private String region;
 	@Column(nullable=true)
 	private String codePostale;
+	
 	@OneToMany(mappedBy="adresse")
 	private List<Client> clients;
 	

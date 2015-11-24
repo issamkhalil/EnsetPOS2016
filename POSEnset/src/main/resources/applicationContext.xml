@@ -30,6 +30,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" />
-	<context:annotation-config></context:annotation-config>
+	<tx:annotation-driven transaction-manager="transactionManager" /> <context:annotation-config></context:annotation-config>
+
+	<bean id="clientDAO" class="com.dao.ClientDAOImpl"></bean>
+	<bean id="adresseDAO" class="com.dao.AdresseDAO"></bean>
+	<bean id="GestionClientMetier" class="com.metier.GestionClientMetierImpl">
+		<property name="clientDAO" ref="clientDAO"></property>
+		<property name="adresseDAO" ref="adresseDAO"></property>
+	</bean>
 </beans>

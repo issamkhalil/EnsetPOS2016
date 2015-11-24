@@ -8,7 +8,7 @@ import com.entities.ClientEntreprise;
 import com.entities.ClientParticulier;
 import com.entities.Produit;
 
-public interface IGestionClientDAO {
+public interface IClientDAO {
 	/*
 	 * @param Client 
 	 * ajouter un client
@@ -45,30 +45,4 @@ public interface IGestionClientDAO {
 	 * fonction cherche  un clients  par le ID
 	 */
 	public Client chercheClientparID(long id);
-	// ****************************************  Adresse **********************************
-	/*
-	 * @param com.entities.Adresse
-	 * fonction ajouter une Adresse
-	 */
-	public Adresse AddAdresse(Adresse a);
-	
-	/*
-	 * @param long id
-	 * fonction supprimer une Adresse 
-	 */
-	public void deleteAdresse(long id);
-	
-	/*
-	 * @param Adresse 
-	 * fonction modifier une Adresse 
-	 */
-	public Adresse modifierAdresse(Adresse a);
-	
-	/*
-	 * @param long id
-	 * @return entities.Adresse
-	 * fonction chercher une Categorie  par id 
-	 */
-	public Adresse getAdressebyId(long id);
-
 }

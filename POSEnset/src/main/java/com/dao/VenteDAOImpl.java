@@ -13,7 +13,7 @@ import com.entities.LigneVente;
 import com.entities.Tranche;
 import com.entities.Vente;
 
-public class GestionVenteDAOImpl extends GenericDAOImpl implements IGestionVenteDAO {
+public class VenteDAOImpl extends GenericDAO implements IVenteDAO {
 
 	@Override
 	public void AddVente(Vente v) {
@@ -65,43 +65,4 @@ public class GestionVenteDAOImpl extends GenericDAOImpl implements IGestionVente
 		return q.getResultList();
 	}
 
-	@Override
-	public void AddLigneVente(LigneVente lv) {
-		em.persist(lv);
 	}
-
-	@Override
-	public void modifierLigneVente(LigneVente lv) {
-		em.merge(lv);
-	}
-
-	@Override
-	public LigneVente getLigneVenteByID(long id) {
-		return em.find(LigneVente.class, id);
-	}
-
-	@Override
-	public Tranche AddTranche(Tranche t) {
-		em.persist(t);
-		return t;
-	}
-
-	@Override
-	public void deleteTranche(long id) {
-		Tranche t = em.find(Tranche.class, id);
-		em.remove(t);
-	}
-
-	@Override
-	public Tranche modifierTranche(Tranche t) {
-		em.merge(t);
-		return t;
-	}
-
-	@Override
-	public Tranche getTranchebyId(long id) {
-		
-		return em.find(Tranche.class, id);
-	}
-
-}

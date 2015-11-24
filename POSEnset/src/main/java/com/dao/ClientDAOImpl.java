@@ -10,7 +10,7 @@ import com.entities.ClientEntreprise;
 import com.entities.ClientParticulier;
 import com.entities.Produit;
 
-public class GestionClientDAOImpl extends GenericDAOImpl implements IGestionClientDAO {
+public class ClientDAOImpl extends GenericDAO implements IClientDAO {
 	@Override
 	public Client AddClient(Client c) {
 		em.persist(c);
@@ -30,9 +30,14 @@ public class GestionClientDAOImpl extends GenericDAOImpl implements IGestionClie
 
 	@Override
 	public List<Client> listerClientsAll() {
+		try{
 		Query req=em.createQuery("select c from Client c"); 
 		return req.getResultList();
-	}
+		}catch(Exception e){
+			
+			return null;
+		}
+		}
 
 	@Override
 	public List<Client> chercheClientsparNom(String nomMotif) {
@@ -47,28 +52,5 @@ public class GestionClientDAOImpl extends GenericDAOImpl implements IGestionClie
 		return em.find(Client.class, id);
 	}
 
-	@Override
-	public Adresse AddAdresse(Adresse a) {
-		em.persist(a);
-		return a;
-
-	}
-
-	@Override
-	public void deleteAdresse(long id) {
-		Adresse a = em.find(Adresse.class, id);
-		em.remove(a);
-	}
-
-	@Override
-	public Adresse modifierAdresse(Adresse a) {
-		em.merge(a);
-		return a;
-}
-
-	@Override
-	public Adresse getAdressebyId(long id) {
-		return em.find(Adresse.class, id);
-	}
-
+	
 }

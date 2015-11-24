@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import com.entities.Categorie;
 import com.entities.Produit;
 
-public class GestionProduitsDAOImpl extends GenericDAOImpl implements IGestionProduitsDAO {
+public class ProduitsDAOImpl extends GenericDAO implements IProduitsDAO {
 
 	@Override
 	public Produit AddProduit(Produit p) {
@@ -66,31 +66,5 @@ public class GestionProduitsDAOImpl extends GenericDAOImpl implements IGestionPr
 		return q.getResultList();
 	}
 
-	@Override
-	public void AddCategorie(Categorie c) {
-		em.persist(c);
-	}
-
-	@Override
-	public void deleteCategorie(long id) {
-		Categorie c = em.find(Categorie.class, id);
-		em.remove(c);
-	}
-
-	@Override
-	public void modifierCategorie(Categorie c) {
-		em.merge(c);
-	}
-
-	@Override
-	public List<Categorie> listerCategories() {
-		Query q = em.createQuery("select c from Categorie c");
-		return q.getResultList();
-	}
-
-	@Override
-	public Categorie getCategoriebyId(long id) {
-		return em.find(Categorie.class, id);
-	}
-
+	
 }

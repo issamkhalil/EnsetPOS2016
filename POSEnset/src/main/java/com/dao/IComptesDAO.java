@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.entities.CompteUtilisateur;
 
-public interface IGestionComptesDAO {
+public interface IComptesDAO {
 	/*
 	 * @param com.entities.CompteUtilisateur
 	 * fonction ajouter un compte utilisateurr 

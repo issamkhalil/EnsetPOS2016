@@ -6,7 +6,7 @@ import javax.persistence.Query;
 
 import com.entities.CompteUtilisateur;
 
-public class GestionComptesDAOImpl extends GenericDAOImpl implements IGestionComptesDAO {
+public class ComptesDAOImpl extends GenericDAO implements IComptesDAO {
 
 	@Override
 	public CompteUtilisateur AddCompteUtilisateur(CompteUtilisateur c) {

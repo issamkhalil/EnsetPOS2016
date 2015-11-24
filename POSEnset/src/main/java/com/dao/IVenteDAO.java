@@ -8,9 +8,7 @@ import com.entities.LigneVente;
 import com.entities.Tranche;
 import com.entities.Vente;
 
-public interface IGestionVenteDAO {
-	// **************************      ventes  *************************
-	
+public interface IVenteDAO {
 		/*
 		 * @param com.entities.Vente
 		 * fonction ajouter une Vente
@@ -58,61 +56,5 @@ public interface IGestionVenteDAO {
 		 * fonction chercher une Vente par le totale � payer 
 		 */
 		public List<Vente> getVenteparTotale(double totale);
-		
-		
-
-		
-		// *************************************    LigneVente  *****************************
-		
-			/*
-			 * @param com.entities.LigneVente
-			 * fonction ajouter une LigneVente
-			 */
-			public void AddLigneVente(LigneVente lv);
-			/*
-			 * @param long le ID
-			 * @param LigneVente
-			 * fonction modifier une LigneVente 
-			 */
-			public void modifierLigneVente(LigneVente lv);
-
-			/*
-			 * @param long id
-			 * @return LigneVente
-			 * 
-			 */
-			public LigneVente getLigneVenteByID(long id);
-		
-
-// *************************************    Tranches  *****************************
-			
-			/*
-			 * @param long id
-			 * @return Tranche
-			 * fonction ajouter une Tranche de payment d'une vente
-			 */
-			public Tranche AddTranche(Tranche t);
-			/*
-			 * @param long id
-			 * fonction supprimer une Tranche 
-			 */
-			public void deleteTranche(long id);
-			
-			/*
-			 * @param Tranche contient les nouveaux valeur
-			 * @return Tranche
-			 * fonction modifier une tranche 
-			 */
-			public Tranche modifierTranche(Tranche t);
-			
-
-			/*
-			 * @param long id
-			 * @return entities.Tranche
-			 * fonction chercher une Tranche  par id 
-			 */
-			public Tranche  getTranchebyId(long id);
-
-
 
 }

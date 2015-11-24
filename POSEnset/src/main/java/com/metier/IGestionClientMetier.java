@@ -32,7 +32,7 @@ public interface IGestionClientMetier {
 	 * fonction modifier un client 
 	 * @use chercheClientparID
 	 */
-	public void modifierClient(long id,Client c);
+	public void modifierClient(long id,Client c) throws Exception;
 	/*
 	 * @param long ID
 	 * @param  com.entities.Client 
@@ -77,9 +77,9 @@ public interface IGestionClientMetier {
 	
 	/*
 	 * @param long id
-	 * @return entities.Categorie
+	 * @return entities.Adresse
 	 * fonction chercher une Categorie  par id 
 	 */
-	public Produit getAdressebyId(long id);
+	public Adresse getAdressebyId(long id);
 
 }

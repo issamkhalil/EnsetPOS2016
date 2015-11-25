@@ -12,8 +12,6 @@ import com.models.LangueModel;
 import com.models.OctiCon;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-
 import net.miginfocom.swing.MigLayout;
 import com.widgets.MyLabel;
 import java.awt.Color;
@@ -56,22 +54,22 @@ public class Main extends javax.swing.JFrame {
        
         VentePanel vp =new VentePanel();
         vp.setBackground(Color.red);
-        jtp.addTab("Ventes  ",new OctiCon('\uf0c5', 40),vp);
+        jtp.addTab(lm.getString("sales"),new OctiCon('\uf0c5', 40),vp);
         listPanel.add(vp);
         StockPanel sp = new StockPanel();
-        jtp.addTab("Stock  ",new OctiCon('\uf096', 40), sp);
+        jtp.addTab(lm.getString("stock"),new OctiCon('\uf096', 40), sp);
         listPanel.add(sp);
         ClientPanel cp = new ClientPanel();
-        jtp.add("Client",cp);
+        jtp.add(lm.getString("clients"),cp);
         listPanel.add(cp);
         TraitePanel tp = new TraitePanel();
-        jtp.add("Traites",tp);
+        jtp.add(lm.getString("traites"),tp);
         listPanel.add(tp);
         ComptePanel comp = new ComptePanel();
-        jtp.add("Comptes",comp);
+        jtp.add(lm.getString("comptes"),comp);
         listPanel.add(comp);
         ParamPanel pp = new ParamPanel();
-        jtp.add("Paramétre",pp);
+        jtp.add(lm.getString("configuration"),pp);
         listPanel.add(pp);
         this.add(jtp, "w 100%,h 100%");
         jtp.addChangeListener(new ChangeListener() {
@@ -83,7 +81,7 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         });
-        this.add(new SouthPanel(),"dock south");
+        this.add(new SouthPanel(),"dock south,h 60px");
 
 
     }

@@ -5,12 +5,17 @@
  */
 package com.views;
 
+import java.awt.Color;
 import javax.swing.JPanel;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
  * @author elmottaki
  */
 public class SouthPanel extends JPanel{
-    
+    public SouthPanel(){
+        this.setLayout(new MigLayout());
+        this.setBackground(Color.gray);
+    }
 }

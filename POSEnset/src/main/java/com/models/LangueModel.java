@@ -28,5 +28,8 @@ public class LangueModel {
     public String getString(String key){
         return bundle.getString(key);
     }
+    public String getStringWithSpace(String key){
+        return bundle.getString(key)+" ";
+    }
     
 }

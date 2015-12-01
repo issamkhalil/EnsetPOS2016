@@ -21,10 +21,10 @@ public class MyText extends JTextField {
 
     public MyText(String text) {
         super(text);
-        Font myFont = new Font("Segoe UI", Font.BOLD, 14);
+        Font myFont = new Font("Segoe UI", Font.CENTER_BASELINE, 14);
         setFont(myFont);
         Border border = UIManager.getBorder("TextField.border");
-        Border Textborder = BorderFactory.createLineBorder(new Color(0xd4d4d4, false), 1);
+        Border Textborder = BorderFactory.createLineBorder(new Color(0xd4d4d4, false), 3);
         setBorder(BorderFactory.createCompoundBorder(Textborder,
                 BorderFactory.createEmptyBorder(0, 5 + getWidth(), 0, 0)));
         this.setBackground(new Color(255, 255, 255));

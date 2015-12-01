@@ -8,6 +8,7 @@ package com.views;
 
 
 
+import com.models.Genericon;
 import com.models.LangueModel;
 import com.models.OctiCon;
 import javax.swing.event.ChangeEvent;
@@ -43,6 +44,7 @@ public class Main extends javax.swing.JFrame {
         MigLayout fLayout = new MigLayout();
         setLayout(fLayout);
         pack();
+        
         setTitle(lm.getString("appname"));
         //setIconImage(GRessource.getIcon("logo.png").getImage());
         /*
@@ -54,22 +56,22 @@ public class Main extends javax.swing.JFrame {
        
         VentePanel vp =new VentePanel();
         vp.setBackground(Color.red);
-        jtp.addTab(lm.getString("sales"),new OctiCon('\uf0c5', 40),vp);
+        jtp.addTab(lm.getStringWithSpace("sales"),new OctiCon('\uf0c5', 40),vp);
         listPanel.add(vp);
         StockPanel sp = new StockPanel();
-        jtp.addTab(lm.getString("stock"),new OctiCon('\uf096', 40), sp);
+        jtp.addTab(lm.getStringWithSpace("stock"),new OctiCon('\uf096', 40), sp);
         listPanel.add(sp);
         ClientPanel cp = new ClientPanel();
-        jtp.add(lm.getString("clients"),cp);
+        jtp.addTab(lm.getStringWithSpace("clients"),new OctiCon('\uf037', 40),cp);
         listPanel.add(cp);
         TraitePanel tp = new TraitePanel();
-        jtp.add(lm.getString("traites"),tp);
+        jtp.addTab(lm.getStringWithSpace("traites"),new OctiCon('\uf0e5', 40),tp);
         listPanel.add(tp);
         ComptePanel comp = new ComptePanel();
-        jtp.add(lm.getString("comptes"),comp);
+        jtp.addTab(lm.getStringWithSpace("comptes"),new OctiCon('\uf036', 40),comp);
         listPanel.add(comp);
         ParamPanel pp = new ParamPanel();
-        jtp.add(lm.getString("configuration"),pp);
+        jtp.addTab(lm.getStringWithSpace("configuration"),new OctiCon('\uf031', 40),pp);
         listPanel.add(pp);
         this.add(jtp, "w 100%,h 100%");
         jtp.addChangeListener(new ChangeListener() {

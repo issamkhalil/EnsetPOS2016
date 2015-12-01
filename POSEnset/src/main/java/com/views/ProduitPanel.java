@@ -33,9 +33,9 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
     JTextField txtRef,txtNom,txtPrixAchat,txtPrixVentre,txtTaxe,txtQte;
     JComboBox<String> comboCat;
     public ProduitPanel(){
-        btnAdd = new MyButton("", new OctiCon('\uf0c5', 24));
-        btnDel = new MyButton("", new OctiCon('\uf0c5', 24));
-        btnNew = new MyButton("", new OctiCon('\uf0c5', 24));
+        btnAdd = new MyButton("", new OctiCon('\uf05d', 24));
+        btnDel = new MyButton("", new OctiCon('\uf081', 24));
+        btnNew = new MyButton("", new OctiCon('\uf02a', 24));
         init();
         
 

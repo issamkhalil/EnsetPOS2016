@@ -52,6 +52,7 @@ import javax.swing.Icon;
      private static final Font awesome;
      
      private Font font;
+     private Color color;
      
      static {
          try {
@@ -68,6 +69,13 @@ import javax.swing.Icon;
          this.iconID = iconID;
          this.size = size;
          font = awesome.deriveFont(Font.PLAIN, size);
+         color = Color.black;
+     }
+          public OctiCon(char iconID, int size,Color color) {
+         this.iconID = iconID;
+         this.size = size;
+         font = awesome.deriveFont(Font.PLAIN, size);
+         this.color = color;
      }
  
      public synchronized void paintIcon(Component c, Graphics g, int x, int y) {
@@ -81,7 +89,7 @@ import javax.swing.Icon;
                                        RenderingHints.VALUE_ANTIALIAS_ON);
              
              graphics.setFont(font);
-             graphics.setColor(Color.BLACK);
+             graphics.setColor(color);
              
              int stringY = getIconHeight() - (getIconHeight()/4) + 1;
              graphics.drawString(String.valueOf(iconID), 0, stringY);

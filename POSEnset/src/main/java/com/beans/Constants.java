@@ -5,6 +5,8 @@
  */
 package com.beans;
 
+import java.awt.Color;
+
 /**
  *
  * @author elmottaki
@@ -12,4 +14,6 @@ package com.beans;
 public class Constants {
    public static String CONFIG_FILE = "config";
    public static String LANGUE_FILE="langue";
+   public static Color OFFICIAL_COLOR = new Color(156,209,253);
+   public static Color TEXT_COLOR = new Color(69,153,239);
 }

@@ -12,6 +12,7 @@ import javafx.embed.swing.JFXPanel;
  * @author elmottaki
  */
 public class ProduitPanel  extends JFXPanel implements MyPanel{
+    
 
     @Override
     public void refresh() {

@@ -27,16 +27,28 @@ public interface IComptesDAO {
 	 * fonction lister toutn les  Compte Utilisateur
 	 */
 	public List<CompteUtilisateur> listerComptesUtilisateurs();
+	
 	/*
 	 * @param long id
 	 * @return entities.CompteUtilisateur
 	 * fonction chercher un compte utilisateur ar id 
 	 */
 	public CompteUtilisateur getCompteUtilisateurbyId(long id);
+	
 	/*
 	 * @param String Login
 	 * @return entities.CompteUtilisateur
-	 * fonction chercher un compte utilisateur ar referance 
+	 * fonction chercher un compte utilisateur par le login 
 	 */
-
+	public CompteUtilisateur getCompteUtilisateurbyLogin(String login);
+	
+	/*
+	 * @param String Login
+	 *  @param String mp
+	 * @return boolean
+	 * fonction athentificationretourne true si l'athentification est reussit 
+	 */
+	public boolean authentification(String login,String mp);
+	
+	
 }

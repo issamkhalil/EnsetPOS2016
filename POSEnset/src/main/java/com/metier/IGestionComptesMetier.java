@@ -43,6 +43,6 @@ public interface IGestionComptesMetier {
 	 */
 	public CompteUtilisateur getCompteUtilisateurbyLogin(String login);
 	
-  // public boolean connexion(String login,String password);
+   public boolean authentification(String login,String password);
 	
 }

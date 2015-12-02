@@ -8,6 +8,8 @@ package com.views;
 
 
 
+import com.models.FlatIcon;
+import com.models.GRessource;
 import com.models.Genericon;
 import com.models.LangueModel;
 import com.models.OctiCon;
@@ -37,6 +39,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void initComponents() {
+        GRessource gr = new GRessource();
         LangueModel lm = new LangueModel();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(900, 600));
@@ -56,22 +59,23 @@ public class Main extends javax.swing.JFrame {
        
         VentePanel vp =new VentePanel();
         vp.setBackground(Color.red);
-        jtp.addTab(lm.getStringWithSpace("sales"),new OctiCon('\uf0c5', 40),vp);
+        jtp.addTab(lm.getStringWithSpace("sales"),new FlatIcon('\uf0f9', 40),vp);
         listPanel.add(vp);
         StockPanel sp = new StockPanel();
-        jtp.addTab(lm.getStringWithSpace("stock"),new OctiCon('\uf096', 40), sp);
+        jtp.addTab(lm.getStringWithSpace("stock"),new FlatIcon('\uf0c0', 40), sp);
         listPanel.add(sp);
         ClientPanel cp = new ClientPanel();
-        jtp.addTab(lm.getStringWithSpace("clients"),new OctiCon('\uf037', 40),cp);
+        
+        jtp.addTab(lm.getStringWithSpace("clients"),new Genericon('\uf104', 40),cp);
         listPanel.add(cp);
         TraitePanel tp = new TraitePanel();
-        jtp.addTab(lm.getStringWithSpace("traites"),new OctiCon('\uf0e5', 40),tp);
+        jtp.addTab(lm.getStringWithSpace("traites"),new Genericon('\uf104', 40),tp);
         listPanel.add(tp);
         ComptePanel comp = new ComptePanel();
-        jtp.addTab(lm.getStringWithSpace("comptes"),new OctiCon('\uf036', 40),comp);
+        jtp.addTab(lm.getStringWithSpace("comptes"),new Genericon('\uf104', 40),comp);
         listPanel.add(comp);
         ParamPanel pp = new ParamPanel();
-        jtp.addTab(lm.getStringWithSpace("configuration"),new OctiCon('\uf031', 40),pp);
+        jtp.addTab(lm.getStringWithSpace("configuration"),new Genericon('\uf104', 40),pp);
         listPanel.add(pp);
         this.add(jtp, "w 100%,h 100%");
         jtp.addChangeListener(new ChangeListener() {

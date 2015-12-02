@@ -9,11 +9,14 @@ package com.models;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import sun.security.x509.OIDMap;
 
 /**
  *
@@ -26,18 +29,19 @@ public class GRessource {
    }
    public static ImageIcon getIcon(String name){
        try {
-           BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir")+"\\icons\\"+name));
+           InputStream stream = GRessource.class.getClassLoader().getResourceAsStream("icons//"+name);
+           BufferedImage image = ImageIO.read(stream);
            ImageIcon icon = new ImageIcon(image);
            return icon;
        } catch (IOException ex) {
            Logger.getLogger(GRessource.class.getName()).log(Level.SEVERE, null, ex);
        }
        return null;
-       
    }
       public static ImageIcon getIcon(String name,int size){
        try {
-           BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir")+"//icons//"+name));
+           InputStream stream = GRessource.class.getClassLoader().getResourceAsStream("icons//"+name);
+           BufferedImage image = ImageIO.read(stream);
            ImageIcon icon = new ImageIcon(image.getScaledInstance(size,size,2));
            return icon;
        } catch (IOException ex) {
@@ -48,9 +52,9 @@ public class GRessource {
    }
       public static ImageIcon getIcon(String name,int size,int k){
        try {
-           BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir")+"//icons//"+name));
-           ImageIcon icon = new ImageIcon(image.getScaledInstance(size,size,2));
-          
+           InputStream stream = GRessource.class.getClassLoader().getResourceAsStream("icons//"+name);
+           BufferedImage image = ImageIO.read(stream);
+           ImageIcon icon = new ImageIcon(image.getScaledInstance(size,k,2));
            return icon;
        } catch (IOException ex) {
            Logger.getLogger(GRessource.class.getName()).log(Level.SEVERE, null, ex);

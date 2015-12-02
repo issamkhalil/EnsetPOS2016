@@ -38,4 +38,11 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="clientDAO" ref="clientDAO"></property>
 		<property name="adresseDAO" ref="adresseDAO"></property>
 	</bean>
+	
+	<bean id="comptesDAO" class="com.dao.ComptesDAOImpl"></bean>
+	<bean id="gestionComptesMetier" class="com.metier.GestionComptesMetier">
+		<property name="comptesDAO" ref="comptesDAO"></property>
+	</bean>
+	
+	
 </beans>

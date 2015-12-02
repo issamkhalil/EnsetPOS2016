@@ -13,6 +13,10 @@ public class GestionComptesMetier implements IGestionComptesMetier{
 
 	private IComptesDAO comptesDAO; 
 	
+	public void setComptesDAO(IComptesDAO comptesDAO) {
+		this.comptesDAO = comptesDAO;
+	}
+
 	@Override
 	public void AddCompteUtilisateur(CompteUtilisateur c) {
 		comptesDAO.AddCompteUtilisateur(c);

@@ -42,8 +42,9 @@ public class Produit {
 	private double prixVente;
 	@Column(nullable = true)
 	private double prixAchat;
-	@Column(nullable = true)
-	private Blob image; // the name of image
+	
+	@Column(nullable=true,length=1240000)
+	private byte[] image; // the name of image
 	
 	@ManyToOne
 	@JoinColumn(name="id_categorie")
@@ -87,10 +88,10 @@ public class Produit {
 	public void setPrixAchat(double prixAchat) {
 		this.prixAchat = prixAchat;
 	}
-	public Blob getImage() {
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(Blob image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 	public long getQuantiteEnStock() {
@@ -105,7 +106,7 @@ public class Produit {
 	public void setLignesVente(List<LigneVente> lignesVente) {
 		this.lignesVente = lignesVente;
 	}
-	public Produit(String referance, String designiation,long quantiteEnStock, float tva, double prixVente, double prixAchat, Blob image) {
+	public Produit(String referance, String designiation,long quantiteEnStock, float tva, double prixVente, double prixAchat, byte[] image) {
 		super();
 		this.referance = referance;
 		this.designiation = designiation;

@@ -23,8 +23,8 @@ public class Categorie {
 	private long id;
 	@Column(unique=true)
 	private String nom;
-	@Column(nullable=true)
-	private Blob image;	
+	@Column(nullable=true,length=1240000)
+	private byte[] image;	
 	@OneToMany(mappedBy="categorie")
 	private List<Produit> produits;
 	
@@ -40,13 +40,13 @@ public class Categorie {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public  Blob getImage() {
+	public  byte[] getImage() {
 		return image;
 	}
-	public void setImage(Blob image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
-	public Categorie(String nom, Blob image) {
+	public Categorie(String nom, byte[] image) {
 		super();
 		this.nom = nom;
 		this.image = image;

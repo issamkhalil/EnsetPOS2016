@@ -38,7 +38,7 @@ public class ComptesDAOImpl extends GenericDAO implements IComptesDAO {
 
 	@Override
 	public CompteUtilisateur getCompteUtilisateurbyLogin(String login) {
-		Query req=em.createQuery("from CompteUtilisateur c where c.login=':x'");
+		Query req=em.createQuery("from CompteUtilisateur c where c.login like :x");
 		req.setParameter("x", login);
 		return (CompteUtilisateur)req.getResultList().get(0);
 	}

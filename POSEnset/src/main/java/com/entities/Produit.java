@@ -43,7 +43,7 @@ public class Produit {
 	@Column(nullable = true)
 	private double prixAchat;
 	
-	@Column(nullable=true,length=1240000)
+	@Column(nullable=true,length=11212960)
 	private byte[] image; // the name of image
 	
 	@ManyToOne

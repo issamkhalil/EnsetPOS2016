@@ -23,7 +23,7 @@ public class Categorie {
 	private long id;
 	@Column(unique=true)
 	private String nom;
-	@Column(nullable=true,length=1240000)
+	@Column(nullable=true,length=11212960)
 	private byte[] image;	
 	@OneToMany(mappedBy="categorie")
 	private List<Produit> produits;

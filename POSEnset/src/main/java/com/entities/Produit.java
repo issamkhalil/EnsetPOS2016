@@ -115,6 +115,36 @@ public class Produit {
 		this.prixAchat = prixAchat;
 		this.image = image;
 	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((referance == null) ? 0 : referance.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produit other = (Produit) obj;
+		if (id != other.id)
+			return false;
+		if (referance == null) {
+			if (other.referance != null)
+				return false;
+		} else if (!referance.equals(other.referance))
+			return false;
+		return true;
+	}
+	
 	public Produit() {
 		super();
 	}

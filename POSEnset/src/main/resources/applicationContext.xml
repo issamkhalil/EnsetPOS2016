@@ -34,7 +34,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 
 	<bean id="clientDAO" class="com.dao.ClientDAOImpl"></bean>
 	<bean id="adresseDAO" class="com.dao.AdresseDAO"></bean>
-	<bean id="GestionClientMetier" class="com.metier.GestionClientMetierImpl">
+	<bean id="gestionClientMetier" class="com.metier.GestionClientMetierImpl">
 		<property name="clientDAO" ref="clientDAO"></property>
 		<property name="adresseDAO" ref="adresseDAO"></property>
 	</bean>
@@ -44,5 +44,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="comptesDAO" ref="comptesDAO"></property>
 	</bean>
 	
+	<bean id="produitDao" class="com.dao.ProduitsDAOImpl"></bean>
+	<bean id="categorieDao" class="com.dao.CategorieDAO"></bean>
+	<bean id="gestionProduitsMetier" class="com.metier.GestionProduitsMetier">
+		<property name="produitDao" ref="produitDao"></property>
+		<property name="categorieDao" ref="categorieDao"></property>
+	</bean>
+
 	
 </beans>

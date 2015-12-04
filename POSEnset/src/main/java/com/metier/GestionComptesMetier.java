@@ -8,6 +8,14 @@ import com.dao.ComptesDAOImpl;
 import com.dao.IComptesDAO;
 import com.entities.CompteUtilisateur;
 
+
+/**
+ * 
+ *  @author <a href="mailto:issam.khalil11@gmail.com"> KHALIL Issam GLSID2 <a/>
+ *  @version 1
+ *  @see IGestionComptesMetier and com.dao.IComptesDAO
+ *
+ */
 @Transactional
 public class GestionComptesMetier implements IGestionComptesMetier{
 

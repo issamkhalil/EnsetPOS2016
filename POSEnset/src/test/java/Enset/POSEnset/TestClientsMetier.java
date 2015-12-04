@@ -15,7 +15,7 @@ import com.entities.ClientEntreprise;
 import com.entities.ClientParticulier;
 import com.metier.IGestionClientMetier;
 
-public class TestApp1 {
+public class TestClientsMetier {
 	private IClientDAO dao;
 
 	@Before
@@ -28,7 +28,7 @@ public class TestApp1 {
 		/*
 		new ClassPathXmlApplicationContext(new String[]{"applicationContext.xml"});
 		
-		IGestionClientMetier gestionClientmetier=(IGestionClientMetier) context.getBean("GestionClientMetier");
+		IGestionClientMetier gestionClientmetier=(IGestionClientMetier) context.getBean("gestionClientMetier");
 		
 		System.out.println(gestionClientmetier);
 		List<Client> l1=gestionClientmetier.listerClientsAll();

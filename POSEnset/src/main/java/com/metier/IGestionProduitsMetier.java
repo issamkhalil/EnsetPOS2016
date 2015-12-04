@@ -42,7 +42,7 @@ public interface IGestionProduitsMetier {
 	 * @return List<Produit>
 	 * fonction chercher un  Produit par une motif de referance 
 	 */
-	public List<Produit> getProduitsbyReferanceMotif(String login);
+	public List<Produit> getProduitsbyReferanceMotif(String ref);
 	
 	/*
 	 * @param double pa
@@ -65,6 +65,19 @@ public interface IGestionProduitsMetier {
 	 * fonction chercher un  Produit par une motif de referance 
 	 */
 	public List<Produit> getProduitsbyCategorie(long idCat);
+	
+	/*
+	 * @param String une sous chaine de la referance
+	 * @param double le prix de vente
+	 * @param double le prix d'achat
+	 * @param long  id de categorie
+	 * @use getProduitsbyReferanceMotif, getProduitsbyPa, getProduitsbyPv, getProduitsbyCategorie;
+	 * @return List<Produit>
+	 * fonction chercher un  Produit par une motif de referance 
+	 */
+	public List<Produit> getProduitsbyCritaires(String motifRef,double pa,double pv,long idCa);
+	
+	
 	
 // ****************************   categorie   ************************************
 	

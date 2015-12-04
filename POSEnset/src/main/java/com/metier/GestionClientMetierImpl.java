@@ -12,12 +12,19 @@ import com.entities.ClientEntreprise;
 import com.entities.ClientParticulier;
 import com.entities.Produit;
 
+/**
+ * 
+ * @author <a href="mailto:issam.khalil11@gmail.com"> KHALIL Issam GLSID2 <a/>
+ * @version 1
+ * @see IGestionClientMetier com.dao.IClientDAO and com.dao.IAdresseDAO
+ *
+ *
+ */
 @Transactional
 public class GestionClientMetierImpl implements IGestionClientMetier {
 
 	private IClientDAO clientDAO;
 	private IAdresseDAO adresseDAO;
-	
 
 	public void setAdresseDAO(IAdresseDAO adresseDAO) {
 		this.adresseDAO = adresseDAO;
@@ -56,7 +63,7 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 		clientDAO.modifierClient(client);
 	}
 
-	public void modifierClientParticulier(long id, ClientParticulier c) throws Exception{
+	public void modifierClientParticulier(long id, ClientParticulier c) throws Exception {
 		ClientParticulier client = (ClientParticulier) clientDAO.chercheClientparID(id);
 		client.setAdresse(c.getAdresse());
 		client.setCompteFaceBook(c.getCompteFaceBook());
@@ -71,7 +78,7 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 	}
 
 	@Override
-	public void modifierClient(long id, Client c) throws Exception{
+	public void modifierClient(long id, Client c) throws Exception {
 		if (c.getClass().toString().indexOf("ClientParticulier") > 0) {
 			modifierClientParticulier(id, (ClientParticulier) c);
 		} else if (c.getClass().toString().indexOf("ClientEntreprise") > 0) {
@@ -86,7 +93,7 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 
 	@Override
 	public List<Client> chercheClientsparNom(String nomMotif) {
-			
+
 		return chercheClientsparNom(nomMotif);
 	}
 
@@ -97,22 +104,22 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 
 	@Override
 	public void AddAdresse(Adresse a) {
-			adresseDAO.AddAdresse(a);
+		adresseDAO.AddAdresse(a);
 	}
 
 	@Override
 	public void deleteAdresse(long id) {
-			adresseDAO.deleteAdresse(id);
+		adresseDAO.deleteAdresse(id);
 	}
 
 	@Override
 	public void modifierAdresse(long id, Adresse a) {
-			Adresse adresse = adresseDAO.getAdressebyId(id);
-			adresse.setClients(a.getClients());
-			adresse.setCodePostale(a.getCodePostale());
-			adresse.setRegion(a.getRegion());
-			adresse.setVille(a.getRegion());
-			adresseDAO.modifierAdresse(adresse);
+		Adresse adresse = adresseDAO.getAdressebyId(id);
+		adresse.setClients(a.getClients());
+		adresse.setCodePostale(a.getCodePostale());
+		adresse.setRegion(a.getRegion());
+		adresse.setVille(a.getRegion());
+		adresseDAO.modifierAdresse(adresse);
 	}
 
 	@Override

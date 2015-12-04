@@ -1,5 +1,6 @@
 package com.entities;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -42,7 +43,7 @@ public class Produit {
 	@Column(nullable = true)
 	private double prixAchat;
 	@Column(nullable = true)
-	private String image; // the name of image
+	private Blob image; // the name of image
 	
 	@ManyToOne
 	@JoinColumn(name="id_categorie")
@@ -86,10 +87,10 @@ public class Produit {
 	public void setPrixAchat(double prixAchat) {
 		this.prixAchat = prixAchat;
 	}
-	public String getImage() {
+	public Blob getImage() {
 		return image;
 	}
-	public void setImage(String image) {
+	public void setImage(Blob image) {
 		this.image = image;
 	}
 	public long getQuantiteEnStock() {
@@ -104,7 +105,7 @@ public class Produit {
 	public void setLignesVente(List<LigneVente> lignesVente) {
 		this.lignesVente = lignesVente;
 	}
-	public Produit(String referance, String designiation,long quantiteEnStock, float tva, double prixVente, double prixAchat, String image) {
+	public Produit(String referance, String designiation,long quantiteEnStock, float tva, double prixVente, double prixAchat, Blob image) {
 		super();
 		this.referance = referance;
 		this.designiation = designiation;

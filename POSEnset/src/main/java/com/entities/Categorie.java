@@ -1,6 +1,7 @@
 
 package com.entities;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ public class Categorie {
 	@Column(unique=true)
 	private String nom;
 	@Column(nullable=true)
-	private String image;	
+	private Blob image;	
 	@OneToMany(mappedBy="categorie")
 	private List<Produit> produits;
 	
@@ -39,13 +40,13 @@ public class Categorie {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public String getImage() {
+	public  Blob getImage() {
 		return image;
 	}
-	public void setImage(String image) {
+	public void setImage(Blob image) {
 		this.image = image;
 	}
-	public Categorie(String nom, String image) {
+	public Categorie(String nom, Blob image) {
 		super();
 		this.nom = nom;
 		this.image = image;

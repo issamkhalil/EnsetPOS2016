@@ -15,6 +15,14 @@ public class ClientParticulier extends Client{
 	
 	private String prenom;
 	private String compteFaceBook;
+	private boolean jameFaceBook;
+	
+	public boolean isJameFaceBook() {
+		return jameFaceBook;
+	}
+	public void setJameFaceBook(boolean jameFaceBook) {
+		this.jameFaceBook = jameFaceBook;
+	}
 	public String getPrenom() {
 		return prenom;
 	}

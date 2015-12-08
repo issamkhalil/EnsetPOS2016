@@ -30,7 +30,8 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" /> <context:annotation-config></context:annotation-config>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<context:annotation-config></context:annotation-config>
 
 	<bean id="clientDAO" class="com.dao.ClientDAOImpl"></bean>
 	<bean id="adresseDAO" class="com.dao.AdresseDAO"></bean>
@@ -38,12 +39,12 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="clientDAO" ref="clientDAO"></property>
 		<property name="adresseDAO" ref="adresseDAO"></property>
 	</bean>
-	
+
 	<bean id="comptesDAO" class="com.dao.ComptesDAOImpl"></bean>
 	<bean id="gestionComptesMetier" class="com.metier.GestionComptesMetier">
 		<property name="comptesDAO" ref="comptesDAO"></property>
 	</bean>
-	
+
 	<bean id="produitDao" class="com.dao.ProduitsDAOImpl"></bean>
 	<bean id="categorieDao" class="com.dao.CategorieDAO"></bean>
 	<bean id="gestionProduitsMetier" class="com.metier.GestionProduitsMetier">
@@ -51,5 +52,14 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 		<property name="categorieDao" ref="categorieDao"></property>
 	</bean>
 
-	
+
+	<bean id="venteDao" class="com.dao.VenteDAOImpl"></bean>
+	<bean id="trancheDao" class="com.dao.TrancheDAO"></bean>
+	<bean id="ligneventeDao" class="com.dao.LigneVenteDAO"></bean>
+	<bean id="gestionVentesMetier" class="com.metier.GestionVentesMetier">
+		<property name="venteDao" ref="venteDao"></property>
+		<property name="trancheDao" ref="trancheDao"></property>
+		<property name="ligneventeDao" ref="ligneventeDao"></property>
+	</bean>
+
 </beans>

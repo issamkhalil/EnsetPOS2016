@@ -97,13 +97,13 @@ public interface IGestionVentesMetier {
 		 * @param com.entities.LigneVente
 		 * fonction ajouter une LigneVente
 		 */
-		public void AddLigneVente(LigneVente lv);
+		public void AddLigneVente(LigneVente lv,long venteId);
 		
 		/*
 		 * @param List<LigneVente>
 		 * fonction ajouter une liste deLigneVente
 		 */
-		public void AddListLigneVente(List<LigneVente> listLv);
+		public void AddListLigneVente(List<LigneVente> listLv,long venteId);
 		
 		/*
 		 * @param com.entities.LigneVente
@@ -136,13 +136,13 @@ public interface IGestionVentesMetier {
 	 * @param com.entities.Tranche
 	 * fonction ajouter une Tranche de payment d'une vente
 	 */
-	public void AddTranche(Tranche t);
+	public void AddTranche(Tranche t,long venteId);
 
 	/*
 	 * @param List<Tranche>
 	 * fonction ajouter une liste de Tranches
 	 */
-	public void AddListTranches(List<Tranche> listTranches);
+	public void AddListTranches(List<Tranche> listTranches,long venteId);
 
 	
 	/*
@@ -160,7 +160,7 @@ public interface IGestionVentesMetier {
 	
 	/*
 	 * @param long id
-	 * fonction change l'etat d'une tranche pay� ou non pay�
+	 * fonction change l'etat d'une tranche payé ou non payé
 	 * true -> false  and false -> true
 	 */
 	public void toggelEtatTranche(long id);

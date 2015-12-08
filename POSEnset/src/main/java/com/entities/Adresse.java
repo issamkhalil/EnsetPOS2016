@@ -70,6 +70,31 @@ public class Adresse {
 		super();
 	}
 
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codePostale == null) ? 0 : codePostale.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Adresse other = (Adresse) obj;
+		if (codePostale == null) {
+			if (other.codePostale != null)
+				return false;
+		} else if (!codePostale.equals(other.codePostale))
+			return false;
+		if (id != other.id)
+			return false;
+		return true;
+	}
 	
 }

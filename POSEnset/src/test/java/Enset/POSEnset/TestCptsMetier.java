@@ -26,15 +26,15 @@ public class TestCptsMetier {
 
 			IGestionComptesMetier gestionComptesMetier = (IGestionComptesMetier) context
 					.getBean("gestionComptesMetier");
-			/*
-			 * System.out.println(gestionComptesMetier);
-			 * 
-			 * CompteUtilisateur c1= new CompteUtilisateur("issam", "khali",
-			 * "0621948738","issam.khalil11@gmail.com", "issam", "123","admin"
-			 * );
-			 * 
-			 * gestionComptesMetier.AddCompteUtilisateur(c1);
-			 */
+			
+			  System.out.println(gestionComptesMetier);
+			  
+			  CompteUtilisateur c1= new CompteUtilisateur("issam", "khali",
+			  "0621948738","issam.khalil11@gmail.com", "issam", "123","admin"
+			  );
+			  
+			  gestionComptesMetier.AddCompteUtilisateur(c1);
+			
 			boolean b = gestionComptesMetier.authentification("issam", "123");
 			System.out.println("autehntification : "+ b);
 			assertTrue(b);

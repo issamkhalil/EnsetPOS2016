@@ -28,7 +28,7 @@ public class Tranche {
 	@Column(nullable=false)
 	private boolean paye;
 	@ManyToOne
-	@JoinColumn(name="id_vente")
+	@JoinColumn(name="id_vente",nullable=false)
 	private Vente vente;
 	
 	public double getSomme() {

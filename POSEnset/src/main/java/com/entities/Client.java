@@ -35,7 +35,7 @@ public abstract class Client {
 	private double maxCredit;
 	private String note;
 	@ManyToOne
-	@JoinColumn(name="id_adresse")
+	@JoinColumn(name="id_adresse",nullable=false)
 	private Adresse adresse;
 	
 	@OneToMany(mappedBy="client")

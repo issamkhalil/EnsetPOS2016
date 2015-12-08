@@ -26,12 +26,40 @@ import javax.swing.Icon;
 @Entity
 public class Vente implements Comparable<Vente>{
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vente other = (Vente) obj;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (id != other.id)
+			return false;
+		return true;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	@Column(nullable=false)
 	private Date date;
-	private PaumentType paymentType;
+	private PaymentType paymentType;
 	private double totale;
 	private float remise;
 	@OneToMany(mappedBy="vente")
@@ -81,10 +109,10 @@ public class Vente implements Comparable<Vente>{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public PaumentType getPaymentType() {
+	public PaymentType getPaymentType() {
 		return paymentType;
 	}
-	public void setPaymentType(PaumentType paymentType) {
+	public void setPaymentType(PaymentType paymentType) {
 		this.paymentType = paymentType;
 	}
 	public float getRemise() {
@@ -94,7 +122,7 @@ public class Vente implements Comparable<Vente>{
 		this.remise = remise;
 	}
 	
-	public Vente(Date date, PaumentType paymentType, float remise, double totale) {
+	public Vente(Date date, PaymentType paymentType, float remise, double totale) {
 		super();
 		this.date = date;
 		this.paymentType = paymentType;

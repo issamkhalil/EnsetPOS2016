@@ -30,9 +30,9 @@ public class ClientPanel extends JPanel implements MyPanel{
         // panel des buttons
         LangueModel lm = new LangueModel(com.models.ConfigModel.getProprety("langue"));
         JPanel btnPanel = new JPanel(new MigLayout("rtl"));
-        btnAdd = new MyButton("", new OctiCon('\uf0c5', 24));
-        btnDel = new MyButton("", new OctiCon('\uf0c5', 24));
-        btnNew = new MyButton("", new OctiCon('\uf0c5', 24));
+        btnAdd = new MyButton("", new OctiCon('\uf0c5', 24,Color.BLACK));
+        btnDel = new MyButton("", new OctiCon('\uf0c5', 24,Color.BLACK));
+        btnNew = new MyButton("", new OctiCon('\uf0c5', 24,Color.BLACK));
         btnPanel.add(btnAdd);
         btnPanel.add(btnDel);
         btnPanel.add(btnNew);

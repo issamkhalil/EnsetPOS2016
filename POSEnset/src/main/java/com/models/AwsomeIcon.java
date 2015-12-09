@@ -41,7 +41,7 @@ import javax.swing.Icon;
   * 
   * @see http://fortawesome.github.io/Font-Awesome/cheatsheet/
   */
- public class FlatIcon implements Icon {
+ public class AwsomeIcon implements Icon {
  
      private static final String AWESOME_SET = "/font/fontawesome-webfont.ttf";
      
@@ -50,13 +50,14 @@ import javax.swing.Icon;
      
      private char iconID;
      private static final Font awesome;
+     private Color color;
      
      private Font font;
      
      static {
          try {
              InputStream stream =
-                     FlatIcon.class.getResourceAsStream(AWESOME_SET);
+                     AwsomeIcon.class.getResourceAsStream(AWESOME_SET);
              awesome = Font.createFont(Font.TRUETYPE_FONT, stream);
  
          } catch (Exception ex) {
@@ -64,10 +65,11 @@ import javax.swing.Icon;
          }
      }
      
-     public FlatIcon(char iconID, int size) {
+     public AwsomeIcon(char iconID, int size,Color color) {
          this.iconID = iconID;
          this.size = size;
          font = awesome.deriveFont(Font.PLAIN, size);
+         this.color = color;
      }
  
      public synchronized void paintIcon(Component c, Graphics g, int x, int y) {
@@ -81,7 +83,7 @@ import javax.swing.Icon;
                                        RenderingHints.VALUE_ANTIALIAS_ON);
              
              graphics.setFont(font);
-             graphics.setColor(Color.BLACK);
+             graphics.setColor(color);
              
              int stringY = getIconHeight() - (getIconHeight()/4) + 5;
              graphics.drawString(String.valueOf(iconID), 0, stringY);

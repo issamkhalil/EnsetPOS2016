@@ -17,4 +17,5 @@ public class AwsomeIconConst {
     public static char SEARCH_PLUS_ICON= '\uf00e';
     public static char VALIDE_ICON = '\uf046';
     public static char CANCEL_ICON = '\uf05e';
+    public static char SEARCH_ICON = '\uf002';
 }

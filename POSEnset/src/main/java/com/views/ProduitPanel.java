@@ -5,6 +5,8 @@
  */
 package com.views;
 
+import com.beans.AwsomeIconConst;
+import com.models.AwsomeIcon;
 import com.models.LangueModel;
 import com.models.OctiCon;
 import com.widgets.MyButton;
@@ -12,6 +14,8 @@ import com.widgets.MyDateText;
 import com.widgets.MyLabel;
 import com.widgets.MyText;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javafx.embed.swing.JFXPanel;
 import javax.swing.*;
 import javax.swing.JComboBox;
@@ -27,18 +31,13 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
     JTextField txtNameSearch,txtPrixAchatSearch,txtPrixVenteSearch;
     JComboBox<String> comboCatSearch;
     MyButton btnSearch;
-    JButton btnAdd,btnNew,btnDel;
+    JButton btnSave,btnNew,btnDel;
     JList listProduit;
     JLabel imgPro ;
     JTextField txtRef,txtNom,txtPrixAchat,txtPrixVentre,txtTaxe,txtQte;
     JComboBox<String> comboCat;
     public ProduitPanel(){
-        btnAdd = new MyButton("", new OctiCon('\uf05d', 24));
-        btnDel = new MyButton("", new OctiCon('\uf081', 24));
-        btnNew = new MyButton("", new OctiCon('\uf02a', 24));
         init();
-        
-
     }
     @Override
     public void refresh() {
@@ -47,6 +46,9 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
     public void init(){
         LangueModel lm = new LangueModel();
         this.setLayout(new MigLayout("fill"));
+        btnSave = new MyButton(lm.getString("ENREGISTRER"), new AwsomeIcon(AwsomeIconConst.SAVE_ICON, 20));
+        btnDel = new MyButton(lm.getString("SUPPRIMER"), new AwsomeIcon(AwsomeIconConst.DEL_ICON, 20));
+        btnNew = new MyButton(lm.getString("NOUVEAU"), new AwsomeIcon(AwsomeIconConst.NEW_ICON, 20));
         // partie de recherche 
         JPanel panelSearch = new JPanel(new MigLayout("insets 12px"));
         panelSearch.add(new MyLabel(lm.getString("nom")+" :",14));
@@ -63,14 +65,14 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
         panelSearch.add(comboCatSearch,"w 200px,wrap");
         // panel de btn
         JPanel panelBtnSearch = new JPanel(new MigLayout("fillx,rtl"));
-        btnSearch = new MyButton(lm.getString("chercher"), null);
+        btnSearch = new MyButton(lm.getString("chercher"), new AwsomeIcon(AwsomeIconConst.SEARCH_ICON, 20, Color.black));
         panelBtnSearch.add(btnSearch);
         panelSearch.add(panelBtnSearch,"dock south");
         this.add(panelSearch,"dock north");
         // les Button de controle 
         JPanel proPanel = new JPanel(new MigLayout("fill,insets 3px"));
         JPanel btnPanel = new JPanel(new MigLayout("rtl"));
-        btnPanel.add(btnAdd);
+        btnPanel.add(btnSave);
         btnPanel.add(btnDel);
         btnPanel.add(btnNew);
         proPanel.add(btnPanel,"dock north");
@@ -109,10 +111,54 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
         comboCat = new JComboBox<String>();
         panelProInfo.add(comboCat,"w 200px,wrap");
         this.add(proPanel,"dock center");
-       
+        btnSearch.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchAction();
+            }
+        });
+        btnSave.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveAction();
+            }
+        });
+        btnDel.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                deleteAction();
+            }
+        });
+        btnNew.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newAction();
+            }
+        });
         
         
         
+    }
+    
+    // fonction qui se declanche quand on clique sur le boutton chercher
+    private void searchAction(){
+        // TODO implementer search action
+    }
+    // fonction qui se declanche quand on click sur le boutton enregistrer
+    private void saveAction(){
+        // TODO implementer save Action
+    }
+    // fonction qui se declanche quand on click sur le boutton supprimer
+    private void deleteAction(){
+        //TODO implementer delete Action
+    }
+    // fonction qui se declanche quand on click sur le boutton nouveau
+    private void newAction(){
+        //TODO implementer newAction
     }
     
 }

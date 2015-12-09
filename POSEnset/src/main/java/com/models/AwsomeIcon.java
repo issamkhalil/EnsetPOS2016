@@ -71,6 +71,12 @@ import javax.swing.Icon;
          font = awesome.deriveFont(Font.PLAIN, size);
          this.color = color;
      }
+     public AwsomeIcon(char iconID, int size) {
+         this.iconID = iconID;
+         this.size = size;
+         font = awesome.deriveFont(Font.PLAIN, size);
+         this.color = Color.black;
+     }
  
      public synchronized void paintIcon(Component c, Graphics g, int x, int y) {
          
@@ -85,7 +91,7 @@ import javax.swing.Icon;
              graphics.setFont(font);
              graphics.setColor(color);
              
-             int stringY = getIconHeight() - (getIconHeight()/4) + 5;
+             int stringY = getIconHeight() - (getIconHeight()/4) + 3;
              graphics.drawString(String.valueOf(iconID), 0, stringY);
              
              graphics.dispose();

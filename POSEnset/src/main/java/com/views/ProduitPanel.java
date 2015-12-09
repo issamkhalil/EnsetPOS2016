@@ -7,6 +7,7 @@ package com.views;
 
 import com.beans.AwsomeIconConst;
 import com.models.AwsomeIcon;
+import com.models.GRessource;
 import com.models.LangueModel;
 import com.models.OctiCon;
 import com.widgets.MyButton;
@@ -83,10 +84,9 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
         // info de produit
         panelProInfo.setBorder(BorderFactory.createTitledBorder(lm.getString("product_info")));
         JPanel panelImg = new JPanel(new MigLayout());
-        imgPro = new JLabel();
-        imgPro.setBackground(Color.red);
-        imgPro.setOpaque(true);
-        panelImg.add(imgPro,"w 120px,h 120px");
+        imgPro = new JLabel(GRessource.getIcon("Product.png",120));
+        imgPro.setBorder(BorderFactory.createLineBorder(Color.black));
+        panelImg.add(imgPro,"span 2,wrap");
         panelProInfo.add(panelImg,"dock north");
         panelProInfo.add(new MyLabel(lm.getString("reference")+" :",14));
         txtRef = new MyText("");

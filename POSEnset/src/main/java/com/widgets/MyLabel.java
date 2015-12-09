@@ -23,6 +23,12 @@ public class MyLabel extends JLabel {
         this.setFont(font);
         this.setForeground(Color.black);
     }
+    public MyLabel(String str){
+        super(str);
+        font  = new Font("Segoe UI", Font.BOLD, 14);
+        this.setFont(font);
+        this.setForeground(Color.black);
+    }
      public MyLabel(String str,int size,int align){
         super(str);
         font  = new Font("Segoe UI", Font.BOLD, size);

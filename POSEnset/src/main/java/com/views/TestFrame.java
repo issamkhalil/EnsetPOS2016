@@ -20,7 +20,7 @@ public class TestFrame extends JFrame {
         setMinimumSize(new Dimension(900, 600));
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         // ajout de panel 
-        this.setContentPane(new ClientPanel());
+        this.setContentPane(new CatPanel());
         pack();
        
     }

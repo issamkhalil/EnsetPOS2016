@@ -6,6 +6,7 @@
 package com.views;
 
 import com.beans.AwsomeIconConst;
+import com.beans.Constants;
 import com.models.AwsomeIcon;
 import com.models.GRessource;
 import com.models.LangueModel;
@@ -39,22 +40,25 @@ public class CatPanel extends JPanel implements MyPanel{
         btnDel = new MyButton(lm.getString("SUPPRIMER"), new AwsomeIcon(AwsomeIconConst.DEL_ICON, 20));
         btnNew = new MyButton(lm.getString("NOUVEAU"), new AwsomeIcon(AwsomeIconConst.NEW_ICON, 20));
         // panel des bouttons
-        JPanel  topPanel = new JPanel(new MigLayout("rtl"));
+        JPanel  topPanel = new JPanel(new MigLayout("rtl,gap 0 0 0 0"));
         topPanel.add(btnNew);
         topPanel.add(btnDel);
         topPanel.add(btnSave);
         this.add(topPanel,"dock north");
         // panel de centre
-        JPanel centrePanel = new JPanel(new MigLayout("fill"));
+        JPanel centrePanel = new JPanel(new MigLayout("fill,insets 0 0 0 0"));
         listCat = new JList<String>();
-        centrePanel.add(listCat,"w 20%,h 100%");
+        JScrollPane catScr = new JScrollPane(listCat);
+        catScr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
+        centrePanel.add(catScr,"w 20%,h 90%");
         JPanel rCentrePanel = new JPanel(new MigLayout("debug"));
+        rCentrePanel.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
 //        rCentrePanel.setBackground(Color.red);
-        centrePanel.add(rCentrePanel,"w 80%,h 100%");
+        centrePanel.add(rCentrePanel,"w 80%,h 90%");
         lblImg = new MyLabel(GRessource.getIcon("open_folder.png",120));
         lblImg.setOpaque(true);
-        lblImg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        rCentrePanel.add(lblImg,"wrap,span 2,w 120px,h 100px");
+        lblImg.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
+        rCentrePanel.add(lblImg,"wrap,w 120px,h 100px");
         rCentrePanel.add(new MyLabel(lm.getString("NOM")));
         txtName = new MyText("");
         rCentrePanel.add(txtName,"w 200px,wrap");
@@ -62,9 +66,6 @@ public class CatPanel extends JPanel implements MyPanel{
         txtDescription = new MyTextArea("");
         rCentrePanel.add(txtDescription,"w 200px,wrap,h 200px");
         this.add(centrePanel,"dock center");
-        
-        
-        
     }
     @Override
     public void refresh() {

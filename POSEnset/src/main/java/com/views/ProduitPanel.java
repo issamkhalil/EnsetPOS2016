@@ -6,6 +6,7 @@
 package com.views;
 
 import com.beans.AwsomeIconConst;
+import com.beans.Constants;
 import com.models.AwsomeIcon;
 import com.models.GRessource;
 import com.models.LangueModel;
@@ -65,10 +66,8 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
         comboCatSearch = new JComboBox<String>();
         panelSearch.add(comboCatSearch,"w 200px,wrap");
         // panel de btn
-        JPanel panelBtnSearch = new JPanel(new MigLayout("fillx,rtl"));
         btnSearch = new MyButton(lm.getString("chercher"), new AwsomeIcon(AwsomeIconConst.SEARCH_ICON, 20, Color.black));
-        panelBtnSearch.add(btnSearch);
-        panelSearch.add(panelBtnSearch,"dock south");
+        panelSearch.add(btnSearch,"skip 2");
         this.add(panelSearch,"dock north");
         // les Button de controle 
         JPanel proPanel = new JPanel(new MigLayout("fill,insets 3px"));
@@ -79,13 +78,15 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
         proPanel.add(btnPanel,"dock north");
         listProduit = new JList();
         JPanel panelProInfo = new JPanel(new MigLayout("insets 5px"));
-        proPanel.add(listProduit,"h 100%,w 25%");
+        JScrollPane proScr = new JScrollPane(listProduit);
+        proScr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
+        proPanel.add(proScr,"h 100%,w 25%");
         proPanel.add(panelProInfo,"h 100%,w 75%");
         // info de produit
-        panelProInfo.setBorder(BorderFactory.createTitledBorder(lm.getString("product_info")));
+        panelProInfo.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
         JPanel panelImg = new JPanel(new MigLayout());
         imgPro = new JLabel(GRessource.getIcon("Product.png",120));
-        imgPro.setBorder(BorderFactory.createLineBorder(Color.black));
+        imgPro.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
         panelImg.add(imgPro,"span 2,wrap");
         panelProInfo.add(panelImg,"dock north");
         panelProInfo.add(new MyLabel(lm.getString("reference")+" :",14));

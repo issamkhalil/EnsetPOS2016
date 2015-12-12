@@ -5,10 +5,15 @@
  */
 package com.views;
 
+import com.beans.AwsomeIconConst;
+import com.models.AwsomeIcon;
 import com.models.ConfigModel;
 import com.models.LangueModel;
+import com.widgets.TabCompoLeft;
 import javafx.embed.swing.JFXPanel;
+import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
+import javax.swing.UIManager;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -25,8 +30,11 @@ public class StockPanel  extends JFXPanel implements MyPanel{
     public void init(){
         LangueModel lm = new LangueModel(ConfigModel.getProprety("langue"));
         jtp = new JTabbedPane();
-        jtp.addTab(lm.getString("products"), new ProduitPanel());
-        jtp.addTab(lm.getString("categories"), new CatPanel());
+        jtp.addTab(null, new ProduitPanel());
+        jtp.setTabComponentAt(0, new TabCompoLeft(lm.getString("products"), new AwsomeIcon(AwsomeIconConst.PRODUCT_ICON, 20)));
+        jtp.addTab(null, new CatPanel());
+        jtp.setTabComponentAt(1, new TabCompoLeft(lm.getString("categories"), new AwsomeIcon(AwsomeIconConst.FOLDERF_ICON, 20)));
+     
         this.add(jtp,"dock center");
         
         

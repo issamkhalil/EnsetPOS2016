@@ -8,6 +8,7 @@ package com.views;
 
 
 
+import com.widgets.TabCompoSouth;
 import com.models.AwsomeIcon;
 import com.models.GRessource;
 import com.models.LangueModel;
@@ -42,7 +43,7 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
         GRessource gr = new GRessource();
         LangueModel lm = new LangueModel();
-        //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(900, 600));
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         MigLayout fLayout = new MigLayout("fill");
@@ -60,24 +61,30 @@ public class Main extends javax.swing.JFrame {
        
         VentePanel vp =new VentePanel();
         vp.setBackground(Color.red);
-        jtp.addTab(lm.getStringWithSpace("sales"),new OctiCon('\uf0c5', 40,Color.BLACK),vp);
+       
+        jtp.addTab(null,vp);
+        jtp.setTabComponentAt(0, new TabCompoSouth(lm.getString("sales"), GRessource.getIcon("sale.png",40)));
         listPanel.add(vp);
         StockPanel sp = new StockPanel();
-        jtp.addTab(lm.getStringWithSpace("stock"),new OctiCon('\uf096', 40,Color.BLACK), sp);
-        
+        jtp.addTab(null, sp);
+        jtp.setTabComponentAt(1, new TabCompoSouth(lm.getString("stock"),GRessource.getIcon("stock.png",40)));
         listPanel.add(sp);
         ClientPanel cp = new ClientPanel();
         
-        jtp.addTab(lm.getStringWithSpace("clients"),new AwsomeIcon('\uf0c0', 40,Color.BLACK),cp);
+        jtp.addTab(null,cp);
+        jtp.setTabComponentAt(2, new TabCompoSouth(lm.getString("clients"),GRessource.getIcon("client.png",40)));
         listPanel.add(cp);
         TraitePanel tp = new TraitePanel();
-        jtp.addTab(lm.getStringWithSpace("traites"),new OctiCon('\uf061', 40,Color.BLACK),tp);
+        jtp.addTab(null,tp);
+        jtp.setTabComponentAt(3, new TabCompoSouth(lm.getString("traites"),GRessource.getIcon("tranche.png",40)));
         listPanel.add(tp);
         ComptePanel comp = new ComptePanel();
-        jtp.addTab(lm.getStringWithSpace("comptes"),new OctiCon('\uf036', 40,Color.BLACK),comp);
+        jtp.addTab(null,GRessource.getIcon("users.png"),comp);
+        jtp.setTabComponentAt(4, new TabCompoSouth(lm.getString("comptes"),GRessource.getIcon("users.png",40)));
         listPanel.add(comp);
         ParamPanel pp = new ParamPanel();
-        jtp.addTab(lm.getStringWithSpace("configuration"),new OctiCon('\uf031', 40,Color.BLACK),pp);
+        jtp.addTab(null,pp);
+        jtp.setTabComponentAt(5, new TabCompoSouth(lm.getString("configuration"),GRessource.getIcon("conf.png",40)));
         listPanel.add(pp);
         this.add(jtp, "dock center");
         jtp.addChangeListener(new ChangeListener() {

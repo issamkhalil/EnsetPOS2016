@@ -6,9 +6,11 @@
 package com.views;
 
 import com.beans.AwsomeIconConst;
+import com.beans.Constants;
 import com.models.AwsomeIcon;
 import com.models.LangueModel;
 import com.models.OctiCon;
+import com.sun.corba.se.impl.orbutil.closure.Constant;
 import com.widgets.MyButton;
 import com.widgets.MyLabel;
 import java.awt.Color;
@@ -22,7 +24,7 @@ import net.miginfocom.swing.MigLayout;
  */
 public class VentePanel extends JPanel implements MyPanel{
     JLabel lblClient;
-    JButton btnClient,btnValider,btnNew,btnMod,btnDel;
+    JButton btnClient,btnValider,btnNew,btnSave,btnDel;
     JButton btnDelLigne,btnSearch;
     JTable tableProduct;
     String tableTitles[];
@@ -40,22 +42,22 @@ public class VentePanel extends JPanel implements MyPanel{
         JPanel panelTop = new JPanel(new MigLayout());
         lblClient = new MyLabel(lm.getStringWithSpace("client")+"...",16);
        panelTop.add(lblClient);
-       btnClient = new MyButton(lm.getStringWithSpace("client"));
+       btnClient = new MyButton(lm.getStringWithSpace("client"),new AwsomeIcon(AwsomeIconConst.SEARCH_ICON, 20));
        panelTop.add(btnClient);
        JSeparator sep1 = new JSeparator(JSeparator.VERTICAL);
        panelTop.add(sep1,"h 100%");
-       btnValider = new MyButton(lm.getStringWithSpace("valider"));
+       btnValider = new MyButton(lm.getStringWithSpace("valider"),new AwsomeIcon(AwsomeIconConst.VALIDE_ICON, 20));
        panelTop.add(btnValider);
        
-        btnMod = new MyButton("", new AwsomeIcon(AwsomeIconConst.MOD_ICON, 24,Color.BLACK));
-        btnDel = new MyButton("", new AwsomeIcon(AwsomeIconConst.DEL_ICON, 24,Color.BLACK));
-        btnNew = new MyButton("", new AwsomeIcon(AwsomeIconConst.NEW_ICON, 24,Color.BLACK));
+        btnSave = new MyButton(lm.getString("ENREGISTRER"), new AwsomeIcon(AwsomeIconConst.SAVE_ICON, 20));
+        btnDel = new MyButton(lm.getString("SUPPRIMER"), new AwsomeIcon(AwsomeIconConst.DEL_ICON, 20));
+        btnNew = new MyButton(lm.getString("NOUVEAU"), new AwsomeIcon(AwsomeIconConst.NEW_ICON, 20));
         JSeparator sep2 = new JSeparator(JSeparator.VERTICAL);
         panelTop.add(sep2,"h 100%");
         panelTop.add(btnNew);
-        panelTop.add(btnMod);
+        panelTop.add(btnSave);
         panelTop.add(btnDel);
-        this.add(panelTop,"dock north,w 100%");
+        this.add(panelTop,"dock north");
         
         // panel de centre 
         // top
@@ -87,10 +89,12 @@ public class VentePanel extends JPanel implements MyPanel{
         // panel sud
         JPanel panelCentreSud = new JPanel(new MigLayout("fill"));
         listProduct = new JList<String>();
-        panelCentreSud.add(new JScrollPane(listProduct),"h 100%,w 25%");
+        JScrollPane scr = new JScrollPane(listProduct);
+        scr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
+        panelCentreSud.add(scr,"h 90%,w 25%");
         panelProduct = new JPanel(new MigLayout());
-        panelProduct.setBorder(BorderFactory.createTitledBorder(lm.getStringWithSpace("produits")));
-        panelCentreSud.add(panelProduct,"h 100%,w 75%");
+        panelProduct.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
+        panelCentreSud.add(panelProduct,"h 90%,w 75%");
         panelCentre.add(panelCentreSud,"dock south,h 100%");
         
         

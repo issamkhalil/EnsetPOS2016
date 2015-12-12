@@ -28,4 +28,6 @@ public class AwsomeIconConst {
     public static char LIKE_ICON = '\uf164';
     public static char HEARTO_ICON = '\uf08a';
     public static char HEART_ICON = '\uf004';
+    public static char PRODUCT_ICON = '\uf288';
+    public static char FOLDERF_ICON = '\uf07b';
 }

@@ -69,7 +69,9 @@ public class ClientPanel extends JPanel implements MyPanel{
         JPanel panelContent = new JPanel(new MigLayout("fill"));
         this.add(panelContent,"dock center");
         listClients = new JList<String>();
-        panelContent.add(new JScrollPane(listClients),"growy,w 25%");
+        JScrollPane clientScr = new JScrollPane(listClients);
+        clientScr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
+        panelContent.add(clientScr,"growy,w 25%");
         // panel des info
         JPanel panelInfo = new JPanel(new MigLayout());
         panelInfo.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));

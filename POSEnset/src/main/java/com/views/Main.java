@@ -45,7 +45,7 @@ public class Main extends javax.swing.JFrame {
         LangueModel lm = new LangueModel();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(900, 600));
-        setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+        //setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         MigLayout fLayout = new MigLayout("fill");
         setLayout(fLayout);
         pack();

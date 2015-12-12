@@ -59,41 +59,45 @@ public class ComptePanel extends JFXPanel implements MyPanel{
         JPanel panelContent = new JPanel(new MigLayout("fill"));
         this.add(panelContent,"dock center");
         listClients = new JList<String>();
-        panelContent.add(new JScrollPane(listClients),"growy,w 25%");
+        JScrollPane clientScr = new JScrollPane(listClients);
+        clientScr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
+        panelContent.add(clientScr,"growy,w 25%");
         // panel des info
-        JPanel panelInfo = new JPanel(new MigLayout());
+        JPanel panelInfo = new JPanel(new MigLayout("center,fill"));
         panelInfo.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
         panelContent.add(panelInfo,"growy,w 75%");
         // les info 
-        panelInfo.add(new MyLabel("Nom"));
+        JPanel container = new JPanel(new MigLayout("center"));
+        container.add(new MyLabel("Nom"));
         txtNom = new MyText("");
-        panelInfo.add(txtNom,"sg txt,wrap,w 200px");
+        container.add(txtNom,"sg txt,wrap,w 200px");
         
-        panelInfo.add(new MyLabel("Prenom"));
+        container.add(new MyLabel("Prenom"));
         txtPrenom = new MyText("");
-        panelInfo.add(txtPrenom,"sg txt,wrap,w 200px");
+        container.add(txtPrenom,"sg txt,wrap,w 200px");
         
-        panelInfo.add(new MyLabel("Telephone"));
+        container.add(new MyLabel("Telephone"));
         txtTele = new MyText("");
-        panelInfo.add(txtTele,"sg txt,wrap");
+        container.add(txtTele,"sg txt,wrap");
         
-        panelInfo.add(new MyLabel("Email"));
+        container.add(new MyLabel("Email"));
         txtMail = new MyText("");
-        panelInfo.add(txtMail,"sg txt,wrap");
+        container.add(txtMail,"sg txt,wrap");
         
-        panelInfo.add(new TitledSeparator("Information de Securité "),"span,growx");
+        container.add(new TitledSeparator("Information de Securité "),"span,growx");
         
-        panelInfo.add(new MyLabel("Login"));
+        container.add(new MyLabel("Login"));
         txtLogin = new MyText("");
-        panelInfo.add(txtLogin,"sg txt,wrap");
+        container.add(txtLogin,"sg txt,wrap");
         
-        panelInfo.add(new MyLabel("Password"));
+        container.add(new MyLabel("Password"));
         txtPass = new MyPassText("");
-        panelInfo.add(txtPass,"sg txt,wrap");
+        container.add(txtPass,"sg txt,wrap");
         
-        panelInfo.add(new MyLabel("Type"));
+        container.add(new MyLabel("Type"));
         comboType = new JComboBox<String>();
-        panelInfo.add(comboType,"sg txt,wrap");
+        container.add(comboType,"sg txt,wrap");
+        panelInfo.add(container,"w 100%");
         
         
         

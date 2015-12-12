@@ -40,8 +40,6 @@ public abstract class Client {
 	
 	@OneToMany(mappedBy="client")
 	private List<Vente> ventes;
-	
-	
 	public List<Vente> getVentes() {
 		return ventes;
 	}

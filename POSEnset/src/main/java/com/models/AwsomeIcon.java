@@ -45,7 +45,7 @@ import javax.swing.Icon;
  
      private static final String AWESOME_SET = "/font/fontawesome-webfont.ttf";
      
-     private int size;
+     private int height,width;
      private BufferedImage buffer;
      
      private char iconID;
@@ -65,17 +65,34 @@ import javax.swing.Icon;
          }
      }
      
-     public AwsomeIcon(char iconID, int size,Color color) {
+     public AwsomeIcon(char iconID, int height,Color color) {
          this.iconID = iconID;
-         this.size = size;
-         font = awesome.deriveFont(Font.PLAIN, size);
+         this.height = height;
+         font = awesome.deriveFont(Font.PLAIN, height);
          this.color = color;
+         this.width = height;
      }
-     public AwsomeIcon(char iconID, int size) {
+     public AwsomeIcon(char iconID,int width, int height,Color color) {
          this.iconID = iconID;
-         this.size = size;
-         font = awesome.deriveFont(Font.PLAIN, size);
+         this.height = height;
+         font = awesome.deriveFont(Font.PLAIN, height);
+         this.color = color;
+         this.width = width;
+     }
+     
+     public AwsomeIcon(char iconID, int height) {
+         this.iconID = iconID;
+         this.height = height;
+         font = awesome.deriveFont(Font.PLAIN, height);
          this.color = Color.black;
+         this.width = height;
+     }
+     public AwsomeIcon(char iconID, int height, int width) {
+         this.iconID = iconID;
+         this.height = height;
+         font = awesome.deriveFont(Font.PLAIN, height);
+         this.color = Color.black;
+         this.width = width;
      }
  
      public synchronized void paintIcon(Component c, Graphics g, int x, int y) {
@@ -102,11 +119,11 @@ import javax.swing.Icon;
  
      @Override
      public int getIconHeight() {
-         return size;
+         return height;
      }
  
      @Override
      public int getIconWidth() {
-         return size;
+         return width;
      }
  }

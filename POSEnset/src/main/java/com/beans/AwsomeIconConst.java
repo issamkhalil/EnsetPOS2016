@@ -20,4 +20,12 @@ public class AwsomeIconConst {
     public static char SEARCH_ICON = '\uf002';
     public static char SAVE_ICON = '\uf0C7';
     public static char FOLDER_ICON = '\uf07C';
+    public static char CHECKED_ICON = '\uf046';
+    public static char UNCHECKED_ICON = '\uf096';
+    public static char TOGGLEON_ICON = '\uf205';
+    public static char TOGGLEOFF_ICON = '\uf204';
+    public static char UNLIKE_ICON = '\uf087';
+    public static char LIKE_ICON = '\uf164';
+    public static char HEARTO_ICON = '\uf08a';
+    public static char HEART_ICON = '\uf004';
 }

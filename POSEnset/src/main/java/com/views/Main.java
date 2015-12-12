@@ -20,6 +20,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import javax.swing.Icon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
@@ -40,10 +42,10 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
         GRessource gr = new GRessource();
         LangueModel lm = new LangueModel();
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(900, 600));
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
-        MigLayout fLayout = new MigLayout();
+        MigLayout fLayout = new MigLayout("fill");
         setLayout(fLayout);
         pack();
         
@@ -62,6 +64,7 @@ public class Main extends javax.swing.JFrame {
         listPanel.add(vp);
         StockPanel sp = new StockPanel();
         jtp.addTab(lm.getStringWithSpace("stock"),new OctiCon('\uf096', 40,Color.BLACK), sp);
+        
         listPanel.add(sp);
         ClientPanel cp = new ClientPanel();
         
@@ -76,7 +79,7 @@ public class Main extends javax.swing.JFrame {
         ParamPanel pp = new ParamPanel();
         jtp.addTab(lm.getStringWithSpace("configuration"),new OctiCon('\uf031', 40,Color.BLACK),pp);
         listPanel.add(pp);
-        this.add(jtp, "w 100%,h 100%");
+        this.add(jtp, "dock center");
         jtp.addChangeListener(new ChangeListener() {
 
             @Override
@@ -86,7 +89,9 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         });
-        this.add(new SouthPanel(),"dock south,h 60px");
+        JPanel southPanel = new SouthPanel();
+        southPanel.add(new JButton("click here"));
+        //this.add(southPanel,"dock north,h 400px");
 
 
     }

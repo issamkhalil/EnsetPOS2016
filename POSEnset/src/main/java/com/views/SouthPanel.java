@@ -5,6 +5,8 @@
  */
 package com.views;
 
+import com.beans.Constants;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import java.awt.Color;
 import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
@@ -16,6 +18,6 @@ import net.miginfocom.swing.MigLayout;
 public class SouthPanel extends JPanel{
     public SouthPanel(){
         this.setLayout(new MigLayout());
-        this.setBackground(Color.gray);
+        this.setBackground(Constants.OFFICIAL_COLOR);
     }
 }

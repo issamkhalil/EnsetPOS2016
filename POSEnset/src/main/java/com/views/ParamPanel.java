@@ -33,6 +33,8 @@ public class ParamPanel  extends JFXPanel implements MyPanel{
     private JComboBox<String> comboLan;
     private MyButton btnSave;
     private MyButton btnAnn;
+    private MyText txtFaceId;
+    private MyText txtFacePass;
 
     public ParamPanel(){
         init();
@@ -63,6 +65,15 @@ public class ParamPanel  extends JFXPanel implements MyPanel{
         contenair.add(new MyLabel("Langue"));
         comboLan = new JComboBox<String>();
         contenair.add(comboLan,"sg txt,wrap,w 200px");
+        
+        contenair.add(new TitledSeparator("Facebook Parameter"),"span,growx");
+        contenair.add(new MyLabel("ID de FaceBook"));
+        txtFaceId = new MyText("");
+        contenair.add(txtFaceId,"sg txt,wrap,w 200px");
+        
+        contenair.add(new MyLabel("Mot de passe"));
+        txtFacePass = new MyText("");
+        contenair.add(txtFacePass,"sg txt,wrap,w 200px");
         this.add(contenair,"gaptop 40px,w 100%");
         
         // les bouttons

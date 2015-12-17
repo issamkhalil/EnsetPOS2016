@@ -82,9 +82,15 @@ public class Main extends javax.swing.JFrame {
         jtp.addTab(null,GRessource.getIcon("users.png"),comp);
         jtp.setTabComponentAt(4, new TabCompoSouth(lm.getString("comptes"),GRessource.getIcon("users.png",40)));
         listPanel.add(comp);
+        
+        FacebookPanel fp = new FacebookPanel();
+        jtp.addTab(null,fp);
+        jtp.setTabComponentAt(5, new TabCompoSouth(lm.getString("facebook"),GRessource.getIcon("facebook.png",40)));
+        listPanel.add(fp);
+        
         ParamPanel pp = new ParamPanel();
         jtp.addTab(null,pp);
-        jtp.setTabComponentAt(5, new TabCompoSouth(lm.getString("configuration"),GRessource.getIcon("conf.png",40)));
+        jtp.setTabComponentAt(6, new TabCompoSouth(lm.getString("configuration"),GRessource.getIcon("conf.png",40)));
         listPanel.add(pp);
         this.add(jtp, "dock center");
         jtp.addChangeListener(new ChangeListener() {

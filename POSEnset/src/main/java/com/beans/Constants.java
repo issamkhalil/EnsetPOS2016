@@ -13,7 +13,11 @@ import java.awt.Color;
  */
 public class Constants {
    public static String CONFIG_FILE = "config";
+   public static String FACE_ID = "config";
+   public static String FACE_SECRET = "config";
+   public static String FACE_TOKEN = "config";
    public static String LANGUE_FILE="langue";
    public static Color OFFICIAL_COLOR = new Color(156,209,253);
    public static Color TEXT_COLOR = new Color(69,153,239);
+   
 }

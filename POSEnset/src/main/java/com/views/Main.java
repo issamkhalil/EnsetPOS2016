@@ -85,7 +85,7 @@ public class Main extends javax.swing.JFrame {
         
         FacebookPanel fp = new FacebookPanel();
         jtp.addTab(null,fp);
-        jtp.setTabComponentAt(5, new TabCompoSouth(lm.getString("facebook"),GRessource.getIcon("facebook.png",40)));
+        jtp.setTabComponentAt(5, new TabCompoSouth(lm.getString("facebook"),GRessource.getIcon("Facebook.png",40)));
         listPanel.add(fp);
         
         ParamPanel pp = new ParamPanel();

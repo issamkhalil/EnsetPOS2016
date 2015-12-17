@@ -6,14 +6,18 @@
 package com.views;
 
 import com.beans.AwsomeIconConst;
+import com.beans.Constants;
 import com.jidesoft.swing.TitledSeparator;
 import com.models.AwsomeIcon;
+import com.models.ConfigModel;
 import com.models.LangueModel;
 import com.widgets.MyButton;
 import com.widgets.MyLabel;
 import com.widgets.MyPassText;
 import com.widgets.MyText;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javafx.embed.swing.JFXPanel;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -34,7 +38,8 @@ public class ParamPanel  extends JFXPanel implements MyPanel{
     private MyButton btnSave;
     private MyButton btnAnn;
     private MyText txtFaceId;
-    private MyText txtFacePass;
+    private MyPassText txtFacePass;
+    private MyText txtAccess;
 
     public ParamPanel(){
         init();
@@ -67,14 +72,18 @@ public class ParamPanel  extends JFXPanel implements MyPanel{
         contenair.add(comboLan,"sg txt,wrap,w 200px");
         
         contenair.add(new TitledSeparator("Facebook Parameter"),"span,growx");
-        contenair.add(new MyLabel("ID de FaceBook"));
+        contenair.add(new MyLabel("ID de Application"));
         txtFaceId = new MyText("");
         contenair.add(txtFaceId,"sg txt,wrap,w 200px");
         
-        contenair.add(new MyLabel("Mot de passe"));
-        txtFacePass = new MyText("");
+        contenair.add(new MyLabel("Mot de passe de Application"));
+        txtFacePass = new MyPassText("");
         contenair.add(txtFacePass,"sg txt,wrap,w 200px");
         this.add(contenair,"gaptop 40px,w 100%");
+        
+        contenair.add(new MyLabel("Access Token"));
+        txtAccess = new MyText("");
+        contenair.add(txtAccess,"sg txt,wrap,w 200px");
         
         // les bouttons
         JPanel btnPanel = new JPanel(new MigLayout("rtl"));
@@ -83,6 +92,22 @@ public class ParamPanel  extends JFXPanel implements MyPanel{
         btnPanel.add(btnSave);
         btnPanel.add(btnAnn);
         contenair.add(btnPanel,"dock south");
+        
+        btnSave.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigModel.load();
+                // facebook
+                ConfigModel.setProprety(Constants.FACE_ID, txtFaceId.getText());
+                ConfigModel.setProprety(Constants.FACE_SECRET, txtFacePass.getText());
+                ConfigModel.setProprety(Constants.FACE_TOKEN, txtAccess.getText());
+                
+                
+                // enregistrer
+                ConfigModel.store();
+            }
+        });
         
        
         

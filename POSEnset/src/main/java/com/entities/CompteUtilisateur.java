@@ -88,6 +88,11 @@ public class CompteUtilisateur {
 	public CompteUtilisateur() {
 		super();
 	}
+
+    @Override
+    public String toString() {
+        return nom + " " + prenom;
+    }
 	
 	
 	

@@ -7,22 +7,33 @@ package com.views;
 
 import com.beans.AwsomeIconConst;
 import com.beans.Constants;
+import com.entities.Categorie;
+import com.entities.Produit;
 import com.models.AwsomeIcon;
 import com.models.GRessource;
 import com.models.LangueModel;
 import com.models.OctiCon;
+import com.widgets.CatWidget;
 import com.widgets.MyButton;
 import com.widgets.MyDateText;
 import com.widgets.MyLabel;
 import com.widgets.MyText;
+import com.widgets.ProduitWidget;
+
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import javafx.embed.swing.JFXPanel;
+
 import javax.swing.*;
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -144,6 +155,23 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
         
         
     }
+    
+    
+    public void addProds(List<Produit> produits) {
+       
+    	/*
+    	 * 
+    	 * fonction pour ajouté les produits dans la list
+    	 * 
+    	 * 
+    	 */
+    	
+        }
+
+    private void prodClicked(Categorie categorie) {
+			// TODO Auto-generated method stub
+			
+		}
     
     // fonction qui se declanche quand on clique sur le boutton chercher
     private void searchAction(){

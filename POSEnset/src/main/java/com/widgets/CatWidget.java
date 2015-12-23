@@ -2,8 +2,11 @@ package com.widgets;
 
 import com.entities.Categorie;
 import com.models.GRessource;
+
 import java.awt.*;
+
 import javax.swing.*;
+
 import net.miginfocom.swing.MigLayout;
 
 public class CatWidget extends JPanel {
@@ -21,7 +24,10 @@ public class CatWidget extends JPanel {
     private void initComponent() {
         this.setLayout(new MigLayout("fillx"));
         lblImg = new MyLabel(GRessource.getIcon("open_folder.png", 40));
-        this.add(lblImg);
+        if(categorie.getImage() != null){
+        	this.setLblImg(categorie.getImage());
+        }
+        	this.add(lblImg);
         this.add(new MyLabel(categorie.getNom()));
 
     }
@@ -57,6 +63,10 @@ public class CatWidget extends JPanel {
         return categorie;
     }
 
+    
+    public void setLblImg(byte[] bytes) {
+    	this.lblImg.setIcon(new ImageIcon(bytes));
+	}
     public void setCategorie(Categorie categorie) {
         this.categorie = categorie;
     }

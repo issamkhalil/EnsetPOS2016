@@ -9,12 +9,14 @@ import com.beans.AwsomeIconConst;
 import com.entities.Produit;
 import com.models.AwsomeIcon;
 import com.models.GRessource;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+
 import javax.swing.*;
 
 /**
@@ -27,6 +29,9 @@ public class ProduitWidget extends JLabel {
     public ProduitWidget(Produit produit){
         this.produit = produit;
         this.setIcon(GRessource.getIcon("Product.png", 70));
+        if(produit.getImage() != null){
+        	this.setLblImg(produit.getImage());
+        }
         setText(produit.getDesigniation());
         this.setHorizontalTextPosition(JLabel.CENTER);
         this.setVerticalTextPosition(JLabel.BOTTOM); 
@@ -51,6 +56,10 @@ public class ProduitWidget extends JLabel {
     public void setProduit(Produit produit) {
         this.produit = produit;
     }
+    
+    public void setLblImg(byte[] bytes) {
+    	this.setIcon(new ImageIcon(bytes));
+	}
 
     public Produit getProduit() {
         return produit;

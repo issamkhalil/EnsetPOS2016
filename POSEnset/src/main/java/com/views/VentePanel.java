@@ -17,14 +17,20 @@ import com.widgets.CatWidget;
 import com.widgets.MyButton;
 import com.widgets.MyLabel;
 import com.widgets.ProduitWidget;
+
+import controlors.SalesControlor;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -163,12 +169,13 @@ public class VentePanel extends JPanel implements MyPanel {
     }
 
     private void catClicked(Categorie categorie) {
-        
-     
+        //System.out.println("categorie : "+categorie.getNom());
+     Main main= (Main) this.getTopLevelAncestor();
+     SalesControlor.ListerProdParCatAction(main,categorie);
     }
 
-    public void addProducts(ArrayList<Produit> listPro) {
-        Iterator<Produit> it = listPro.iterator();
+    public void addProducts(List<Produit> produits) {
+        Iterator<Produit> it = produits.iterator();
         panelProduct.removeAll();
         while (it.hasNext()) {
             ProduitWidget pro = new ProduitWidget(it.next());
@@ -186,6 +193,7 @@ public class VentePanel extends JPanel implements MyPanel {
                     if (e.getClickCount() == 2) {
                         catDBClicked(wid.getProduit());
                     }
+                    
                 }
 
                 @Override
@@ -207,9 +215,10 @@ public class VentePanel extends JPanel implements MyPanel {
             });
         }
         panelProduct.revalidate();
+        this.updateUI();
     }
 
     private void catDBClicked(Produit produit) {
-        System.out.println("clicked");
+        System.out.println("clicked : "+produit.getId());
     }
 }

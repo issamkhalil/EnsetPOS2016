@@ -22,6 +22,9 @@ import net.miginfocom.swing.MigLayout;
  */
 public class StockPanel  extends JFXPanel implements MyPanel{
     private JTabbedPane jtp;
+    private ProduitPanel pp;
+    private CatPanel cp;
+    
     
     public StockPanel(){
         this.setLayout(new MigLayout());
@@ -30,15 +33,24 @@ public class StockPanel  extends JFXPanel implements MyPanel{
     public void init(){
         LangueModel lm = new LangueModel(ConfigModel.getProprety("langue"));
         jtp = new JTabbedPane();
-        jtp.addTab(null, new ProduitPanel());
+        pp=new ProduitPanel();
+        jtp.addTab(null, pp);
         jtp.setTabComponentAt(0, new TabCompoLeft(lm.getString("products"), new AwsomeIcon(AwsomeIconConst.PRODUCT_ICON, 20)));
-        jtp.addTab(null, new CatPanel());
+        cp=new CatPanel();
+        jtp.addTab(null, cp);
         jtp.setTabComponentAt(1, new TabCompoLeft(lm.getString("categories"), new AwsomeIcon(AwsomeIconConst.FOLDERF_ICON, 20)));
      
         this.add(jtp,"dock center");
-        
-        
     }
+    
+    public ProduitPanel getPp() {
+		return pp;
+	}
+    
+    public CatPanel getCp() {
+		return cp;
+	}
+    
     @Override
     public void refresh() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

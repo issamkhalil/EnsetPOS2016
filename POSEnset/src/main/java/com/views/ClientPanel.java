@@ -262,13 +262,16 @@ public class ClientPanel extends JPanel implements MyPanel {
 		String tele = txtTele.getText();
 		boolean faceBookJaime = faceCheck.isSelected();
 		boolean clientPar = clientCheck.isSelected();
-		
+		String vile="mohamedia";
+		String region="riad salam";
+		String cp="2566";
 		
 		
 		if (btnSave.getName().equals("new")) {
 				
 			ClientsControlor.addClinetAction(nom, prenom, faxe, cptfb, mail,
-					credit, note, reg, tele, faceBookJaime, clientPar);
+					credit, note, reg, tele, faceBookJaime, clientPar,
+					vile,region,cp);
 		} else {
 			// ClientsControlor.modifClinetAction();
 			System.out.println("lollll");

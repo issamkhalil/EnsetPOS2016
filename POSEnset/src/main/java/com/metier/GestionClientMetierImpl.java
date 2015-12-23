@@ -36,11 +36,13 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 
 	@Override
 	public void AddClientParticulier(ClientParticulier c) {
+		adresseDAO.AddAdresse(c.getAdresse());
 		clientDAO.AddClient(c);
 	}
 
 	@Override
 	public void AddClientEntreprise(ClientEntreprise c) {
+		adresseDAO.AddAdresse(c.getAdresse());
 		clientDAO.AddClient(c);
 	}
 

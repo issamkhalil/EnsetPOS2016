@@ -5,25 +5,40 @@
  */
 package com.widgets;
 
+import com.beans.AwsomeIconConst;
 import com.beans.Constants;
+import com.models.AwsomeIcon;
+import com.models.GRessource;
 import com.sun.corba.se.impl.orbutil.closure.Constant;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.LayoutManager;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import javax.swing.SwingConstants;
+import net.miginfocom.swing.MigLayout;
 
 /**
  *
  * @author elmottaki
  */
-public class MyListRenderer extends JLabel implements ListCellRenderer<Object> {
+public class MyListRenderer extends JPanel implements ListCellRenderer<Object> {
+    private final JLabel lblImg;
+    private final MyLabel lblText;
 
     public MyListRenderer() {
         setOpaque(true);
+        this.setLayout(new MigLayout("fillx"));
+         lblImg = new JLabel();
+         lblText = new MyLabel("");
+        this.add(lblImg,"w 30");
+        this.add(lblText,"growx");
+        lblImg.setOpaque(false);
+        lblText.setOpaque(false);
     }
 
     public Component getListCellRendererComponent(JList<?> list,
@@ -31,9 +46,9 @@ public class MyListRenderer extends JLabel implements ListCellRenderer<Object> {
             int index,
             boolean isSelected,
             boolean cellHasFocus) {
-
-        setText(value.toString().toUpperCase());
-
+        
+        lblText.setText(value.toString().toUpperCase());
+        System.out.println(value.toString().toUpperCase());
         Color background;
         Color foreground;
 
@@ -56,12 +71,12 @@ public class MyListRenderer extends JLabel implements ListCellRenderer<Object> {
             background = Color.WHITE;
             foreground = Constants.TEXT_COLOR;
         };
-
-        setBackground(background);
-        setForeground(foreground);
-        setFont(new Font("Monospaced", Font.BOLD, 16));
-        this.setHorizontalAlignment(SwingConstants.CENTER);
-        this.setPreferredSize(new Dimension((int) this.getSize().getWidth(), 30));
+        this.setBackground(background);
+        lblText.setForeground(foreground);
+        lblText.setFont(new Font("Monospaced", Font.BOLD, 16));
+        lblText.setHorizontalAlignment(SwingConstants.CENTER);
+        lblText.setPreferredSize(new Dimension(190,30));
+        lblImg.setIcon(GRessource.getIcon("bussnessman.png",30));
         return this;
     }
 

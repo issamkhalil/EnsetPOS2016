@@ -108,18 +108,13 @@ public class ComptePanel extends JFXPanel implements MyPanel{
         container.add(comboType,"sg txt,wrap");
         panelInfo.add(container,"w 100%");
         
-        /* pour le test
-        ArrayList<CompteUtilisateur> list = new ArrayList<CompteUtilisateur>();
-        list.add(new CompteUtilisateur("abdelilah", "elmottaki", null, null, null, null, null));
-        list.add(new CompteUtilisateur("abdelilah", "elmottaki", null, null, null, null, null));
-        list.add(new CompteUtilisateur("abdelilah", "elmottaki", null, null, null, null, null));
-        list.add(new CompteUtilisateur("abdelilah", "elmottaki", null, null, null, null, null));
-        AddUsers(list);
-                
-                */
         
-        
-        
+//        ArrayList<CompteUtilisateur> list = new ArrayList<CompteUtilisateur>();
+//        list.add(new CompteUtilisateur("abdelilah", "elmottaki", null, null, null, null, null));
+//        list.add(new CompteUtilisateur("abdo", "elmot", null, null, null, null, null));
+//
+//        AddUsers(list);
+   
     }
     
     public void AddUsers(ArrayList<CompteUtilisateur> list){

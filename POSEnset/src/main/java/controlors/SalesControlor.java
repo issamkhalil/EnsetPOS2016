@@ -32,7 +32,7 @@ public class SalesControlor extends SuperControlor{
 
 	public static void ListerProdParCatAction(Main main, Categorie categorie) {
 		VentePanel ventePanel= (VentePanel) main.getListPanel().get("vente");
-	     List<Produit>	produits=gestionProduitsMetier.getProduitsbyCategorie(categorie.getId());
+	         List<Produit>	produits=gestionProduitsMetier.getProduitsbyCategorie(categorie.getId());
 		ventePanel.addProducts(produits);
 	}
 }

@@ -115,7 +115,6 @@ public class ClientPanel extends JPanel implements MyPanel {
 
 		this.add(panelContent, "dock center");
 		listClients = new JList<String>();
-		listClients.setLayout(new MigLayout("insets 4 4 4 4"));
                 listClients.setCellRenderer(new MyListClientRenderer());
 		JScrollPane clientScr = new JScrollPane(listClients);
 

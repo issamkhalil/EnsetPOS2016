@@ -70,6 +70,7 @@ public class ClientPanel extends JPanel implements MyPanel {
 	private JPanel contenair;
 	private MyCheckBox clientCheck;
 	private long clientID;
+    private MyText txtAdd;
 
 	public ClientPanel() {
 		this.setLayout(new MigLayout("fill,insets 0 0 20 0"));
@@ -138,6 +139,10 @@ public class ClientPanel extends JPanel implements MyPanel {
 		panelInfo.add(new MyLabel("Email"));
 		txtMail = new MyText("");
 		panelInfo.add(txtMail, "sg txt,wrap");
+                
+                panelInfo.add(new MyLabel("Adresse"));
+		txtAdd = new MyText("");
+		panelInfo.add(txtAdd, "sg txt,wrap");
 
 		panelInfo.add(new MyLabel("Max. Credit"));
 		txtCredit = new MyText("");

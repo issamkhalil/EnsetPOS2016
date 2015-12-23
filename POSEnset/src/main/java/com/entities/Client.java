@@ -108,4 +108,10 @@ public abstract class Client {
 		super();
 	}
 
+    @Override
+    public String toString() {
+        return id+" - "+nom; //To change body of generated methods, choose Tools | Templates.
+    }
+        
+
 }

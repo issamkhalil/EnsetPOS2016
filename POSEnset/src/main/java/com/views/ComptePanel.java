@@ -13,7 +13,7 @@ import com.models.AwsomeIcon;
 import com.models.LangueModel;
 import com.widgets.MyButton;
 import com.widgets.MyLabel;
-import com.widgets.MyListRenderer;
+import com.widgets.MyListCompteRenderer;
 import com.widgets.MyPassText;
 import com.widgets.MyText;
 import java.awt.event.MouseEvent;
@@ -67,7 +67,7 @@ public class ComptePanel extends JFXPanel implements MyPanel{
         JPanel panelContent = new JPanel(new MigLayout("fill","",""));
         this.add(panelContent,"dock center");
         listClients = new JList<CompteUtilisateur>();
-        listClients.setCellRenderer(new MyListRenderer());
+        listClients.setCellRenderer(new MyListCompteRenderer());
         JScrollPane clientScr = new JScrollPane(listClients);
         clientScr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
         panelContent.add(clientScr,"growy,w 240:240:240");

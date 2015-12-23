@@ -26,11 +26,11 @@ import net.miginfocom.swing.MigLayout;
  *
  * @author elmottaki
  */
-public class MyListRenderer extends JPanel implements ListCellRenderer<Object> {
+public class MyListCatRenderer1 extends JPanel implements ListCellRenderer<Object> {
     private final JLabel lblImg;
     private final MyLabel lblText;
 
-    public MyListRenderer() {
+    public MyListCatRenderer1() {
         setOpaque(true);
         this.setLayout(new MigLayout("fillx"));
          lblImg = new JLabel();

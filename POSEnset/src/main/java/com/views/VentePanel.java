@@ -8,6 +8,7 @@ package com.views;
 import com.beans.AwsomeIconConst;
 import com.beans.Constants;
 import com.entities.Categorie;
+import com.entities.Client;
 import com.entities.Produit;
 import com.models.AwsomeIcon;
 import com.models.LangueModel;
@@ -22,6 +23,8 @@ import controlors.SalesControlor;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -46,6 +49,7 @@ public class VentePanel extends JPanel implements MyPanel {
     String tableTitles[];
     JLabel lblTHT, lblTotal;
     JPanel panelProduct;
+    Client client;
     private JPanel catPanel;
     static int  val = 0;
     public VentePanel() {
@@ -117,6 +121,18 @@ public class VentePanel extends JPanel implements MyPanel {
         panelCentre.add(panelCentreSud, "dock south,h 100%");
         
         // test 
+        btnClient.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ListClientFrame fr = new ListClientFrame(null, true, new ArrayList<Client>());
+                fr.setVisible(true);
+                if(fr.getList().size()>0){
+                    client = fr.getList().get(0);
+                    lblClient.setText(client.getNom());
+                }
+            }
+        });
         
 
     }

@@ -55,6 +55,13 @@ public class Categorie {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+    @Override
+    public String toString() {
+        return id+"- "+nom;
+    }
+        
+        
 	
 
 	

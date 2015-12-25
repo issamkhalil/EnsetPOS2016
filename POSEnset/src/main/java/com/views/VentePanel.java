@@ -17,6 +17,8 @@ import com.sun.corba.se.impl.orbutil.closure.Constant;
 import com.widgets.CatWidget;
 import com.widgets.MyButton;
 import com.widgets.MyLabel;
+import com.widgets.MyListCatRenderer;
+import com.widgets.MyListModel;
 import com.widgets.ProduitWidget;
 
 import controlors.SalesControlor;
@@ -52,6 +54,7 @@ public class VentePanel extends JPanel implements MyPanel {
     Client client;
     private JPanel catPanel;
     static int  val = 0;
+    private JList<Categorie> listCat;
     public VentePanel() {
         init();
     }
@@ -110,8 +113,9 @@ public class VentePanel extends JPanel implements MyPanel {
         this.add(panelCentre, "dock center");
         // panel sud
         JPanel panelCentreSud = new JPanel(new MigLayout("fill"));
-        catPanel = new JPanel(new MigLayout("insets 4 4 4 4,fillx"));
-        JScrollPane catScr = new JScrollPane(catPanel);
+        listCat= new JList<Categorie>();
+        listCat.setCellRenderer(new MyListCatRenderer());
+        JScrollPane catScr = new JScrollPane(listCat);
         catScr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
         panelCentreSud.add(catScr, "h 92%,w 300:300:300");
         panelProduct = new JPanel(new MigLayout("insets 4 4 4 4"));
@@ -125,7 +129,7 @@ public class VentePanel extends JPanel implements MyPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                ListClientFrame fr = new ListClientFrame(null, true, new ArrayList<Client>());
+                ListClientFrame fr = new ListClientFrame(null, true);
                 fr.setVisible(true);
                 if(fr.getList().size()>0){
                     client = fr.getList().get(0);
@@ -142,46 +146,8 @@ public class VentePanel extends JPanel implements MyPanel {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void addCategories(ArrayList<Categorie> listCat) {
-        Iterator it = listCat.iterator();
-        catPanel.removeAll();
-        while (it.hasNext()) {
-            CatWidget cat = new CatWidget((Categorie) it.next());
-            catPanel.add(cat, "growx,wrap");
-            
-            cat.addMouseListener(new MouseListener() {
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    CatWidget wid = (CatWidget) e.getSource();
-                    wid.setSelected(wid);
-                    Component tabc[] = catPanel.getComponents();
-                    for(int i=0;i<tabc.length;i++){
-                        CatWidget pro = (CatWidget) tabc[i];
-                        pro.repaint();
-                    }
-                    catClicked(wid.getCategorie());
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                }
-
-            });
-        }
-        catPanel.revalidate();
+    public void addCategories(ArrayList<Categorie> list) {
+       listCat.setModel(new MyListModel<Categorie>(list));
     }
 
     private void catClicked(Categorie categorie) {

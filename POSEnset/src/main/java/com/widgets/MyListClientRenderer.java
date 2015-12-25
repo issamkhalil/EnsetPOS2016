@@ -74,8 +74,7 @@ public class MyListClientRenderer extends JPanel implements ListCellRenderer<Obj
         this.setBackground(background);
         lblText.setForeground(foreground);
         lblText.setFont(new Font("Monospaced", Font.BOLD, 16));
-        lblText.setHorizontalAlignment(SwingConstants.CENTER);
-        lblText.setPreferredSize(new Dimension(190,30));
+        lblText.setPreferredSize(new Dimension(270,30));
         lblImg.setIcon(GRessource.getIcon("bussnessman.png",30));
         return this;
     }

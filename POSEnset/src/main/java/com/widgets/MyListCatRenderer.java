@@ -7,6 +7,7 @@ package com.widgets;
 
 import com.beans.AwsomeIconConst;
 import com.beans.Constants;
+import com.entities.Categorie;
 import com.models.AwsomeIcon;
 import com.models.GRessource;
 import com.sun.corba.se.impl.orbutil.closure.Constant;
@@ -15,6 +16,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -46,7 +48,7 @@ public class MyListCatRenderer extends JPanel implements ListCellRenderer<Object
             int index,
             boolean isSelected,
             boolean cellHasFocus) {
-        
+        Categorie cat = (Categorie) value;
         lblText.setText(value.toString().toUpperCase());
         System.out.println(value.toString().toUpperCase());
         Color background;
@@ -74,9 +76,12 @@ public class MyListCatRenderer extends JPanel implements ListCellRenderer<Object
         this.setBackground(background);
         lblText.setForeground(foreground);
         lblText.setFont(new Font("Monospaced", Font.BOLD, 16));
-        lblText.setHorizontalAlignment(SwingConstants.CENTER);
-        lblText.setPreferredSize(new Dimension(190,30));
-        lblImg.setIcon(GRessource.getIcon("bussnessman.png",30));
+        lblText.setPreferredSize(new Dimension(270,30));
+        lblImg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        if(cat.getImage()==null)
+            lblImg.setIcon(GRessource.getIcon("open_folder.png",30));
+        else
+            lblImg.setIcon(GRessource.getImage(cat.getImage(),40));
         return this;
     }
 

@@ -38,7 +38,7 @@ public class ListClientFrame extends JDialog {
     String tableResultTiltles[];
     JButton btnValider, btnAnnuler;
     ArrayList<Client> list;
-    public ListClientFrame(JFrame parent, boolean modal, ArrayList<Client> list) {
+    public ListClientFrame(JFrame parent, boolean modal) {
         super(parent, modal);
         init();
         this.list = list;
@@ -136,7 +136,7 @@ public class ListClientFrame extends JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new ListClientFrame(null, true, null).setVisible(true);
+                new ListClientFrame(null, true).setVisible(true);
             }
         });
     }

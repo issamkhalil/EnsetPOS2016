@@ -150,5 +150,12 @@ public class Produit {
 		super();
 	}
 
+    @Override
+    public String toString() {
+        return id+"- "+designiation; //To change body of generated methods, choose Tools | Templates.
+    }
+        
+        
+
 	
 }

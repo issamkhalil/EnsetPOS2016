@@ -28,10 +28,10 @@ public class ProduitWidget extends JLabel {
     private static ProduitWidget selected;
     public ProduitWidget(Produit produit){
         this.produit = produit;
+        if(produit.getImage()==null)
         this.setIcon(GRessource.getIcon("Product.png", 70));
-        if(produit.getImage() != null){
-        	this.setLblImg(produit.getImage());
-        }
+        else
+            this.setIcon(GRessource.getImage(produit.getImage(), 70));
         setText(produit.getDesigniation());
         this.setHorizontalTextPosition(JLabel.CENTER);
         this.setVerticalTextPosition(JLabel.BOTTOM); 

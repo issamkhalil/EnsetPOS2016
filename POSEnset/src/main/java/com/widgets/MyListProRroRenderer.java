@@ -7,6 +7,7 @@ package com.widgets;
 
 import com.beans.AwsomeIconConst;
 import com.beans.Constants;
+import com.entities.Produit;
 import com.models.AwsomeIcon;
 import com.models.GRessource;
 import com.sun.corba.se.impl.orbutil.closure.Constant;
@@ -15,6 +16,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -26,11 +28,11 @@ import net.miginfocom.swing.MigLayout;
  *
  * @author elmottaki
  */
-public class MyListCompteRenderer extends JPanel implements ListCellRenderer<Object> {
+public class MyListProRroRenderer extends JPanel implements ListCellRenderer<Object> {
     private final JLabel lblImg;
     private final MyLabel lblText;
 
-    public MyListCompteRenderer() {
+    public MyListProRroRenderer() {
         setOpaque(true);
         this.setLayout(new MigLayout("fillx"));
          lblImg = new JLabel();
@@ -46,7 +48,7 @@ public class MyListCompteRenderer extends JPanel implements ListCellRenderer<Obj
             int index,
             boolean isSelected,
             boolean cellHasFocus) {
-        
+        Produit pro = (Produit) value;
         lblText.setText(value.toString().toUpperCase());
         System.out.println(value.toString().toUpperCase());
         Color background;
@@ -75,7 +77,11 @@ public class MyListCompteRenderer extends JPanel implements ListCellRenderer<Obj
         lblText.setForeground(foreground);
         lblText.setFont(new Font("Monospaced", Font.BOLD, 16));
         lblText.setPreferredSize(new Dimension(270,30));
-        lblImg.setIcon(GRessource.getIcon("bussnessman.png",30));
+        lblImg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        if(pro.getImage()==null)
+            lblImg.setIcon(GRessource.getIcon("open_folder.png",30));
+        else
+            lblImg.setIcon(GRessource.getImage(pro.getImage(),40));
         return this;
     }
 

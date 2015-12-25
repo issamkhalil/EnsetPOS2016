@@ -17,6 +17,8 @@ import com.widgets.CatWidget;
 import com.widgets.MyButton;
 import com.widgets.MyDateText;
 import com.widgets.MyLabel;
+import com.widgets.MyListModel;
+import com.widgets.MyListProRroRenderer;
 import com.widgets.MyText;
 import com.widgets.ProduitWidget;
 
@@ -40,23 +42,27 @@ import net.miginfocom.swing.MigLayout;
  *
  * @author elmottaki
  */
-public class ProduitPanel  extends JFXPanel implements MyPanel{
-    JTextField txtNameSearch,txtPrixAchatSearch,txtPrixVenteSearch;
+public class ProduitPanel extends JFXPanel implements MyPanel {
+
+    JTextField txtNameSearch, txtPrixAchatSearch, txtPrixVenteSearch;
     JComboBox<String> comboCatSearch;
     MyButton btnSearch;
-    JButton btnSave,btnNew,btnDel;
-    JList listProduit;
-    JLabel imgPro ;
-    JTextField txtRef,txtNom,txtPrixAchat,txtPrixVentre,txtTaxe,txtQte;
+    JButton btnSave, btnNew, btnDel;
+    JList<Produit> listProduit;
+    JLabel imgPro;
+    JTextField txtRef, txtNom, txtPrixAchat, txtPrixVentre, txtTaxe, txtQte;
     JComboBox<String> comboCat;
-    public ProduitPanel(){
+
+    public ProduitPanel() {
         init();
     }
+
     @Override
     public void refresh() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public void init(){
+
+    public void init() {
         LangueModel lm = new LangueModel();
         this.setLayout(new MigLayout("fill"));
         btnSave = new MyButton(lm.getString("ENREGISTRER"), new AwsomeIcon(AwsomeIconConst.SAVE_ICON, 20));
@@ -64,65 +70,66 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
         btnNew = new MyButton(lm.getString("NOUVEAU"), new AwsomeIcon(AwsomeIconConst.NEW_ICON, 20));
         // partie de recherche 
         JPanel panelSearch = new JPanel(new MigLayout("insets 12px"));
-        panelSearch.add(new MyLabel(lm.getString("nom")+" :",14));
+        panelSearch.add(new MyLabel(lm.getString("nom") + " :", 14));
         txtNameSearch = new MyText("");
-        panelSearch.add(txtNameSearch,"w 200px,wrap");
-        panelSearch.add(new MyLabel(lm.getString("prix_achat")+" :",14));
+        panelSearch.add(txtNameSearch, "w 200px,wrap");
+        panelSearch.add(new MyLabel(lm.getString("prix_achat") + " :", 14));
         txtPrixAchatSearch = new MyText("");
-        panelSearch.add(txtPrixAchatSearch,"w 200px,wrap");
-        panelSearch.add(new MyLabel(lm.getString("prix_vente")+" :",14));
+        panelSearch.add(txtPrixAchatSearch, "w 200px,wrap");
+        panelSearch.add(new MyLabel(lm.getString("prix_vente") + " :", 14));
         txtPrixVenteSearch = new MyText("");
-        panelSearch.add(txtPrixVenteSearch,"w 200px,wrap");
-        panelSearch.add(new MyLabel(lm.getString("categorie")+" :",14));
+        panelSearch.add(txtPrixVenteSearch, "w 200px,wrap");
+        panelSearch.add(new MyLabel(lm.getString("categorie") + " :", 14));
         comboCatSearch = new JComboBox<String>();
-        panelSearch.add(comboCatSearch,"w 200px,wrap");
+        panelSearch.add(comboCatSearch, "w 200px,wrap");
         // panel de btn
         btnSearch = new MyButton(lm.getString("chercher"), new AwsomeIcon(AwsomeIconConst.SEARCH_ICON, 20, Color.black));
-        panelSearch.add(btnSearch,"skip 2");
-        this.add(panelSearch,"dock north");
+        panelSearch.add(btnSearch, "skip 2");
+        this.add(panelSearch, "dock north");
         // les Button de controle 
         JPanel proPanel = new JPanel(new MigLayout("fill,insets 3px"));
         JPanel btnPanel = new JPanel(new MigLayout("rtl"));
         btnPanel.add(btnSave);
         btnPanel.add(btnDel);
         btnPanel.add(btnNew);
-        proPanel.add(btnPanel,"dock north");
+        proPanel.add(btnPanel, "dock north");
         listProduit = new JList();
+        listProduit.setCellRenderer(new MyListProRroRenderer());
         JPanel panelProInfo = new JPanel(new MigLayout("insets 5px"));
         JScrollPane proScr = new JScrollPane(listProduit);
         proScr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
-        proPanel.add(proScr,"h 100%,w 25%");
-        proPanel.add(panelProInfo,"h 100%,w 75%");
+        proPanel.add(proScr, "h 100%,w 300:300:300");
+        proPanel.add(panelProInfo, "h 100%,w 100%");
         // info de produit
         panelProInfo.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
         JPanel panelImg = new JPanel(new MigLayout());
-        imgPro = new JLabel(GRessource.getIcon("Product.png",120));
+        imgPro = new JLabel(GRessource.getIcon("Product.png", 120));
         imgPro.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
-        panelImg.add(imgPro,"span 2,wrap");
-        panelProInfo.add(panelImg,"dock north");
-        panelProInfo.add(new MyLabel(lm.getString("reference")+" :",14));
+        panelImg.add(imgPro, "span 2,wrap");
+        panelProInfo.add(panelImg, "dock north");
+        panelProInfo.add(new MyLabel(lm.getString("reference") + " :", 14));
         txtRef = new MyText("");
-        panelProInfo.add(txtRef,"w 200px,wrap");
-        panelProInfo.add(new MyLabel(lm.getString("nom")+" :",14));
+        panelProInfo.add(txtRef, "w 200px,wrap");
+        panelProInfo.add(new MyLabel(lm.getString("nom") + " :", 14));
         txtNom = new MyText("");
-        panelProInfo.add(txtNom,"w 200px,wrap");
-        panelProInfo.add(new MyLabel(lm.getString("prix_achat")+" :",14));
+        panelProInfo.add(txtNom, "w 200px,wrap");
+        panelProInfo.add(new MyLabel(lm.getString("prix_achat") + " :", 14));
         txtPrixAchat = new MyText("");
-        panelProInfo.add(txtPrixAchat,"w 200px,wrap");
-        panelProInfo.add(new MyLabel(lm.getString("prix_vente")+" :",14));
+        panelProInfo.add(txtPrixAchat, "w 200px,wrap");
+        panelProInfo.add(new MyLabel(lm.getString("prix_vente") + " :", 14));
         txtPrixVentre = new MyText("");
-        panelProInfo.add(txtPrixVentre,"w 200px,wrap");
-        panelProInfo.add(new MyLabel(lm.getString("taxe")+" :",14));
+        panelProInfo.add(txtPrixVentre, "w 200px,wrap");
+        panelProInfo.add(new MyLabel(lm.getString("taxe") + " :", 14));
         txtTaxe = new MyText("");
-        panelProInfo.add(txtTaxe,"split 2,w 150px");
-        panelProInfo.add(new MyLabel("%",16),"w 50,wrap");
-        panelProInfo.add(new MyLabel(lm.getString("qte_stock")+" :",14));
+        panelProInfo.add(txtTaxe, "split 2,w 150px");
+        panelProInfo.add(new MyLabel("%", 16), "w 50,wrap");
+        panelProInfo.add(new MyLabel(lm.getString("qte_stock") + " :", 14));
         txtQte = new MyText("");
-        panelProInfo.add(txtQte,"w 200px,wrap");
-        panelProInfo.add(new MyLabel(lm.getString("categorie")+" :",14));
+        panelProInfo.add(txtQte, "w 200px,wrap");
+        panelProInfo.add(new MyLabel(lm.getString("categorie") + " :", 14));
         comboCat = new JComboBox<String>();
-        panelProInfo.add(comboCat,"w 200px,wrap");
-        this.add(proPanel,"dock center");
+        panelProInfo.add(comboCat, "w 200px,wrap");
+        this.add(proPanel, "dock center");
         btnSearch.addActionListener(new ActionListener() {
 
             @Override
@@ -151,43 +158,65 @@ public class ProduitPanel  extends JFXPanel implements MyPanel{
                 newAction();
             }
         });
-        
-        
-        
-    }
-    
-    
-    public void addProds(List<Produit> produits) {
-       
-    	/*
-    	 * 
-    	 * fonction pour ajouté les produits dans la list
-    	 * 
-    	 * 
-    	 */
-    	
-        }
 
-    private void prodClicked(Categorie categorie) {
+
+    }
+
+    public void addProds(List<Produit> produits) {
+        System.out.println("produit ");
+        listProduit.setModel(new MyListModel<Produit>(produits));
+        listProduit.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(listProduit.getSelectedIndex()!=-1)
+                prodClicked(listProduit.getModel().getElementAt(listProduit.getSelectedIndex()));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+        });
+    }
+
+    private void prodClicked(Produit prod) {
 			// TODO Auto-generated method stub
-			
-		}
-    
+
+    }
+
     // fonction qui se declanche quand on clique sur le boutton chercher
-    private void searchAction(){
+    private void searchAction() {
         // TODO implementer search action
     }
+
     // fonction qui se declanche quand on click sur le boutton enregistrer
-    private void saveAction(){
+
+    private void saveAction() {
         // TODO implementer save Action
     }
+
     // fonction qui se declanche quand on click sur le boutton supprimer
-    private void deleteAction(){
+
+    private void deleteAction() {
         //TODO implementer delete Action
     }
+
     // fonction qui se declanche quand on click sur le boutton nouveau
-    private void newAction(){
+
+    private void newAction() {
         //TODO implementer newAction
     }
-    
+
 }

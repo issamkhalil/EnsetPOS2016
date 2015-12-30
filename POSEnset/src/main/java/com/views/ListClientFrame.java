@@ -15,15 +15,20 @@ import com.widgets.MyDateText;
 import com.widgets.MyLabel;
 import com.widgets.MyTableRenderer;
 import com.widgets.MyText;
+
+import controlors.ClientsControlor;
 import controlors.ListClientControlor;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -82,8 +87,9 @@ public class ListClientFrame extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ArrayList<Client> list = ListClientControlor.search(txtId.getText(), txtNom.getText(), txtPrenom.getText());
+                    ArrayList<Client> list = ClientsControlor.search(txtId.getText(), txtNom.getText(), txtPrenom.getText());
                     tableResult.setModel(new TModel(list));
+              
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR);
                 }

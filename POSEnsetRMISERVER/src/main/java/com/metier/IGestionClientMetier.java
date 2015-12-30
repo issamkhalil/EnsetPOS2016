@@ -81,5 +81,9 @@ public interface IGestionClientMetier {
 	 * fonction chercher une Categorie  par id 
 	 */
 	public Adresse getAdressebyId(long id);
+	
+	
+	public List<Client> chercheClients(long id, String nomMotif,
+			String pNomRCMotif);
 
 }

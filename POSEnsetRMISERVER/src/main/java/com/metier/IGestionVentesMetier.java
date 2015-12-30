@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.entities.Adresse;
+import com.entities.Client;
 import com.entities.LigneVente;
 import com.entities.Tranche;
 import com.entities.Vente;
@@ -170,6 +171,6 @@ public interface IGestionVentesMetier {
 	 */
 	public Tranche  getTranchebyId(long id);
 
-
+	
 }
 

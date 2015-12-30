@@ -45,4 +45,6 @@ public interface IClientDAO {
 	 * fonction cherche  un clients  par le ID
 	 */
 	public Client chercheClientparID(long id);
+
+	public List<Client> chercheClientsPNomRCMotif(String pNomRCMotif);
 }

@@ -52,5 +52,14 @@ public class ClientDAOImpl extends GenericDAO implements IClientDAO {
 		return em.find(Client.class, id);
 	}
 
+	@Override
+	public List<Client> chercheClientsPNomRCMotif(String pNomRCMotif) {
+		Query req=em.createQuery("select c from Client c where c.RegistreCommerce like"
+				+":x or c.prenom like:x");
+				req.setParameter("x", "%"+pNomRCMotif+"%");
+				req.setParameter("x", "%"+pNomRCMotif+"%");
+				return req.getResultList();
+	}
+
 	
 }

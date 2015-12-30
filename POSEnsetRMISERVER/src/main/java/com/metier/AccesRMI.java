@@ -384,4 +384,10 @@ public class AccesRMI extends UnicastRemoteObject implements IAccesRMI{
 		return gestionVentesMetier.getTranchebyId(id);
 	}
 
+	@Override
+	public List<Client> chercheClients(long id, String nomMotif,
+			String pNomRCMotif) throws Exception {
+		return gestionClientMetier.chercheClients(id,nomMotif,pNomRCMotif);
+	}
+
 }

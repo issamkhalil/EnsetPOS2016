@@ -8,11 +8,13 @@ import java.util.List;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dao.ClientDAOImpl;
 import com.dao.IProduitsDAO;
 import com.dao.ITrancheDAO;
 import com.dao.IVenteDAO;
 import com.dao.IligneVenteDAO;
 import com.entities.Adresse;
+import com.entities.Client;
 import com.entities.LigneVente;
 import com.entities.Produit;
 import com.entities.Tranche;
@@ -203,5 +205,7 @@ public class GestionVentesMetier implements IGestionVentesMetier {
 		// TODO Auto-generated method stub
 		trancheDao.modifierTranche(t);
 	}
+
+	
 
 }

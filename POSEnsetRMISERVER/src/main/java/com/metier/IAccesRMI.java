@@ -28,6 +28,8 @@ public interface IAccesRMI extends Remote {
 	public List<Client> listerClientsAll() throws Exception ;
 
 	public List<Client> chercheClientsparNom(String nomMotif) throws Exception ;
+	public List<Client> chercheClients(long id,String nomMotif,String pNomRCMotif) throws Exception ;
+	
 
 	public Client chercheClientparID(long id) throws Exception ;
 

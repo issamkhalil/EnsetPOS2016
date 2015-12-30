@@ -1,6 +1,9 @@
 package com.metier;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -119,4 +122,25 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 			
 		}
 
+		@Override
+		public List<Client> chercheClients(long id, String nomMotif,
+				String pNomRCMotif) {
+			List<Client> l1= clientDAO.chercheClientsPNomRCMotif(pNomRCMotif);
+			List<Client> l2= clientDAO.chercheClientsparNom(nomMotif);
+			List<Client> l3= new ArrayList<Client>();
+			l3.add(chercheClientparID(id));
+			
+			return union(union(l1, l2), l3); 
+		}
+
+		private <T> List<T> union(List<T> list1, List<T> list2) {
+	        Set<T> set = new HashSet<T>();
+
+	        set.addAll(list1);
+	        set.addAll(list2);
+
+	        return new ArrayList<T>(set);
+	    }
+
+		
 }

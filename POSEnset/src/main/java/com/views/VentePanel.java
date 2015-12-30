@@ -29,6 +29,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -153,7 +154,12 @@ public class VentePanel extends JPanel implements MyPanel {
     private void catClicked(Categorie categorie) {
         //System.out.println("categorie : "+categorie.getNom());
      Main main= (Main) this.getTopLevelAncestor();
-     SalesControlor.ListerProdParCatAction(main,categorie);
+     try {
+		SalesControlor.ListerProdParCatAction(main,categorie);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
 
     public void addProducts(List<Produit> produits) {

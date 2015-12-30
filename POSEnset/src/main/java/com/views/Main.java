@@ -29,6 +29,7 @@ import controlors.traitesControlor;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -88,7 +89,8 @@ public class Main extends javax.swing.JFrame {
 		jtp.setTabComponentAt(0, new TabCompoSouth(lm.getString("sales"),
 				GRessource.getIcon("sale.png", 40)));
 		listPanel.put("vente", vp);
-		SalesControlor.indexAction(vp);
+		try {
+			SalesControlor.indexAction(vp);
 		
 		StockPanel sp = new StockPanel();
 		jtp.addTab(null, sp);
@@ -143,6 +145,11 @@ public class Main extends javax.swing.JFrame {
 		southPanel.add(new JButton("click here"));
 		// this.add(southPanel,"dock north,h 400px");
 
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 	}
 
 	public static void main(String args[]) {

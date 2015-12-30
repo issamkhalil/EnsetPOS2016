@@ -48,7 +48,6 @@ public class MyListClientRenderer extends JPanel implements ListCellRenderer<Obj
             boolean cellHasFocus) {
         
         lblText.setText(value.toString().toUpperCase());
-        System.out.println(value.toString().toUpperCase());
         Color background;
         Color foreground;
 

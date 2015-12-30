@@ -83,7 +83,7 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 	@Override
 	public List<Client> chercheClientsparNom(String nomMotif) {
 
-		return chercheClientsparNom(nomMotif);
+		return clientDAO.chercheClientsparNom(nomMotif);
 	}
 
 	@Override

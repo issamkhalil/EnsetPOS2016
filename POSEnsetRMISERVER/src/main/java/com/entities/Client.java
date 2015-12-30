@@ -115,6 +115,45 @@ public abstract class Client implements Serializable{
     public String toString() {
         return id+" - "+nom; //To change body of generated methods, choose Tools | Templates.
     }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result
+				+ ((telephone == null) ? 0 : telephone.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (id != other.id)
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (telephone == null) {
+			if (other.telephone != null)
+				return false;
+		} else if (!telephone.equals(other.telephone))
+			return false;
+		return true;
+	}
         
 
 }

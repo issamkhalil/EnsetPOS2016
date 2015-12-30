@@ -151,5 +151,9 @@ public class Produit  implements Serializable{
 		super();
 	}
 
+	@Override
+	public String toString() {
+		return  id + " - " + designiation;
+	}
 	
 }

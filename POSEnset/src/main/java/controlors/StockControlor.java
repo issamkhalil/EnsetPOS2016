@@ -32,15 +32,53 @@ public class StockControlor {
 		List<Produit> produits = accesRMI.listerProduits();
 		sp.getPp().addProds(produits);
 	}
+        /**
+         * fonction qui va chercher les produit 
+         * @param nom c'est le designation de produit
+         * @param prixVente c'est le prix de vente de produit mais rmq : il faut faire la conversion de string vers double 
+         * @param prixAchat c'est le prix de achat de produit mais rmq : il faut faire la conversion de string vers double 
+         * @param cat c'est le categorie de produit rechercher
+         * @return il return liste de produits trouver
+         * @throws Exception il envoie exception c'est il y a des erreurs rmq : il faut preciser le message en francais
+         */
         public static List<Produit> searchProduct(String nom,String prixVente,String prixAchat,Categorie cat) throws Exception{
             return null;
         }
+        /**
+         * fonction qui va enregister un produit
+         * @param img image de produit
+         * @param ref reference de produit
+         * @param nom le designation de produit
+         * @param prixAchat  c'est le prix de achat de produit mais rmq : il faut faire la conversion de string vers double
+         * @param prixVente   c'est le prix de vente de produit mais rmq : il faut faire la conversion de string vers double
+         * @param taxe c'est le porcentage entre 0 et 100 rmq il faut envoyer un exception si taxe n'est pas correcte
+         * @param qte quantité de produit en stock valeur positive
+         * @param cat categorie de produit
+         * @throws Exception  il envoie exception c'est il y a des erreurs rmq : il faut preciser le message en francais
+         */
         public static void saveProduct(String img,String ref,String nom,String prixAchat,String prixVente,String taxe,String qte,Categorie cat) throws Exception{
             
         }
+        /**
+         * fonction qui va modifier un produit
+         * @param img image de produit
+         * @param ref reference de produit
+         * @param nom le designation de produit
+         * @param prixAchat  c'est le prix de achat de produit mais rmq : il faut faire la conversion de string vers double
+         * @param prixVente   c'est le prix de vente de produit mais rmq : il faut faire la conversion de string vers double
+         * @param taxe c'est le porcentage entre 0 et 100 rmq il faut envoyer un exception si taxe n'est pas correcte
+         * @param qte quantité de produit en stock valeur positive
+         * @param cat categorie de produit
+         * @throws Exception  il envoie exception c'est il y a des erreurs rmq : il faut preciser le message en francais
+         */
         public static void updateProduct(Produit produit,byte img[],String ref,String nom,String prixAchat,String prixVente,String taxe,String qte,Categorie cat) throws Exception{
             
         }
+        /**
+         * fonction qui va supprimer un produit
+         * @param prod c'est le produit
+         * @throws Exception Exception  il envoie exception c'est il y a des erreurs rmq : il faut preciser le message en francais
+         */
         public static void deleteProduct(Produit prod) throws Exception{
             
         }

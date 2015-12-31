@@ -165,7 +165,15 @@ public class CatPanel extends JPanel implements MyPanel {
     }
 
     private void saveAction() {
-        
+        try {
+            if (listCat.getSelectedIndex() == -1) {
+                StockControlor.saveCategorie(image,txtName.getText(),txtDescription.getText());
+            } else {
+                StockControlor.updateCategorie(listCat.getModel().getElementAt(listCat.getSelectedIndex()),image,txtName.getText(),txtDescription.getText());
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @Override

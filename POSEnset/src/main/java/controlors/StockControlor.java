@@ -93,6 +93,14 @@ public class StockControlor {
     public static void deleteCategorie(Categorie elementAt) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public static void saveCategorie(byte[] image, String text, String text0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static void updateCategorie(Categorie elementAt, byte[] image, String text, String text0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
        
 
 }

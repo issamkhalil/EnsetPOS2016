@@ -56,7 +56,7 @@ public class StockControlor {
          * @param cat categorie de produit
          * @throws Exception  il envoie exception c'est il y a des erreurs rmq : il faut preciser le message en francais
          */
-        public static void saveProduct(String img,String ref,String nom,String prixAchat,String prixVente,String taxe,String qte,Categorie cat) throws Exception{
+        public static void saveProduct(byte img[],String ref,String nom,String prixAchat,String prixVente,String taxe,String qte,Categorie cat) throws Exception{
             
         }
         /**
@@ -88,6 +88,10 @@ public class StockControlor {
     */
     public static List<Categorie> fetchAllCategories() throws Exception {
          return accesRMI.listerCategories();
+    }
+
+    public static void deleteCategorie(Categorie elementAt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
        
 

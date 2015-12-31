@@ -59,7 +59,7 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
     JLabel imgPro;
     JTextField txtRef, txtNom, txtPrixAchat, txtPrixVentre, txtTaxe, txtQte;
     JComboBox<Categorie> comboCat;
-    byte image[]= null;
+    byte image[] = null;
 
     public ProduitPanel() {
         init();
@@ -177,16 +177,16 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
                 fch.setMultiSelectionEnabled(false);
                 fch.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 fch.showOpenDialog(null);
-                if(fch.getSelectedFile()!=null){
-                    String type= new MimetypesFileTypeMap().getContentType(fch.getSelectedFile()).split("/")[0];
-                    if(type.equals("image")){
+                if (fch.getSelectedFile() != null) {
+                    String type = new MimetypesFileTypeMap().getContentType(fch.getSelectedFile()).split("/")[0];
+                    if (type.equals("image")) {
                         try {
                             image = Files.readAllBytes(fch.getSelectedFile().toPath());
                             setProduitImg();
                         } catch (IOException ex) {
                             Logger.getLogger(ProduitPanel.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        
+
                     }
                 }
             }
@@ -243,20 +243,20 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
     private void prodClicked(Produit prod) {
         txtRef.setText(prod.getReferance());
         txtNom.setText(prod.getDesigniation());
-        txtPrixAchat.setText(prod.getPrixAchat()+"");
-        txtPrixVentre.setText(prod.getPrixVente()+"");
-        txtQte.setText(prod.getQuantiteEnStock()+"");
-        txtTaxe.setText(prod.getTva()+"");
+        txtPrixAchat.setText(prod.getPrixAchat() + "");
+        txtPrixVentre.setText(prod.getPrixVente() + "");
+        txtQte.setText(prod.getQuantiteEnStock() + "");
+        txtTaxe.setText(prod.getTva() + "");
         image = prod.getImage();
         setProduitImg();
-        
+
     }
 
     // fonction qui se declanche quand on clique sur le boutton chercher
     private void searchAction() {
         try {
             List<Produit> list = StockControlor.searchProduct(txtNameSearch.getText(), txtPrixAchat.getText(), txtPrixVentre.getText(), (Categorie) comboCatSearch.getSelectedItem());
-            if(list!=null){
+            if (list != null) {
                 listProduit.setModel(new MyListModel<Produit>(list));
             }
         } catch (Exception ex) {
@@ -267,10 +267,11 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
     // fonction qui se declanche quand on click sur le boutton enregistrer
     private void saveAction() {
         try {
-            if(listProduit.getSelectedIndex()==-1){
-                throw new Exception("il faut selectionner un produit !");
+            if (listProduit.getSelectedIndex() == -1) {
+                StockControlor.saveProduct(image, txtRef.getText(), txtNom.getText(), txtPrixAchat.getText(), txtPrixVentre.getText(), txtTaxe.getText(), txtQte.getText(), (Categorie) comboCat.getSelectedItem());
+            } else {
+                StockControlor.updateProduct(listProduit.getModel().getElementAt(listProduit.getSelectedIndex()), image, txtRef.getText(), txtNom.getText(), txtPrixAchat.getText(), txtPrixVentre.getText(), txtTaxe.getText(), txtQte.getText(), (Categorie) comboCat.getSelectedItem());
             }
-            StockControlor.updateProduct(listProduit.getModel().getElementAt(listProduit.getSelectedIndex()),image,txtRef.getText(),txtNom.getText(),txtPrixAchat.getText(),txtPrixVentre.getText(),txtTaxe.getText(),txtQte.getText(), (Categorie) comboCat.getSelectedItem());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
@@ -278,13 +279,12 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
 
     // fonction qui se declanche quand on click sur le boutton supprimer
     private void deleteAction() {
-        try{
-            if(listProduit.getSelectedIndex()==-1){
+        try {
+            if (listProduit.getSelectedIndex() == -1) {
                 throw new Exception("il faut selectionner un produit !");
             }
             StockControlor.deleteProduct(listProduit.getModel().getElementAt(listProduit.getSelectedIndex()));
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -299,32 +299,35 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
         txtTaxe.setText("");
         image = null;
         setProduitImg();
-        
+
     }
 
     private void setProduitImg() {
-        if(image==null){
+        if (image == null) {
             imgPro.setIcon(GRessource.getIcon("Product.png", 100));
-        }else{
-            imgPro.setIcon(GRessource.getImage(image,100));
-        
-    }}
-    private void loadCat(){
+        } else {
+            imgPro.setIcon(GRessource.getImage(image, 100));
+
+        }
+    }
+
+    private void loadCat() {
         try {
             List<Categorie> list = StockControlor.fetchAllCategories();
             Iterator<Categorie> it = list.iterator();
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 comboCat.addItem(it.next());
             }
         } catch (Exception ex) {
             Logger.getLogger(ProduitPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void loadCatSearch(){
+
+    private void loadCatSearch() {
         try {
             List<Categorie> list = StockControlor.fetchAllCategories();
             Iterator<Categorie> it = list.iterator();
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 comboCatSearch.addItem(it.next());
             }
         } catch (Exception ex) {

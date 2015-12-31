@@ -8,6 +8,7 @@ package com.views;
 import com.beans.AwsomeIconConst;
 import com.entities.Client;
 import com.entities.ClientParticulier;
+import com.entities.Produit;
 import com.models.AwsomeIcon;
 import com.models.LangueModel;
 import com.widgets.MyButton;
@@ -15,20 +16,16 @@ import com.widgets.MyDateText;
 import com.widgets.MyLabel;
 import com.widgets.MyTableRenderer;
 import com.widgets.MyText;
-
-import controlors.ClientsControlor;
 import controlors.ListClientControlor;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
+import java.util.List;
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -42,11 +39,10 @@ public class ListClientFrame extends JDialog {
     JTable tableResult;
     String tableResultTiltles[];
     JButton btnValider, btnAnnuler;
-    ArrayList<Client> list;
+    ArrayList<Client> list = new ArrayList<Client>();
     public ListClientFrame(JFrame parent, boolean modal) {
         super(parent, modal);
         init();
-        this.list = list;
         pack();
         this.setLocationRelativeTo(null);
     }
@@ -87,9 +83,8 @@ public class ListClientFrame extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ArrayList<Client> list = ClientsControlor.search(txtId.getText(), txtNom.getText(), txtPrenom.getText());
+                    ArrayList<Client> list = ListClientControlor.search(txtId.getText(), txtNom.getText(), txtPrenom.getText());
                     tableResult.setModel(new TModel(list));
-              
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR);
                 }
@@ -193,7 +188,7 @@ public class ListClientFrame extends JDialog {
                         ClientParticulier c = (ClientParticulier) list.get(rowIndex);
                         return c.getPrenom();
                     } else {
-                        return "";
+                        return "-----";
                     }
 
             }

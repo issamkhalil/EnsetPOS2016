@@ -29,11 +29,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.embed.swing.JFXPanel;
+import javax.activation.MimetypesFileTypeMap;
+import javax.imageio.ImageIO;
 
 import javax.swing.*;
 
@@ -83,6 +89,7 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
         panelSearch.add(txtPrixVenteSearch, "w 200px,wrap");
         panelSearch.add(new MyLabel(lm.getString("categorie") + " :", 14));
         comboCatSearch = new JComboBox<Categorie>();
+        loadCatSearch();
         panelSearch.add(comboCatSearch, "w 200px,wrap");
         // panel de btn
         btnSearch = new MyButton(lm.getString("chercher"), new AwsomeIcon(AwsomeIconConst.SEARCH_ICON, 20, Color.black));
@@ -131,6 +138,7 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
         panelProInfo.add(txtQte, "w 200px,wrap");
         panelProInfo.add(new MyLabel(lm.getString("categorie") + " :", 14));
         comboCat = new JComboBox<Categorie>();
+        loadCat();
         panelProInfo.add(comboCat, "w 200px,wrap");
         this.add(proPanel, "dock center");
         btnSearch.addActionListener(new ActionListener() {
@@ -159,6 +167,44 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newAction();
+            }
+        });
+        imgPro.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JFileChooser fch = new JFileChooser();
+                fch.setMultiSelectionEnabled(false);
+                fch.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                fch.showOpenDialog(null);
+                if(fch.getSelectedFile()!=null){
+                    String type= new MimetypesFileTypeMap().getContentType(fch.getSelectedFile()).split("/")[0];
+                    if(type.equals("image")){
+                        try {
+                            image = Files.readAllBytes(fch.getSelectedFile().toPath());
+                            setProduitImg();
+                        } catch (IOException ex) {
+                            Logger.getLogger(ProduitPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        
+                    }
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
             }
         });
 
@@ -261,6 +307,28 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
             imgPro.setIcon(GRessource.getIcon("Product.png", 100));
         }else{
             imgPro.setIcon(GRessource.getImage(image,100));
+        
+    }}
+    private void loadCat(){
+        try {
+            List<Categorie> list = StockControlor.fetchAllCategories();
+            Iterator<Categorie> it = list.iterator();
+            while(it.hasNext()){
+                comboCat.addItem(it.next());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ProduitPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    private void loadCatSearch(){
+        try {
+            List<Categorie> list = StockControlor.fetchAllCategories();
+            Iterator<Categorie> it = list.iterator();
+            while(it.hasNext()){
+                comboCatSearch.addItem(it.next());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ProduitPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -82,6 +82,13 @@ public class StockControlor {
         public static void deleteProduct(Produit prod) throws Exception{
             
         }
+   /**
+    * fonction qui return tout les categorie
+    * @return 
+    */
+    public static List<Categorie> fetchAllCategories() throws Exception {
+         return accesRMI.listerCategories();
+    }
        
 
 }

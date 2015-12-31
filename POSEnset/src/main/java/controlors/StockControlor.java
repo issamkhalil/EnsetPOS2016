@@ -1,5 +1,6 @@
 package controlors;
 
+import com.entities.Categorie;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -31,5 +32,18 @@ public class StockControlor {
 		List<Produit> produits = accesRMI.listerProduits();
 		sp.getPp().addProds(produits);
 	}
+        public static List<Produit> searchProduct(String nom,String prixVente,String prixAchat,Categorie cat) throws Exception{
+            return null;
+        }
+        public static void saveProduct(String img,String ref,String nom,String prixAchat,String prixVente,String taxe,String qte,Categorie cat) throws Exception{
+            
+        }
+        public static void updateProduct(Produit produit,byte img[],String ref,String nom,String prixAchat,String prixVente,String taxe,String qte,Categorie cat) throws Exception{
+            
+        }
+        public static void deleteProduct(Produit prod) throws Exception{
+            
+        }
+       
 
 }

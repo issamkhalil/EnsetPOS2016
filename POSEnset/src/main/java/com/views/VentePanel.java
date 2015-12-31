@@ -203,7 +203,7 @@ public class VentePanel extends JPanel implements MyPanel {
     private void catClicked(Categorie categorie) {
         //System.out.println("categorie : "+categorie.getNom());
         Main main = (Main) this.getTopLevelAncestor();
-        SalesControlor.ListerProdParCatAction(main, categorie);
+        //SalesControlor.ListerProdParCatAction(main, categorie);
     }
 
     public void addProducts(List<Produit> produits) {

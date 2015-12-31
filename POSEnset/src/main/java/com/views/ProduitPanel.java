@@ -21,6 +21,7 @@ import com.widgets.MyListModel;
 import com.widgets.MyListProRroRenderer;
 import com.widgets.MyText;
 import com.widgets.ProduitWidget;
+import controlors.StockControlor;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -45,13 +46,14 @@ import net.miginfocom.swing.MigLayout;
 public class ProduitPanel extends JFXPanel implements MyPanel {
 
     JTextField txtNameSearch, txtPrixAchatSearch, txtPrixVenteSearch;
-    JComboBox<String> comboCatSearch;
+    JComboBox<Categorie> comboCatSearch;
     MyButton btnSearch;
     JButton btnSave, btnNew, btnDel;
     JList<Produit> listProduit;
     JLabel imgPro;
     JTextField txtRef, txtNom, txtPrixAchat, txtPrixVentre, txtTaxe, txtQte;
-    JComboBox<String> comboCat;
+    JComboBox<Categorie> comboCat;
+    byte image[]= null;
 
     public ProduitPanel() {
         init();
@@ -80,7 +82,7 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
         txtPrixVenteSearch = new MyText("");
         panelSearch.add(txtPrixVenteSearch, "w 200px,wrap");
         panelSearch.add(new MyLabel(lm.getString("categorie") + " :", 14));
-        comboCatSearch = new JComboBox<String>();
+        comboCatSearch = new JComboBox<Categorie>();
         panelSearch.add(comboCatSearch, "w 200px,wrap");
         // panel de btn
         btnSearch = new MyButton(lm.getString("chercher"), new AwsomeIcon(AwsomeIconConst.SEARCH_ICON, 20, Color.black));
@@ -103,8 +105,9 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
         // info de produit
         panelProInfo.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
         JPanel panelImg = new JPanel(new MigLayout());
-        imgPro = new JLabel(GRessource.getIcon("Product.png", 120));
+        imgPro = new JLabel();
         imgPro.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
+        setProduitImg();
         panelImg.add(imgPro, "span 2,wrap");
         panelProInfo.add(panelImg, "dock north");
         panelProInfo.add(new MyLabel(lm.getString("reference") + " :", 14));
@@ -127,7 +130,7 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
         txtQte = new MyText("");
         panelProInfo.add(txtQte, "w 200px,wrap");
         panelProInfo.add(new MyLabel(lm.getString("categorie") + " :", 14));
-        comboCat = new JComboBox<String>();
+        comboCat = new JComboBox<Categorie>();
         panelProInfo.add(comboCat, "w 200px,wrap");
         this.add(proPanel, "dock center");
         btnSearch.addActionListener(new ActionListener() {
@@ -159,7 +162,6 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
             }
         });
 
-
     }
 
     public void addProds(List<Produit> produits) {
@@ -169,8 +171,9 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(listProduit.getSelectedIndex()!=-1)
-                prodClicked(listProduit.getModel().getElementAt(listProduit.getSelectedIndex()));
+                if (listProduit.getSelectedIndex() != -1) {
+                    prodClicked(listProduit.getModel().getElementAt(listProduit.getSelectedIndex()));
+                }
             }
 
             @Override
@@ -192,31 +195,73 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
     }
 
     private void prodClicked(Produit prod) {
-			// TODO Auto-generated method stub
-
+        txtRef.setText(prod.getReferance());
+        txtNom.setText(prod.getDesigniation());
+        txtPrixAchat.setText(prod.getPrixAchat()+"");
+        txtPrixVentre.setText(prod.getPrixVente()+"");
+        txtQte.setText(prod.getQuantiteEnStock()+"");
+        txtTaxe.setText(prod.getTva()+"");
+        image = prod.getImage();
+        setProduitImg();
+        
     }
 
     // fonction qui se declanche quand on clique sur le boutton chercher
     private void searchAction() {
-        // TODO implementer search action
+        try {
+            List<Produit> list = StockControlor.searchProduct(txtNameSearch.getText(), txtPrixAchat.getText(), txtPrixVentre.getText(), (Categorie) comboCatSearch.getSelectedItem());
+            if(list!=null){
+                listProduit.setModel(new MyListModel<Produit>(list));
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     // fonction qui se declanche quand on click sur le boutton enregistrer
-
     private void saveAction() {
-        // TODO implementer save Action
+        try {
+            if(listProduit.getSelectedIndex()==-1){
+                throw new Exception("il faut selectionner un produit !");
+            }
+            StockControlor.updateProduct(listProduit.getModel().getElementAt(listProduit.getSelectedIndex()),image,txtRef.getText(),txtNom.getText(),txtPrixAchat.getText(),txtPrixVentre.getText(),txtTaxe.getText(),txtQte.getText(), (Categorie) comboCat.getSelectedItem());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     // fonction qui se declanche quand on click sur le boutton supprimer
-
     private void deleteAction() {
-        //TODO implementer delete Action
+        try{
+            if(listProduit.getSelectedIndex()==-1){
+                throw new Exception("il faut selectionner un produit !");
+            }
+            StockControlor.deleteProduct(listProduit.getModel().getElementAt(listProduit.getSelectedIndex()));
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     // fonction qui se declanche quand on click sur le boutton nouveau
-
     private void newAction() {
-        //TODO implementer newAction
+        txtRef.setText("");
+        txtNom.setText("");
+        txtPrixAchat.setText("");
+        txtPrixVentre.setText("");
+        txtQte.setText("");
+        txtTaxe.setText("");
+        image = null;
+        setProduitImg();
+        
+    }
+
+    private void setProduitImg() {
+        if(image==null){
+            imgPro.setIcon(GRessource.getIcon("Product.png", 100));
+        }else{
+            imgPro.setIcon(GRessource.getImage(image,100));
+        }
     }
 
 }

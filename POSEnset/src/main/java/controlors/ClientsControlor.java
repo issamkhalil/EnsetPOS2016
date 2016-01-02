@@ -2,7 +2,9 @@ package controlors;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
+
 
 
 
@@ -99,5 +101,19 @@ public class ClientsControlor {
 
 	public static void deleteClient(long id) throws Exception {
 		accesRMI.removeClient(id);
+	}
+
+
+
+	public static List<Client> search(String id, String nom,
+			String pnomRC) {
+	try{
+		return accesRMI.chercheClients(Long.parseLong(id), nom, pnomRC);
+	}catch(Exception e){
+		e.printStackTrace();
+		return new ArrayList<Client>();
+	}
+	
+	
 	}
 }

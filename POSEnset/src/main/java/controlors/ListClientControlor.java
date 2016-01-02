@@ -15,6 +15,8 @@ import java.util.ArrayList;
  * @author elmottaki
  */
 public class ListClientControlor {
+	
+	
     
     public static ArrayList<Client> search(String id,String nom,String prenom) throws ContException{
         ArrayList<Client> list = new ArrayList<Client>();

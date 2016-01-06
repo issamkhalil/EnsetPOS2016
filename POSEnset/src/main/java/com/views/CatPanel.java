@@ -69,7 +69,7 @@ public class CatPanel extends JPanel implements MyPanel {
         JScrollPane catScr = new JScrollPane(listCat);
         catScr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
         centrePanel.add(catScr, "w 300:300:300,h 90%");
-        JPanel rCentrePanel = new JPanel(new MigLayout("debug"));
+        JPanel rCentrePanel = new JPanel(new MigLayout(""));
         rCentrePanel.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
 //        rCentrePanel.setBackground(Color.red);
         centrePanel.add(rCentrePanel, "w 100%,h 90%");
@@ -156,6 +156,7 @@ public class CatPanel extends JPanel implements MyPanel {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
 
     private void newAction() {
         image = null;
@@ -171,6 +172,7 @@ public class CatPanel extends JPanel implements MyPanel {
             } else {
                 StockControlor.updateCategorie(listCat.getModel().getElementAt(listCat.getSelectedIndex()),image,txtName.getText(),txtDescription.getText());
             }
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }

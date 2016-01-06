@@ -6,6 +6,8 @@
 package com.views;
 
 import com.beans.AwsomeIconConst;
+import com.entities.Client;
+import com.entities.PaymentType;
 import com.entities.Produit;
 import com.models.AwsomeIcon;
 import com.models.LangueModel;
@@ -14,6 +16,7 @@ import com.widgets.MyLabel;
 import com.widgets.MyRadioButton;
 import com.widgets.MyText;
 import com.widgets.TraiteWidget;
+import controlors.SalesControlor;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,6 +44,7 @@ public class PaimentFrame extends JDialog {
     private Map<Produit, Integer> listProduit;
     private double tht;
     private double total;
+    private Client client;
 
     public PaimentFrame(JFrame parent, boolean modal, Map<Produit, Integer> listProduit) {
         super(parent, modal);
@@ -48,6 +52,17 @@ public class PaimentFrame extends JDialog {
         init();
         pack();
         calculTotal();
+        setLocationRelativeTo(null);
+        this.client = null;
+    }
+
+    PaimentFrame(JFrame parent, boolean modal, Map<Produit, Integer> listProduit, Client client) {
+       super(parent, modal);
+        this.listProduit = listProduit;
+        init();
+        pack();
+        calculTotal();
+        this.client = client;
         setLocationRelativeTo(null);
     }
 
@@ -178,6 +193,20 @@ public class PaimentFrame extends JDialog {
     }
 
     public void validerAction() {
+        try {
+            if (btnChoixCarte.isSelected()) {
+                SalesControlor.validerVente(listProduit, PaymentType.parCarte,client);
+            } else if (btnChoixCheque.isSelected()) {
+                SalesControlor.validerVente(listProduit, PaymentType.parCarte,client);
+            } else if (btnChoixEspece.isSelected()) {
+                SalesControlor.validerVente(listProduit, PaymentType.parCarte,client);
+            } else {
+                SalesControlor.validerVente(listProduit, panelTraite.getTraites(),client);
+            }
+            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
 
     }
 

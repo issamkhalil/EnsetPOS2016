@@ -35,7 +35,10 @@ public class TraiteWidget extends JPanel {
     public double getTotal() {
         return total;
     }
-
+   public Integer getNbrTraite(){
+       return (Integer) spiner.getValue();
+   }
+   
     public void setTotal(double total) {
         this.total = total;
     }
@@ -45,6 +48,14 @@ public class TraiteWidget extends JPanel {
         listTranche = new ArrayList<Tranche>();
         init();
 
+    }
+    
+    public double[] getTraites(){
+        double[] tr = new double[listTranche.size()];
+        for(int i=0;i<listTranche.size();i++){
+            tr[i] = listTranche.get(i).getVal();
+        }
+        return tr;
     }
 
     public void init() {

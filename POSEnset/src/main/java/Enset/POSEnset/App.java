@@ -41,7 +41,6 @@ public class App
             ResponseList<User> list = facebook.searchUsers("abde");
             Iterator it = list.iterator();
             while(it.hasNext()){
-                System.out.println(((User)it.next()).getName());
             }
 
            

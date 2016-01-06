@@ -13,7 +13,6 @@ import com.models.AwsomeIcon;
 import com.models.GRessource;
 import com.models.LangueModel;
 import com.models.OctiCon;
-import com.widgets.CatWidget;
 import com.widgets.MyButton;
 import com.widgets.MyDateText;
 import com.widgets.MyLabel;
@@ -211,7 +210,6 @@ public class ProduitPanel extends JFXPanel implements MyPanel {
     }
 
     public void addProds(List<Produit> produits) {
-        System.out.println("produit ");
         listProduit.setModel(new MyListModel<Produit>(produits));
         listProduit.addMouseListener(new MouseListener() {
 

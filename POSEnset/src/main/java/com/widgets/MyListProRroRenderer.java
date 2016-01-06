@@ -50,7 +50,6 @@ public class MyListProRroRenderer extends JPanel implements ListCellRenderer<Obj
             boolean cellHasFocus) {
         Produit pro = (Produit) value;
         lblText.setText(value.toString().toUpperCase());
-        System.out.println(value.toString().toUpperCase());
         Color background;
         Color foreground;
 

@@ -8,6 +8,7 @@ package com.widgets;
 import com.beans.AwsomeIconConst;
 import com.beans.Constants;
 import com.entities.Categorie;
+import com.entities.Vente;
 import com.models.AwsomeIcon;
 import com.models.GRessource;
 import com.sun.corba.se.impl.orbutil.closure.Constant;
@@ -28,17 +29,18 @@ import net.miginfocom.swing.MigLayout;
  *
  * @author elmottaki
  */
-public class MyListCatRenderer extends JPanel implements ListCellRenderer<Object> {
+public class MyListVenteRenderer extends JPanel implements ListCellRenderer<Object> {
+
     private final JLabel lblImg;
     private final MyLabel lblText;
 
-    public MyListCatRenderer() {
+    public MyListVenteRenderer() {
         setOpaque(true);
         this.setLayout(new MigLayout("fillx"));
-         lblImg = new JLabel();
-         lblText = new MyLabel("");
-        this.add(lblImg,"w 30");
-        this.add(lblText,"growx");
+        lblImg = new JLabel();
+        lblText = new MyLabel("");
+        this.add(lblImg, "w 30");
+        this.add(lblText, "growx");
         lblImg.setOpaque(false);
         lblText.setOpaque(false);
     }
@@ -48,7 +50,7 @@ public class MyListCatRenderer extends JPanel implements ListCellRenderer<Object
             int index,
             boolean isSelected,
             boolean cellHasFocus) {
-        Categorie cat = (Categorie) value;
+        Vente cat = (Vente) value;
         lblText.setText(value.toString().toUpperCase());
         Color background;
         Color foreground;
@@ -75,12 +77,10 @@ public class MyListCatRenderer extends JPanel implements ListCellRenderer<Object
         this.setBackground(background);
         lblText.setForeground(foreground);
         lblText.setFont(new Font("Monospaced", Font.BOLD, 16));
-        lblText.setPreferredSize(new Dimension(270,30));
+        lblText.setPreferredSize(new Dimension(270, 30));
         lblImg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        if(cat.getImage()==null)
-            lblImg.setIcon(GRessource.getIcon("open_folder.png",30));
-        else
-            lblImg.setIcon(GRessource.getImage(cat.getImage(),40));
+
+        lblImg.setIcon(GRessource.getIcon("paid.png", 40));
         return this;
     }
 

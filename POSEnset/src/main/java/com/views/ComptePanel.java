@@ -16,6 +16,9 @@ import com.widgets.MyLabel;
 import com.widgets.MyListCompteRenderer;
 import com.widgets.MyPassText;
 import com.widgets.MyText;
+import controlors.ComptesControlor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
@@ -45,7 +49,8 @@ public class ComptePanel extends JFXPanel implements MyPanel{
     private MyText txtPrenom;
     private MyText txtLogin;
     private MyPassText txtPass;
-    private JComboBox<String> comboType;
+    private JComboBox comboType;
+    private CompteUtilisateur compteSelec=null;
 
     
     public ComptePanel(){
@@ -107,16 +112,75 @@ public class ComptePanel extends JFXPanel implements MyPanel{
         comboType = new JComboBox<String>();
         container.add(comboType,"sg txt,wrap");
         panelInfo.add(container,"w 100%");
+        refrechListCompte();
         
+        ArrayList<CompteUtilisateur> list = new ArrayList<CompteUtilisateur>();
+        list.add(new CompteUtilisateur("abdelilah", "elmottaki", null, null, null, null, null));
+        list.add(new CompteUtilisateur("abdo", "elmot", null, null, null, null, null));
+
+        AddUsers(list);
+        // initialisation de Compo
+        comboType.addItem(Constants.TypeCompte.ADMIN);
+        comboType.addItem(Constants.TypeCompte.USER);
         
-//        ArrayList<CompteUtilisateur> list = new ArrayList<CompteUtilisateur>();
-//        list.add(new CompteUtilisateur("abdelilah", "elmottaki", null, null, null, null, null));
-//        list.add(new CompteUtilisateur("abdo", "elmot", null, null, null, null, null));
-//
-//        AddUsers(list);
+        btnNew.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                newAction();
+            }
+        });
+        btnSave.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveAction();
+            }
+        });
+        btnDel.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                delAction();
+            }
+        });
    
     }
-    
+    private void delAction(){
+        try{
+            if(compteSelec!=null){
+                ComptesControlor.deleteCompte(compteSelec);
+                refrechListCompte();
+            }
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    private void saveAction(){
+        
+        try{
+            if(compteSelec==null){
+                ComptesControlor.saveCompte(txtLogin.getText(),txtPass.getText(),txtNom.getText(),txtPrenom.getText(),txtMail.getText(),txtTele.getText(),comboType.getSelectedItem().toString());
+            }else{
+                ComptesControlor.updateCompte(compteSelec,txtLogin.getText(),txtPass.getText(),txtNom.getText(),txtPrenom.getText(),txtMail.getText(),txtTele.getText(),comboType.getSelectedItem().toString());
+            }
+            refrechListCompte();
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
+    private void newAction(){
+        txtLogin.setText("");
+        txtNom.setText("");
+        txtMail.setText("");
+        txtPass.setText("");
+        txtPrenom.setText("");
+        txtTele.setText("");
+        comboType.setSelectedItem("");
+        compteSelec = null;
+    }
     public void AddUsers(ArrayList<CompteUtilisateur> list){
         listClients.setModel(new MyModel(list));
         listClients.addMouseListener(new MouseListener() {
@@ -130,6 +194,7 @@ public class ComptePanel extends JFXPanel implements MyPanel{
 
             @Override
             public void mousePressed(MouseEvent e) {
+                
             }
 
             @Override
@@ -146,7 +211,22 @@ public class ComptePanel extends JFXPanel implements MyPanel{
         });
     }
     public void userClicked(CompteUtilisateur c){
-        
+        txtLogin.setText(c.getLogin());
+        txtNom.setText(c.getNom());
+        txtMail.setText(c.getEmail());
+        txtPass.setText(c.getPassword());
+        txtPrenom.setText(c.getPrenom());
+        txtTele.setText(c.getTelephone());
+        comboType.setSelectedItem(c.getType());
+        compteSelec = c;
+    }
+    public void refrechListCompte(){
+        try{
+        AddUsers(ComptesControlor.fetchComptes());
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
     }
     @Override
     public void refresh() {

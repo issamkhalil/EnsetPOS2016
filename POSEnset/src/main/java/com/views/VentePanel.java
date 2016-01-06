@@ -15,14 +15,15 @@ import com.models.AwsomeIcon;
 import com.models.LangueModel;
 import com.models.OctiCon;
 import com.sun.corba.se.impl.orbutil.closure.Constant;
-import com.widgets.CatWidget;
 import com.widgets.MyButton;
 import com.widgets.MyLabel;
 import com.widgets.MyListCatRenderer;
 import com.widgets.MyListModel;
+import com.widgets.MyTableRenderer;
 import com.widgets.ProduitWidget;
 
 import controlors.SalesControlor;
+import controlors.VentesControlor;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -53,7 +54,7 @@ import net.miginfocom.swing.MigLayout;
 public class VentePanel extends JPanel implements MyPanel {
 
     JLabel lblClient;
-    JButton btnClient, btnValider, btnNew, btnSave, btnDel;
+    JButton btnClient, btnValider, btnNewVente, btnSearchVente, btnDelVente;
     JButton btnDelLigne, btnSearch;
     JTable tableProduct;
     String tableTitles[];
@@ -76,24 +77,28 @@ public class VentePanel extends JPanel implements MyPanel {
         tableTitles = new String[]{lm.getStringWithSpace("produit"), lm.getStringWithSpace("prix"), lm.getStringWithSpace("qte"), lm.getStringWithSpace("taxe"), lm.getStringWithSpace("prix_ht"), lm.getStringWithSpace("total")};
         // top Panel 
         JPanel panelTop = new JPanel(new MigLayout());
-        lblClient = new MyLabel(lm.getStringWithSpace("client") + "...", 12);
-        lblClient.setFont(new Font("Arial",Font.ITALIC,12));
-        panelTop.add(lblClient);
         btnClient = new MyButton(lm.getStringWithSpace("client"), new AwsomeIcon(AwsomeIconConst.SEARCH_ICON, 20));
         panelTop.add(btnClient);
+        lblClient = new MyLabel(lm.getStringWithSpace("client") + "...", 12);
+        lblClient.setBackground(Color.LIGHT_GRAY);
+        lblClient.setOpaque(true);
+        lblClient.setFont(new Font("Arial", Font.ITALIC, 12));
+        lblClient.setHorizontalAlignment(JLabel.CENTER);
+        panelTop.add(lblClient, "w 120px,h 26px");
         JSeparator sep1 = new JSeparator(JSeparator.VERTICAL);
         panelTop.add(sep1, "h 100%");
         btnValider = new MyButton(lm.getStringWithSpace("valider"), new AwsomeIcon(AwsomeIconConst.VALIDE_ICON, 20));
         panelTop.add(btnValider);
 
-        btnSave = new MyButton(lm.getString("ENREGISTRER"), new AwsomeIcon(AwsomeIconConst.SAVE_ICON, 20));
-        btnDel = new MyButton(lm.getString("SUPPRIMER"), new AwsomeIcon(AwsomeIconConst.DEL_ICON, 20));
-        btnNew = new MyButton(lm.getString("NOUVEAU"), new AwsomeIcon(AwsomeIconConst.NEW_ICON, 20));
+        btnSearchVente = new MyButton(lm.getString("CHERCHER_VENTE"), new AwsomeIcon(AwsomeIconConst.SAVE_ICON, 20));
+        btnDelVente = new MyButton(lm.getString("SUPPRIMER_VENTE"), new AwsomeIcon(AwsomeIconConst.DEL_ICON, 20));
+        btnDelVente.setEnabled(false);
+        btnNewVente = new MyButton(lm.getString("NOUVEAU_VENTE"), new AwsomeIcon(AwsomeIconConst.NEW_ICON, 20));
         JSeparator sep2 = new JSeparator(JSeparator.VERTICAL);
         panelTop.add(sep2, "h 100%");
-        panelTop.add(btnNew);
-        panelTop.add(btnSave);
-        panelTop.add(btnDel);
+        panelTop.add(btnNewVente);
+        panelTop.add(btnSearchVente);
+        panelTop.add(btnDelVente);
         this.add(panelTop, "dock north");
 
         // panel de centre 
@@ -101,7 +106,9 @@ public class VentePanel extends JPanel implements MyPanel {
         JPanel panelCentre = new JPanel(new MigLayout());
         JPanel panelCentreTop = new JPanel(new MigLayout());
         JPanel panelCentreTopSud = new JPanel(new MigLayout("rtl"));
-        tableProduct = new JTable(new TModel(new HashMap<Produit,Integer>()));
+        tableProduct = new JTable(new TModel(new HashMap<Produit, Integer>()));
+        tableProduct.setDefaultRenderer(String.class, new MyTableRenderer());
+        tableProduct.setRowHeight(30);
         panelCentreTop.add(new JScrollPane(tableProduct), "w 75%");
         JPanel panelCentreTopBtn = new JPanel(new MigLayout());
         btnDelLigne = new MyButton(lm.getStringWithSpace("sup_line"), new AwsomeIcon(AwsomeIconConst.DEL_ICON, 20, Color.BLACK));
@@ -129,11 +136,11 @@ public class VentePanel extends JPanel implements MyPanel {
         listCat.setCellRenderer(new MyListCatRenderer());
         JScrollPane catScr = new JScrollPane(listCat);
         catScr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
-        panelCentreSud.add(catScr, "h 92%,w 300:300:300");
+        panelCentreSud.add(catScr, "h 95%,w 300:300:300");
         panelProduct = new JPanel(new MigLayout("insets 4 4 4 4"));
         JScrollPane proScr = new JScrollPane(panelProduct);
         proScr.setBorder(BorderFactory.createLineBorder(Constants.TEXT_COLOR));
-        panelCentreSud.add(proScr, "h 92%,w 100%");
+        panelCentreSud.add(proScr, "h 95%,w 100%");
         panelCentre.add(panelCentreSud, "dock south,h 100%");
 
         // test 
@@ -145,7 +152,7 @@ public class VentePanel extends JPanel implements MyPanel {
                 fr.setVisible(true);
                 if (fr.getList().size() > 0) {
                     client = fr.getList().get(0);
-                    lblClient.setText(client.getId()+" - "+client.getNom());
+                    lblClient.setText(client.getId() + " - " + client.getNom());
                 }
             }
         });
@@ -156,7 +163,7 @@ public class VentePanel extends JPanel implements MyPanel {
                 delLigneAction();
             }
         });
-        btnNew.addActionListener(new ActionListener() {
+        btnNewVente.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -170,27 +177,62 @@ public class VentePanel extends JPanel implements MyPanel {
                 validerAction();
             }
         });
+        btnSearch.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchAction();
+            }
+        });
+        btnSearchVente.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchVenteAction();
+            }
+        });
 
     }
-    public void validerAction(){
-        if(tableProduct.getRowCount()!=0){
-            new PaimentFrame(null, true, listProduit).setVisible(true);
+
+    public void searchVenteAction() {
+        ListVenteFrame frame = new ListVenteFrame(null, true);
+        frame.setVisible(true);
+        if (frame.getList() != null && frame.getList().size() != 0) {
+            //TODO il faut completer cette fonction
+        }
+
+    }
+
+    public void searchAction() {
+        ListProduitFrame frame = new ListProduitFrame(null, true);
+        frame.setVisible(true);
+        if (frame.getList().size() > 0) {
+            proDBClicked(frame.getList().get(0));
         }
     }
-    public void newAction(){
+
+    public void validerAction() {
+        if (tableProduct.getRowCount() != 0) {
+            new PaimentFrame(null, true, listProduit, client).setVisible(true);
+        }
+    }
+
+    public void newAction() {
         listProduit.clear();
         tableProduct.setModel(new TModel(listProduit));
         calculTotal();
         client = null;
         lblClient.setText("Client ...");
     }
-    public void delLigneAction(){
-        if(tableProduct.getRowCount()!=1){
-        listProduit.remove(((TModel)tableProduct.getModel()).get(tableProduct.getSelectedRow()));
-        tableProduct.setModel(new TModel(listProduit));
-        calculTotal();
+
+    public void delLigneAction() {
+        if (tableProduct.getRowCount() != -1) {
+            listProduit.remove(((TModel) tableProduct.getModel()).get(tableProduct.getSelectedRow()));
+            tableProduct.setModel(new TModel(listProduit));
+            calculTotal();
         }
     }
+
     @Override
     public void refresh() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -223,7 +265,7 @@ public class VentePanel extends JPanel implements MyPanel {
                         pro.setBorder();
                     }
                     if (e.getClickCount() == 2) {
-                        catDBClicked(wid.getProduit());
+                        proDBClicked(wid.getProduit());
                     }
 
                 }
@@ -250,29 +292,35 @@ public class VentePanel extends JPanel implements MyPanel {
         this.updateUI();
     }
 
-    private void catDBClicked(Produit produit) {
-        Integer val = listProduit.get(produit);
+    private void proDBClicked(Produit produit) {
+        QuantiteFrame frame = new QuantiteFrame(null,true);
+        frame.setVisible(true);
+        int qte = frame.getQuantite();
+        if (qte > 0) {
+            Integer val = listProduit.get(produit);
             if (val == null) {
-                listProduit.put(produit, 1);
+                listProduit.put(produit, qte);
             } else {
-                listProduit.put(produit, val + 1);
+                listProduit.put(produit, val + qte);
             }
             tableProduct.setModel(new TModel(listProduit));
             calculTotal();
+        }
     }
-    
-    public void calculTotal(){
+
+    public void calculTotal() {
         ArrayList<Produit> pro = new ArrayList<Produit>(listProduit.keySet());
-        double tht=0,total=0;
-        for(int i=0;i<pro.size();i++){
-            tht+=pro.get(i).getPrixVente()*listProduit.get(pro.get(i));
-            total+=pro.get(i).getPrixVente()*(listProduit.get(pro.get(i))*(1+pro.get(i).getTva()/100));
+        double tht = 0, total = 0;
+        for (int i = 0; i < pro.size(); i++) {
+            tht += pro.get(i).getPrixVente() * listProduit.get(pro.get(i));
+            total += pro.get(i).getPrixVente() * (listProduit.get(pro.get(i)) * (1 + pro.get(i).getTva() / 100));
         }
         lblTHT.setText(String.format("%.2f", tht));
         lblTotal.setText(String.format("%.2f", total));
     }
 
     private class TModel implements TableModel {
+
         String title[] = tableTitles;
         Map<Produit, Integer> list;
         List<Produit> produits;
@@ -280,7 +328,7 @@ public class VentePanel extends JPanel implements MyPanel {
         public TModel(Map<Produit, Integer> listProduit) {
             this.list = listProduit;
             produits = new ArrayList<Produit>(listProduit.keySet());
-            
+
         }
 
         @Override
@@ -314,7 +362,7 @@ public class VentePanel extends JPanel implements MyPanel {
                 case 0:
                     return produits.get(rowIndex).getDesigniation();
                 case 1:
-                    return (produits.get(rowIndex).getPrixVente())*((produits.get(rowIndex).getTva()/100)+1);
+                    return String.format("%.2f", (produits.get(rowIndex).getPrixVente()) * ((produits.get(rowIndex).getTva() / 100) + 1));
                 case 2:
                     return list.get(produits.get(rowIndex));
                 case 3:
@@ -322,7 +370,7 @@ public class VentePanel extends JPanel implements MyPanel {
                 case 4:
                     return produits.get(rowIndex).getPrixVente();
                 case 5:
-                    return (produits.get(rowIndex).getPrixVente()*((produits.get(rowIndex).getTva()/100)+1)*(list.get(produits.get(rowIndex))));
+                    return String.format("%.2f", (produits.get(rowIndex).getPrixVente() * ((produits.get(rowIndex).getTva() / 100) + 1) * (list.get(produits.get(rowIndex)))));
 
             }
             return "";
@@ -346,8 +394,6 @@ public class VentePanel extends JPanel implements MyPanel {
         public Produit get(int ind) {
             return produits.get(ind);
         }
-
-
 
     }
 }

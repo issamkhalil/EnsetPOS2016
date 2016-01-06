@@ -25,12 +25,10 @@ public class UserFr1 extends JFrame{
     private MyButton btnSup;
     
     public void UserFr1(){
-        System.out.println("teeeeeeeeeeeeeeeeeeeeeeeeest");
         init();
         pack();
     }
     public void init(){
-        System.out.println("teeeeeeeeeeeeeeeeeeeeeeeeest");
         this.setLayout(new MigLayout());
         setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

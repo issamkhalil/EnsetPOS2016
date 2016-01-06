@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
@@ -80,7 +81,7 @@ public class ListProduitFrame extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ArrayList<Produit> list = StockControlor.searchProduct(txtRef.getText(), txtDes.getText(), txtPrix.getText());
+                    List<Produit> list = StockControlor.searchProduct(txtRef.getText(), txtDes.getText(), txtPrix.getText());
                     if (list != null) {
                         tableResult.setModel(new TModel(list));
                     }
@@ -144,9 +145,9 @@ public class ListProduitFrame extends JDialog {
     private class TModel implements TableModel {
 
         String title[] = {"ID Client", "Nom", "Prenom"};
-        ArrayList<Produit> list;
+        List<Produit> list;
 
-        public TModel(ArrayList<Produit> list) {
+        public TModel(List<Produit> list) {
             this.list = list;
         }
 

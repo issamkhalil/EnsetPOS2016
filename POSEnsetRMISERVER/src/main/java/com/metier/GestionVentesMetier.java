@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,8 +51,12 @@ public class GestionVentesMetier implements IGestionVentesMetier {
 
 	@Override
 	public void AddVente(Vente v) {
-		venteDao.AddVente(v);
-	}
+		if(v.getLignsVente()!=null && v.getLignsVente().size()>0 && v.getTranches()!=null && v.getTranches().size()>0){
+			Vente vente = venteDao.AddVente(v);
+			AddListLigneVente(v.getLignsVente(), vente.getId());
+			AddListTranches(v.getTranches(), vente.getId());
+		}
+		}
 
 	@Override
 	public void deleteVente(long id) {
@@ -84,17 +89,6 @@ public class GestionVentesMetier implements IGestionVentesMetier {
 		return venteDao.getVenteparTotale(totale);
 	}
 
-	@SuppressWarnings("unused")
-	private final List<Vente> intersection(List<Vente> vnts1, List<Vente> vnts2, List<Vente> vnts3) {
-		ArrayList<Vente> result = new ArrayList<Vente>();
-		for (Vente v : vnts1) {
-			if (vnts2.contains(v) && vnts3.contains(v)) {
-				result.add(v);
-			}
-		}
-		return result;
-
-	}
 
 	@Override
 	public List<Vente> getVenteParCritaires(long idClient, double total, Date dateDeb, Date dateFin) {
@@ -102,10 +96,20 @@ public class GestionVentesMetier implements IGestionVentesMetier {
 		lv1 = venteDao.getVenteEntre2date(dateDeb, dateFin);
 		lv2 = venteDao.getVenteparClientID(idClient);
 		lv3 = venteDao.getVenteparTotale(total);
-		List<Vente> result = intersection(lv1, lv2, lv3);
+		List<Vente> result = union(union(lv1, lv2),lv3);
 		return result;
 	}
 
+	@SuppressWarnings("unused")
+	private <T> List<T> union(List<T> list1, List<T> list2) {
+        Set<T> set = new HashSet<T>();
+        set.addAll(list1);
+        set.addAll(list2);
+        return new ArrayList<T>(set);
+    }
+
+	
+	
 	@Override
 	public List<Vente> getVenteParProduit(long produitId) {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(

@@ -1,8 +1,12 @@
 package com.metier;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import org.springframework.transaction.annotation.Transactional;
+
 import com.dao.IProduitsDAO;
 import com.dao.IcategorieDAO;
 import com.entities.Categorie;
@@ -77,21 +81,16 @@ public class GestionProduitsMetier implements IGestionProduitsMetier {
 		return produitDao.getProduitsbyCategorie(idCat);
 	}
 	
-	@SuppressWarnings("unused")
-	private final List<Produit> intersection(
-			List<Produit> prods1, List<Produit> prods2,
-			List<Produit> prods3 , List<Produit> prods4
-				){
-		ArrayList<Produit> result=new ArrayList<Produit>();
-		  for (Produit p : prods1) {
-	            if(prods2.contains(p) && prods3.contains(p) && prods4.contains(p) ) {
-	                result.add(p);
-	            }
-	        }
-					return result;
-		
-	}
+	private <T> List<T> union(List<T> list1, List<T> list2) {
+        Set<T> set = new HashSet<T>();
 
+        set.addAll(list1);
+        set.addAll(list2);
+
+        return new ArrayList<T>(set);
+    }
+
+	
 	/**
 	 **
 	 * @use getProduitsbyReferanceMotif, getProduitsbyPa, getProduitsbyPv, getProduitsbyCategorie;
@@ -104,7 +103,7 @@ public class GestionProduitsMetier implements IGestionProduitsMetier {
 		List<Produit> prod2 = produitDao.getProduitsbyPa(pa);
 		List<Produit> prod3 = produitDao.getProduitsbyPv(pv);
 		List<Produit> prod4 = produitDao.getProduitsbyReferanceMotif(motifRef);
-		return intersection(prod1, prod2, prod3, prod4);
+		return union(union(prod1, prod2), union(prod3, prod4));
 	}
 	
 	@Override

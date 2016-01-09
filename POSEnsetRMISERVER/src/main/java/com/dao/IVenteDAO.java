@@ -13,7 +13,7 @@ public interface IVenteDAO {
 		 * @param com.entities.Vente
 		 * fonction ajouter une Vente
 		 */
-		public void AddVente(Vente v);
+		public Vente AddVente(Vente v);
 		/*
 		 * @param com.entities.Vente
 		 * fonction supprimer une Vente 

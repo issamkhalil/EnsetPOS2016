@@ -16,8 +16,9 @@ import com.entities.Vente;
 public class VenteDAOImpl extends GenericDAO implements IVenteDAO {
 
 	@Override
-	public void AddVente(Vente v) {
+	public Vente AddVente(Vente v) {
 		em.persist(v);
+		return v;
 	}
 
 	@Override

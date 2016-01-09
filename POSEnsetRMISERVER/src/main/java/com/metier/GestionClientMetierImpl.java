@@ -54,29 +54,6 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 		clientDAO.removeClient(id);
 	}
 
-	
-	public void modifierClientParticulier(long id, ClientParticulier c) throws Exception {
-		ClientParticulier client = (ClientParticulier) clientDAO.chercheClientparID(id);
-		client.setAdresse(c.getAdresse());
-		client.setCompteFaceBook(c.getCompteFaceBook());
-		client.setEmail(c.getEmail());
-		client.setMaxCredit(c.getMaxCredit());
-		client.setNom(c.getNom());
-		client.setNote(c.getNote());
-		client.setPrenom(c.getPrenom());
-		client.setTelephone(c.getTelephone());
-		client.setVentes(c.getVentes());
-		
-		try{
-			adresseDAO.modifierAdresse(c.getAdresse());
-		}catch(Exception e){
-			e.printStackTrace();
-			System.out.println("Ici emmms ");
-			adresseDAO.AddAdresse(c.getAdresse());
-			}
-		System.out.println("Apres l'exception ");
-		clientDAO.modifierClient(client);
-	}
 
 		@Override
 	public List<Client> listerClientsAll() {
@@ -123,13 +100,11 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 		}
 
 		@Override
-		public List<Client> chercheClients(long id, String nomMotif,
-				String pNomRCMotif) {
+		public List<Client> chercheClients(long id, String nomMotif,String pNomRCMotif) {
 			List<Client> l1= clientDAO.chercheClientsPNomRCMotif(pNomRCMotif);
 			List<Client> l2= clientDAO.chercheClientsparNom(nomMotif);
 			List<Client> l3= new ArrayList<Client>();
 			l3.add(chercheClientparID(id));
-			
 			return union(union(l1, l2), l3); 
 		}
 

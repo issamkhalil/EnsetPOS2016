@@ -240,12 +240,43 @@ public class VentePanel extends JPanel implements MyPanel {
 
     public void addCategories(ArrayList<Categorie> list) {
         listCat.setModel(new MyListModel<Categorie>(list));
-    }
+        listCat.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (listCat.getSelectedIndex() != -1) {
+					catClicked(listCat.getModel().getElementAt(
+							listCat.getSelectedIndex()));
+				}
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+		});
+	}
 
     private void catClicked(Categorie categorie) {
-        //System.out.println("categorie : "+categorie.getNom());
+        System.out.println("categorie : "+categorie.getNom());
         Main main = (Main) this.getTopLevelAncestor();
-        //SalesControlor.ListerProdParCatAction(main, categorie);
+       try {
+		SalesControlor.ListerProdParCatAction(main, categorie);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
     }
 
     public void addProducts(List<Produit> produits) {

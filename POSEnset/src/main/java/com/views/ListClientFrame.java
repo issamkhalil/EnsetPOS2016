@@ -83,10 +83,10 @@ public class ListClientFrame extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ArrayList<Client> list = ListClientControlor.search(txtId.getText(), txtNom.getText(), txtPrenom.getText());
+                    ArrayList<Client> list = (ArrayList<Client>)ListClientControlor.search(txtId.getText(), txtNom.getText(), txtPrenom.getText());
                     tableResult.setModel(new TModel(list));
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR);
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

@@ -2,35 +2,16 @@ package controlors;
 
 import com.entities.Tranche;
 import com.entities.Vente;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class traitesControlor {
+public class traitesControlor extends SuperControlor {
 
-    public static List<Tranche> fetchTranches(Vente vente) {
-        List<Tranche> list = new ArrayList<Tranche>();
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), false, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), false, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), false, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        list.add(new Tranche(1000, new Date(), true, vente));
-        return list;
+    public static List<Tranche> fetchTranches(Vente vente) throws Exception {
+        List<Tranche> tranches = accesRMI.getVentebyId(vente.getId()).getTranches();
+        return tranches;
     }
     /**
      * fonction qui valider une tranche
@@ -39,6 +20,7 @@ public class traitesControlor {
      */
     public static void validerTranche(Tranche tranche) throws Exception{
         tranche.setPaye(true);
+        accesRMI.modifierTranche(tranche);
     }
 
 }

@@ -114,11 +114,8 @@ public class ComptePanel extends JFXPanel implements MyPanel{
         panelInfo.add(container,"w 100%");
         refrechListCompte();
         
-        ArrayList<CompteUtilisateur> list = new ArrayList<CompteUtilisateur>();
-        list.add(new CompteUtilisateur("abdelilah", "elmottaki", null, null, null, null, null));
-        list.add(new CompteUtilisateur("abdo", "elmot", null, null, null, null, null));
 
-        AddUsers(list);
+        AddUsers((ArrayList<CompteUtilisateur>)ComptesControlor.fetchComptes());
         // initialisation de Compo
         comboType.addItem(Constants.TypeCompte.ADMIN);
         comboType.addItem(Constants.TypeCompte.USER);
@@ -160,8 +157,12 @@ public class ComptePanel extends JFXPanel implements MyPanel{
         
         try{
             if(compteSelec==null){
+            	try{
                 ComptesControlor.saveCompte(txtLogin.getText(),txtPass.getText(),txtNom.getText(),txtPrenom.getText(),txtMail.getText(),txtTele.getText(),comboType.getSelectedItem().toString());
-            }else{
+            	}catch(Exception e){
+            		System.out.println("une exception : " + e);
+            	}
+            	}else{
                 ComptesControlor.updateCompte(compteSelec,txtLogin.getText(),txtPass.getText(),txtNom.getText(),txtPrenom.getText(),txtMail.getText(),txtTele.getText(),comboType.getSelectedItem().toString());
             }
             refrechListCompte();
@@ -222,7 +223,7 @@ public class ComptePanel extends JFXPanel implements MyPanel{
     }
     public void refrechListCompte(){
         try{
-        AddUsers(ComptesControlor.fetchComptes());
+        AddUsers((ArrayList<CompteUtilisateur>)ComptesControlor.fetchComptes());
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);

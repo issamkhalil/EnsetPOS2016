@@ -14,22 +14,11 @@ import com.entities.Produit;
 import com.metier.IAccesRMI;
 import com.views.ClientPanel;
 import com.views.StockPanel;
+
 import java.util.ArrayList;
 
-public class StockControlor {
-
-    private static IAccesRMI accesRMI;
-
-    static {
-        try {
-            accesRMI = (IAccesRMI) Naming.lookup("rmi://localhost:1099/accRMI");
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-    }
-
+public class StockControlor extends SuperControlor{
+    
     public static void indexAction(StockPanel sp) throws Exception {
         // TODO Auto-generated method stub
         List<Produit> produits = accesRMI.listerProduits();
@@ -104,7 +93,8 @@ public class StockControlor {
         }
 
         Produit produit = new Produit(ref, nom, q, t, pv, pa, img);
-
+        
+        accesRMI.AddProduit(produit);
     }
 
     /**
@@ -152,6 +142,8 @@ public class StockControlor {
         } catch (RuntimeException e) {
             throw new Exception("Veillez sasir une Tva valide !!!");
         }
+        
+        accesRMI.modifierProduit(produit);
     }
 
     /**
@@ -178,7 +170,6 @@ public class StockControlor {
         try {
             accesRMI.deleteCategorie(elementAt.getId());
         } catch (Exception e) {
-            // TODO generer une exception avec un message valide
             e.printStackTrace();
         }
     }
@@ -188,7 +179,6 @@ public class StockControlor {
             Categorie c = new Categorie(text, image);
             accesRMI.AddCategorie(c);
         } catch (Exception e) {
-            // TODO generer une exception de accés RMI
             e.printStackTrace();
         }
 
@@ -203,16 +193,13 @@ public class StockControlor {
             elementAt.setNom(text);
             accesRMI.modifierCategorie(elementAt);
         } catch (Exception e) {
-            // TODO generer une exception de accés RMI
             e.printStackTrace();
         }
 
     }
     
-    public static List<Produit> searchProduct(String reference, String designation, String prixVente) {
-        ArrayList<Produit> list = new ArrayList<Produit>();
-        list.add(new Produit("az123", "Produit1", 120, 20, 225, 200, null));
-        return list;
+    public static List<Produit> searchProduct(String reference, String designation, String prixVente) throws Exception {
+    	return accesRMI.getProduitsbyReferanceMotif(reference);    
     }
 
 }

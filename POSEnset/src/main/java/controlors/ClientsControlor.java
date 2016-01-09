@@ -15,20 +15,10 @@ import com.entities.Adresse;
 import com.entities.Client;
 import com.entities.ClientEntreprise;
 import com.entities.ClientParticulier;
-import com.metier.IAccesRMI;
 import com.views.ClientPanel;
 
-public class ClientsControlor {
-	private static IAccesRMI accesRMI;
+public class ClientsControlor extends SuperControlor{
 
-	static {
-		try {
-			accesRMI =(IAccesRMI) Naming.lookup("rmi://localhost:1099/accRMI");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		}
 
 	public static void indexAction(ClientPanel cp) throws Exception {
 		List<Client> clients = accesRMI.listerClientsAll();

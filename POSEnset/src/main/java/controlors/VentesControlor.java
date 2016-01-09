@@ -28,12 +28,9 @@ public class VentesControlor extends SuperControlor{
      * @return list des ventes
      * @exception il faut preciser les message en francais
      */
-    public static ArrayList<Vente> searchVentes(String idVente, String total, Client client, Date dateDebut, Date dateFin) throws Exception {
-        ArrayList<Vente> list = new ArrayList<Vente>();
-        list.add(new Vente(new Date(), PaymentType.parCarte, 1000, 2000));
-        list.add(new Vente(new Date(), PaymentType.parCarte, 1000, 2000));
-        list.add(new Vente(new Date(), PaymentType.parCarte, 1000, 2000));
-        return list;
+    public static List<Vente> searchVentes(String idVente, String total, Client client, Date dateDebut, Date dateFin) throws Exception {
+        return accesRMI.getVenteParCritaires(client.getId(), Double.parseDouble(total), dateDebut, dateFin);
+         
     }
     /**
      * fonction pour recuperer des ventes d'un client
@@ -42,13 +39,6 @@ public class VentesControlor extends SuperControlor{
      * @exception il faut preciser les message en francais
      */
     public static List<Vente> fetchVentes(Client client) throws Exception  {
-       ArrayList<Vente> list = new ArrayList<Vente>();
-        list.add(new Vente(new Date(), PaymentType.parCarte, 1000, 2000));
-        list.add(new Vente(new Date(), PaymentType.parCarte, 1000, 2000));
-        list.add(new Vente(new Date(), PaymentType.parCarte, 1000, 2000));
-        return list;
+        return accesRMI.getVenteparClientID(client.getId());
     }
-
-
-    
 }

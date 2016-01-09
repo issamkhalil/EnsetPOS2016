@@ -8,21 +8,20 @@ package controlors;
 import com.entities.Client;
 import com.entities.ClientParticulier;
 import com.models.ContException;
+
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author elmottaki
  */
-public class ListClientControlor {
+public class ListClientControlor extends SuperControlor{
 	
 	
     
-    public static ArrayList<Client> search(String id,String nom,String prenom) throws ContException{
-        ArrayList<Client> list = new ArrayList<Client>();
-        list.add(new ClientParticulier("Abdelilah", "EL MOTTAKI", "elmottaki"));
-        return list;
+    public static List<Client> search(String id,String nom,String prenom) throws Exception{
+        return accesRMI.chercheClients(Long.parseLong(id), nom, prenom);
     }
-    
     
 }

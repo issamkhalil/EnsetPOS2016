@@ -136,7 +136,7 @@ public class ListVenteFrame extends JDialog {
     }
     private void searchAction(){
         try{
-            ArrayList<Vente> listVente = VentesControlor.searchVentes(txtId.getText(),txtTotal.getText(),client,(Date)dateDebut.getModel().getValue(),(Date)dateFin.getModel().getValue());
+            ArrayList<Vente> listVente = (ArrayList<Vente>)VentesControlor.searchVentes(txtId.getText(),txtTotal.getText(),client,(Date)dateDebut.getModel().getValue(),(Date)dateFin.getModel().getValue());
             tableResult.setModel(new TModel(listVente));
         }catch(Exception ex){
             

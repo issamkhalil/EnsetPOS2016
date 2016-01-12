@@ -1,6 +1,7 @@
 package com.entities;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -140,6 +141,12 @@ public class Vente implements Serializable{
 	public int compareTo(Vente v) {
 		return this.date.compareTo(v.date);
 	}
+
+    @Override
+    public String toString() {
+        return id + new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+        
 	
 	
 	

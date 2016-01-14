@@ -144,7 +144,7 @@ public class ListProduitFrame extends JDialog {
 
     private class TModel implements TableModel {
 
-        String title[] = {"ID Client", "Nom", "Prenom"};
+        String title[] = {"Reference", "Designation", "Prix de vente"};
         List<Produit> list;
 
         public TModel(List<Produit> list) {

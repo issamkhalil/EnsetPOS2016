@@ -45,6 +45,7 @@ public class PaimentFrame extends JDialog {
     private double tht;
     private double total;
     private Client client;
+    private boolean done = false;
 
     public PaimentFrame(JFrame parent, boolean modal, Map<Produit, Integer> listProduit) {
         super(parent, modal);
@@ -197,12 +198,13 @@ public class PaimentFrame extends JDialog {
             if (btnChoixCarte.isSelected()) {
                 SalesControlor.validerVente(listProduit, PaymentType.parCarte,client);
             } else if (btnChoixCheque.isSelected()) {
-                SalesControlor.validerVente(listProduit, PaymentType.parCarte,client);
+                SalesControlor.validerVente(listProduit, PaymentType.cheque,client);
             } else if (btnChoixEspece.isSelected()) {
-                SalesControlor.validerVente(listProduit, PaymentType.parCarte,client);
+                SalesControlor.validerVente(listProduit, PaymentType.espece,client);
             } else {
                 SalesControlor.validerVente(listProduit, panelTraite.getTraites(),client);
             }
+            done = true;
             this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -267,5 +269,8 @@ public class PaimentFrame extends JDialog {
 
     public void setRest(double val) {
         lblRest.setText(String.format("%.2f", val));
+    }
+    public boolean isDone(){
+        return done;
     }
 }

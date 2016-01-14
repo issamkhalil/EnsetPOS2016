@@ -183,6 +183,16 @@
 	  <artifactId>POSEnsetRMISERVER</artifactId>
 	  <version>0.0.1-SNAPSHOT</version>
 	 </dependency>
+	 <dependency>
+	  <groupId>org.jsoup</groupId>
+	  <artifactId>jsoup</artifactId>
+	  <version>1.8.3</version>
+	 </dependency>
+	 <dependency>
+	  <groupId>com.google.code.maven-play-plugin.org.allcolor.yahp</groupId>
+	  <artifactId>yahp-internal</artifactId>
+	  <version>1.3</version>
+	 </dependency>
 	</dependencies>
 	<build>
 		<plugins>

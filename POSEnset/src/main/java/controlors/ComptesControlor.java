@@ -51,5 +51,8 @@ public class ComptesControlor extends SuperControlor{
 				return  false;
 			}
     	}
+    public static CompteUtilisateur fetchUser(String id) throws Exception{
+        return accesRMI.getCompteUtilisateurbyLogin(id);
+    }
 
 }

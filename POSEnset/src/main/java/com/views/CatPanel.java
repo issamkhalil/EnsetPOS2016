@@ -45,6 +45,8 @@ public class CatPanel extends JPanel implements MyPanel {
     private JTextField txtName;
     private JTextArea txtDescription;
     private byte image[];
+    private Categorie selCat = null;
+    private List<Categorie> list;
 
     public CatPanel() {
         init();
@@ -144,35 +146,41 @@ public class CatPanel extends JPanel implements MyPanel {
             public void mouseExited(MouseEvent e) {
             }
         });
+        refresh();
     }
 
     private void delAction() {
-        try{
-            if(listCat.getSelectedIndex()==-1){
+        try {
+            if (listCat.getSelectedIndex() == -1) {
                 throw new Exception("il faut selectionner une Categorie !");
             }
-            StockControlor.deleteCategorie(listCat.getModel().getElementAt(listCat.getSelectedIndex()));
-        }catch(Exception ex){
+            if (selCat != null) {
+                StockControlor.deleteCategorie(selCat);
+                selCat = null;
+            }
+            refresh();
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
 
     private void newAction() {
         image = null;
         setCategorieImg();
         txtName.setText("");
         txtDescription.setText("");
+        selCat = null;
     }
 
     private void saveAction() {
         try {
-            if (listCat.getSelectedIndex() == -1) {
-                StockControlor.saveCategorie(image,txtName.getText(),txtDescription.getText());
+            if (selCat == null) {
+                StockControlor.saveCategorie(image, txtName.getText(), txtDescription.getText());
             } else {
-                StockControlor.updateCategorie(listCat.getModel().getElementAt(listCat.getSelectedIndex()),image,txtName.getText(),txtDescription.getText());
+                StockControlor.updateCategorie(listCat.getModel().getElementAt(listCat.getSelectedIndex()), image, txtName.getText(), txtDescription.getText());
             }
-            
+            refresh();
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
@@ -180,7 +188,12 @@ public class CatPanel extends JPanel implements MyPanel {
 
     @Override
     public void refresh() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            list = StockControlor.fetchAllCategories();
+            addCategories(list);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     public void addCategories(List<Categorie> list) {
@@ -214,7 +227,11 @@ public class CatPanel extends JPanel implements MyPanel {
     }
 
     public void catClicked(Categorie elementAt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        selCat = elementAt;
+        txtName.setText(selCat.getNom());
+        txtDescription.setText(selCat.getNom());
+        image = selCat.getImage();
+       setCategorieImg();
     }
 
     private void setCategorieImg() {

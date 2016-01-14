@@ -49,7 +49,7 @@ public class ComptePanel extends JFXPanel implements MyPanel{
     private MyText txtPrenom;
     private MyText txtLogin;
     private MyPassText txtPass;
-    private JComboBox comboType;
+    private JComboBox<String> comboType;
     private CompteUtilisateur compteSelec=null;
 
     
@@ -117,8 +117,8 @@ public class ComptePanel extends JFXPanel implements MyPanel{
 
         AddUsers((ArrayList<CompteUtilisateur>)ComptesControlor.fetchComptes());
         // initialisation de Compo
-        comboType.addItem(Constants.TypeCompte.ADMIN);
-        comboType.addItem(Constants.TypeCompte.USER);
+        comboType.addItem(Constants.TypeCompte.ADMIN.toString());
+        comboType.addItem(Constants.TypeCompte.USER.toString());
         
         btnNew.addActionListener(new ActionListener() {
 

@@ -19,11 +19,11 @@ import java.util.ArrayList;
 
 public class StockControlor extends SuperControlor{
     
-    public static void indexAction(StockPanel sp) throws Exception {
-        // TODO Auto-generated method stub
-        List<Produit> produits = accesRMI.listerProduits();
-        sp.getPp().addProds(produits);
-    }
+//    public static void indexAction(StockPanel sp) throws Exception {
+//        // TODO Auto-generated method stub
+//        List<Produit> produits = accesRMI.listerProduits();
+//        sp.getPp().addProds(produits);
+//    }
 
     /**
      * fonction qui va chercher les produit
@@ -93,6 +93,7 @@ public class StockControlor extends SuperControlor{
         }
 
         Produit produit = new Produit(ref, nom, q, t, pv, pa, img);
+        produit.setCategorie(cat);
         
         accesRMI.AddProduit(produit);
     }
@@ -200,6 +201,10 @@ public class StockControlor extends SuperControlor{
     
     public static List<Produit> searchProduct(String reference, String designation, String prixVente) throws Exception {
     	return accesRMI.getProduitsbyReferanceMotif(reference);    
+    }
+
+    public static List<Produit> fetchAllProducts() throws Exception {
+        return accesRMI.listerProduits();
     }
 
 }

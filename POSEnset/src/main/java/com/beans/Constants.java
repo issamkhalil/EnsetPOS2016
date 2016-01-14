@@ -19,6 +19,7 @@ public class Constants {
    public static String LANGUE_FILE="langue";
    public static Color OFFICIAL_COLOR = new Color(156,209,253);
    public static Color TEXT_COLOR = new Color(69,153,239);
+   public static String HTML_RECU = "recu.html";
    public static enum TypeCompte{
        ADMIN("Admin"),USER("User");
        private final String text;

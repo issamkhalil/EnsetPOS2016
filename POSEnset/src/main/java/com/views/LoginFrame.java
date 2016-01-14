@@ -111,7 +111,8 @@ public class LoginFrame extends javax.swing.JFrame {
     public void connectAction(){
         try{
             if(ComptesControlor.checkUser(txtcin.getText(),txtpass.getText())){
-                new Main().setVisible(true);
+                this.dispose();
+                new Main(ComptesControlor.fetchUser(txtcin.getText())).setVisible(true);
             }
         }catch(Exception ex){
             lblmessage.setText("* "+ex.getMessage());

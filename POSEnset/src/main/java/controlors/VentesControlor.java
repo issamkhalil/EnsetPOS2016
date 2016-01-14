@@ -30,7 +30,6 @@ public class VentesControlor extends SuperControlor{
      */
     public static List<Vente> searchVentes(String idVente, String total, Client client, Date dateDebut, Date dateFin) throws Exception {
         return accesRMI.getVenteParCritaires(client.getId(), Double.parseDouble(total), dateDebut, dateFin);
-         
     }
     /**
      * fonction pour recuperer des ventes d'un client

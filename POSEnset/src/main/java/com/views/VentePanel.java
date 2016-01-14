@@ -213,7 +213,12 @@ public class VentePanel extends JPanel implements MyPanel {
 
     public void validerAction() {
         if (tableProduct.getRowCount() != 0) {
-            new PaimentFrame(null, true, listProduit, client).setVisible(true);
+            PaimentFrame frame = new PaimentFrame(null, true, listProduit, client);
+            frame.setVisible(true);
+            if(frame.isDone()){
+                btnNewVente.doClick();
+            }
+            
         }
     }
 

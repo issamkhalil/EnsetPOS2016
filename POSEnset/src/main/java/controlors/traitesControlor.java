@@ -10,7 +10,7 @@ import java.util.List;
 public class traitesControlor extends SuperControlor {
 
     public static List<Tranche> fetchTranches(Vente vente) throws Exception {
-        List<Tranche> tranches = accesRMI.getVentebyId(vente.getId()).getTranches();
+        List<Tranche> tranches = accesRMI.getTranchebyVente(vente);    
         return tranches;
     }
     /**

@@ -143,7 +143,9 @@ public class TraitePanel extends JPanel implements MyPanel {
             List<Tranche> list = traitesControlor.fetchTranches(vente);
             addTranches(list);
         }catch(Exception ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        	ex.printStackTrace();
+        	JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+
         }
         
     }

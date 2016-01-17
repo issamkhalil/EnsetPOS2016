@@ -1,6 +1,9 @@
 package com.dao;
 
+import java.util.List;
+
 import com.entities.Tranche;
+import com.entities.Vente;
 
 public interface ITrancheDAO {
 	
@@ -31,6 +34,5 @@ public interface ITrancheDAO {
 	 */
 	public Tranche  getTranchebyId(long id);
 
-
-
+	public List<Tranche> getTranchebyVente(Vente v) throws Exception ;
 }

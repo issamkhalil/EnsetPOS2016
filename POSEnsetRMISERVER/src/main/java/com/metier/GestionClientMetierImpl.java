@@ -105,7 +105,7 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 			List<Client> l2= clientDAO.chercheClientsparNom(nomMotif);
 			List<Client> l3= new ArrayList<Client>();
 			l3.add(chercheClientparID(id));
-			return union(union(l1, l2), l3); 
+			return union(intersection(l1, l2), l3); 
 		}
 
 		private <T> List<T> union(List<T> list1, List<T> list2) {
@@ -116,6 +116,18 @@ public class GestionClientMetierImpl implements IGestionClientMetier {
 
 	        return new ArrayList<T>(set);
 	    }
+		
+		 private <T> List<T> intersection(List<T> list1, List<T> list2) {
+		        List<T> list = new ArrayList<T>();
+
+		        for (T t : list1) {
+		            if(list2.contains(t)) {
+		                list.add(t);
+		            }
+		        }
+
+		        return list;
+		    }
 
 		
 }

@@ -210,6 +210,11 @@ public class GestionVentesMetier implements IGestionVentesMetier {
 		trancheDao.modifierTranche(t);
 	}
 
+	@Override
+	public List<Tranche> getTranchebyVente(Vente v) throws Exception {
+		return	trancheDao.getTranchebyVente(v);
+	}
+
 	
 
 }

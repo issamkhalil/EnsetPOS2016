@@ -129,4 +129,6 @@ public interface IAccesRMI extends Remote {
 
 	public Tranche getTranchebyId(long id) throws Exception ;
 
+	public List<Tranche> getTranchebyVente(Vente v) throws Exception ;
+	
 }

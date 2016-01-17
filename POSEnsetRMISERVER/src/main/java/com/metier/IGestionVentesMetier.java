@@ -171,6 +171,7 @@ public interface IGestionVentesMetier {
 	 */
 	public Tranche  getTranchebyId(long id);
 
+	public List<Tranche> getTranchebyVente(Vente v) throws Exception ;
 	
 }
 

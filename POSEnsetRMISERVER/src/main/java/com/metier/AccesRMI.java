@@ -390,4 +390,9 @@ public class AccesRMI extends UnicastRemoteObject implements IAccesRMI{
 		return gestionClientMetier.chercheClients(id,nomMotif,pNomRCMotif);
 	}
 
+	@Override
+	public List<Tranche> getTranchebyVente(Vente v) throws Exception {
+		return gestionVentesMetier.getTranchebyVente(v);
+	}
+
 }

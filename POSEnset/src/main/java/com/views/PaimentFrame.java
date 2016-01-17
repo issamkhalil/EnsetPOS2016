@@ -208,6 +208,7 @@ public class PaimentFrame extends JDialog {
             this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
 
     }

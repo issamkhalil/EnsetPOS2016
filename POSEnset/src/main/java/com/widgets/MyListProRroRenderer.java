@@ -76,9 +76,9 @@ public class MyListProRroRenderer extends JPanel implements ListCellRenderer<Obj
         lblText.setForeground(foreground);
         lblText.setFont(new Font("Monospaced", Font.BOLD, 16));
         lblText.setPreferredSize(new Dimension(270,30));
-        lblImg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //lblImg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         if(pro.getImage()==null)
-            lblImg.setIcon(GRessource.getIcon("open_folder.png",30));
+            lblImg.setIcon(GRessource.getIcon("open_folder.png",40));
         else
             lblImg.setIcon(GRessource.getImage(pro.getImage(),40));
         return this;

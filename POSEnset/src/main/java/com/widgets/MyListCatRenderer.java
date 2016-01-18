@@ -76,9 +76,9 @@ public class MyListCatRenderer extends JPanel implements ListCellRenderer<Object
         lblText.setForeground(foreground);
         lblText.setFont(new Font("Monospaced", Font.BOLD, 16));
         lblText.setPreferredSize(new Dimension(270,30));
-        lblImg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        //lblImg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         if(cat.getImage()==null)
-            lblImg.setIcon(GRessource.getIcon("open_folder.png",30));
+            lblImg.setIcon(GRessource.getIcon("open_folder.png",40));
         else
             lblImg.setIcon(GRessource.getImage(cat.getImage(),40));
         return this;

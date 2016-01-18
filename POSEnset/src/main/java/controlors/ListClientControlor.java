@@ -21,6 +21,9 @@ public class ListClientControlor extends SuperControlor{
 	
     
     public static List<Client> search(String id,String nom,String prenom) throws Exception{
+        if(id.equals("")){
+            id="0";
+        }
         return accesRMI.chercheClients(Long.parseLong(id), nom, prenom);
     }
     

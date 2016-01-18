@@ -73,8 +73,8 @@ public class MyListCompteRenderer extends JPanel implements ListCellRenderer<Obj
         this.setBackground(background);
         lblText.setForeground(foreground);
         lblText.setFont(new Font("Monospaced", Font.BOLD, 16));
-        lblText.setPreferredSize(new Dimension(270,30));
-        lblImg.setIcon(GRessource.getIcon("bussnessman.png",30));
+        lblText.setPreferredSize(new Dimension(270,40));
+        lblImg.setIcon(GRessource.getIcon("bussnessman.png",40));
         return this;
     }
 

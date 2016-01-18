@@ -77,8 +77,8 @@ public class MyListVenteRenderer extends JPanel implements ListCellRenderer<Obje
         this.setBackground(background);
         lblText.setForeground(foreground);
         lblText.setFont(new Font("Monospaced", Font.BOLD, 16));
-        lblText.setPreferredSize(new Dimension(270, 30));
-        lblImg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        lblText.setPreferredSize(new Dimension(270, 40));
+       // lblImg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         lblImg.setIcon(GRessource.getIcon("paid.png", 40));
         return this;

@@ -84,8 +84,12 @@ public class ListClientFrame extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     ArrayList<Client> list = (ArrayList<Client>)ListClientControlor.search(txtId.getText(), txtNom.getText(), txtPrenom.getText());
-                    tableResult.setModel(new TModel(list));
+                    if(list==null){
+                        tableResult.setModel(new TModel(new ArrayList<Client>()));
+                    }else{
+                    tableResult.setModel(new TModel(list));}
                 } catch (Exception ex) {
+                    tableResult.setModel(new TModel(new ArrayList<Client>()));
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             }

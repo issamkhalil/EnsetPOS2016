@@ -9,8 +9,11 @@ import com.beans.AwsomeIconConst;
 import com.entities.Client;
 import com.entities.PaymentType;
 import com.entities.Produit;
+import com.entities.Vente;
 import com.models.AwsomeIcon;
 import com.models.LangueModel;
+import com.models.PdfFactory;
+import com.widgets.GFile;
 import com.widgets.MyButton;
 import com.widgets.MyLabel;
 import com.widgets.MyRadioButton;
@@ -22,8 +25,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import net.miginfocom.swing.MigLayout;
 
@@ -58,7 +65,7 @@ public class PaimentFrame extends JDialog {
     }
 
     PaimentFrame(JFrame parent, boolean modal, Map<Produit, Integer> listProduit, Client client) {
-       super(parent, modal);
+        super(parent, modal);
         this.listProduit = listProduit;
         init();
         pack();
@@ -169,14 +176,14 @@ public class PaimentFrame extends JDialog {
 
             @Override
             public void keyTyped(KeyEvent e) {
-
+                
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
-
+                
             }
-
+          
             @Override
             public void keyReleased(KeyEvent e) {
                 try {
@@ -195,16 +202,42 @@ public class PaimentFrame extends JDialog {
 
     public void validerAction() {
         try {
+//             if(Double.parseDouble(lblRest.getText())>0 && !btnChoixTraite.isSelected()){
+//                 throw new Exception("le Rest doit etre egal a 0 !");
+//             }
+            Vente vente = null;
             if (btnChoixCarte.isSelected()) {
-                SalesControlor.validerVente(listProduit, PaymentType.parCarte,client);
+                vente = SalesControlor.validerVente(listProduit, PaymentType.parCarte, client);
             } else if (btnChoixCheque.isSelected()) {
-                SalesControlor.validerVente(listProduit, PaymentType.cheque,client);
+                vente = SalesControlor.validerVente(listProduit, PaymentType.cheque, client);
             } else if (btnChoixEspece.isSelected()) {
-                SalesControlor.validerVente(listProduit, PaymentType.espece,client);
+                vente = SalesControlor.validerVente(listProduit, PaymentType.espece, client);
             } else {
-                SalesControlor.validerVente(listProduit, panelTraite.getTraites(),client);
+                vente = SalesControlor.validerVente(listProduit, panelTraite.getTraites(), client);
             }
+
             done = true;
+
+            try {
+                if (checkRecu.isSelected() && !btnChoixTraite.isSelected()) {
+                    PdfFactory.createRecu(vente, new File("recu.pdf"));
+                    try{
+                    java.awt.Desktop.getDesktop().open(new File("recu.pdf"));
+                    }
+                    catch(Exception ex){
+                        
+                    }
+                   finally{
+                        GFile.open(new File("recu.pdf"));
+                    }
+                }
+            } catch (Exception ex) {
+                if (ex instanceof FileNotFoundException) {
+                    JOptionPane.showMessageDialog(this, "Fermer PDF ListLettre.pdf !");
+                } else {
+                    Logger.getLogger(PaimentFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             this.dispose();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -271,7 +304,8 @@ public class PaimentFrame extends JDialog {
     public void setRest(double val) {
         lblRest.setText(String.format("%.2f", val));
     }
-    public boolean isDone(){
+
+    public boolean isDone() {
         return done;
     }
 }

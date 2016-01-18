@@ -129,7 +129,7 @@ public class Main extends javax.swing.JFrame {
             jtp.setTabComponentAt(4, new TabCompoSouth(lm.getString("comptes"),
                     GRessource.getIcon("users.png", 40)));
             listPanel.put("comptes", comp);
-            if (compte.getType().equals(Constants.TypeCompte.ADMIN)) {
+            if (compte.getType().equals("Admin")) {
                 FacebookPanel fp = new FacebookPanel();
                 jtp.addTab(null, fp);
                 jtp.setTabComponentAt(5, new TabCompoSouth(lm.getString("facebook"),

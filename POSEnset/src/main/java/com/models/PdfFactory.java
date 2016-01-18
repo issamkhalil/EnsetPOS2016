@@ -43,7 +43,7 @@ public class PdfFactory {
     public static void createRecu(Vente vente, File fout) throws IOException, FileNotFoundException, IHtmlToPdfTransformer.CConvertException {
         Document document = Jsoup.parse(new File(ClassLoader.getSystemClassLoader().getResource("templates/"+Constants.HTML_RECU).getFile()), "UTF-8", "http://ensetpos.com/");
         Element idVente = document.getElementById("idVente");
-        idVente.appendText(vente.getId()+"");
+        idVente.appendText("v124");
         Element date = document.getElementById("date");
         date.appendText(new SimpleDateFormat().format(vente.getDate()));
         Element client = document.getElementById("client");
@@ -63,7 +63,7 @@ public class PdfFactory {
 "        </tr>");
         }
         Element table = document.getElementById("table");
-        table.appendText(html.toString());
+        table.append(html.toString());
         HtmlToPDF.convert(document.toString(), fout);
     }
 

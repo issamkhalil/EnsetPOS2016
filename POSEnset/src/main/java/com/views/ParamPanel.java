@@ -63,7 +63,7 @@ public class ParamPanel  extends JFXPanel implements MyPanel{
         contenair.add(txtPass,"sg txt,wrap,w 200px");
         
         contenair.add(new TitledSeparator("Comfiguration de Locale"),"span,growx");
-        contenair.add(new MyLabel("Pay"));
+        contenair.add(new MyLabel("Pays"));
         comboPay = new JComboBox<String>();
         contenair.add(comboPay,"sg txt,wrap,w 200px");
         
@@ -108,9 +108,28 @@ public class ParamPanel  extends JFXPanel implements MyPanel{
                 ConfigModel.store();
             }
         });
+        ConfigModel.load();
+        ConfigModel.setProprety(Constants.URL, "jdbc:mysql://localhost:3306/gestionvente");
+       ConfigModel.setProprety(Constants.LOGIN, "root");
+       ConfigModel.setProprety(Constants.URL, "");
+       ConfigModel.store();
+       loadInfo();
+       comboPay.addItem("Maroc");
+       comboPay.addItem("France");
+       comboLan.addItem("Francais");
+       comboLan.addItem("English");
+       comboLan.addItem("Arabe");
         
-       
-        
+    }
+    public void loadInfo(){
+        ConfigModel.load();
+        txtURL.setText("jdbc:mysql://localhost:3306/gestionvente");
+        System.out.println(ConfigModel.getProprety(Constants.URL));
+        txtLogin.setText(ConfigModel.getProprety(Constants.LOGIN));
+        txtPass.setText(ConfigModel.getProprety(Constants.PASS));
+        txtAccess.setText(ConfigModel.getProprety(Constants.FACE_TOKEN));
+        txtFaceId.setText(ConfigModel.getProprety(Constants.FACE_ID));
+        txtFacePass.setText(ConfigModel.getProprety(Constants.FACE_SECRET));
     }
     @Override
     public void refresh() {

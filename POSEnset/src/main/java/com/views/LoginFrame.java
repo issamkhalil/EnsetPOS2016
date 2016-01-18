@@ -113,6 +113,9 @@ public class LoginFrame extends javax.swing.JFrame {
             if(ComptesControlor.checkUser(txtcin.getText(),txtpass.getText())){
                 this.dispose();
                 new Main(ComptesControlor.fetchUser(txtcin.getText())).setVisible(true);
+            }else{
+                lblmessage.setText("* Login ou mot de passe n'est pas correcte !");
+                this.pack();
             }
         }catch(Exception ex){
             lblmessage.setText("* "+ex.getMessage());

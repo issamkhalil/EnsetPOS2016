@@ -53,10 +53,10 @@ public class SalesControlor extends SuperControlor {
 	 *                il y a une exception il faut preciser le message en
 	 *                francais clair
 	 */
-	public static void validerVente(Map<Produit, Integer> listProduit,
+	public static Vente validerVente(Map<Produit, Integer> listProduit,
 			PaymentType type, Client client) throws Exception {
 		if (type.equals(PaymentType.traites))
-			return;
+			return null;
 		Vente v = new Vente();
 		v.setClient(client);
 		v.setDate(new Date());
@@ -76,6 +76,7 @@ public class SalesControlor extends SuperControlor {
 		v.setTranches(tranches);
 		v.setLignsVente(ligneVentes);
 		accesRMI.AddVente(v);
+                return v;
 	}
 
 	/**
@@ -89,7 +90,7 @@ public class SalesControlor extends SuperControlor {
 	 *             si il y a une exception il faut preciser le message en
 	 *             francais clair
 	 */
-	public static void validerVente(Map<Produit, Integer> listProduit,
+	public static Vente validerVente(Map<Produit, Integer> listProduit,
 			double traites[], Client client) throws Exception {
 		
 		Vente v = new Vente();
@@ -113,5 +114,6 @@ public class SalesControlor extends SuperControlor {
 		v.setTranches(tranches);
 		v.setLignsVente(ligneVentes);
 		accesRMI.AddVente(v);
+                return v;
 	}
 }
